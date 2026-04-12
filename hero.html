@@ -1,0 +1,334 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sami Shaikh - Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-color: #999d9e; 
+            --dark-pill: rgba(28, 29, 32, 0.8);
+            --text-white: #ffffff;
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: var(--bg-color);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .reveal-container {
+            position: relative;
+            height: 100vh;
+            width: 45vw;
+            z-index: 5;
+            overflow: hidden;
+            visibility: hidden;
+        }
+
+        .hero-img {
+            width: 100%; 
+            height: 120%; /* Desktop parallax ke liye extra height */
+            object-fit: cover;
+            display: block;
+            position: absolute;
+            top: 0;
+        }
+
+        .left-box {
+            position: absolute;
+            left: 0; top: 50%;
+            transform: translateY(-50%);
+            z-index: 40;
+            opacity: 0;
+                width: min-content;
+
+        }
+
+        .location-pill {
+            background: var(--dark-pill);
+            backdrop-filter: blur(10px);
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+                justify-content: right;
+            padding: 14px 20px 14px 24px; 
+            border-radius: 0 100px 100px 0;
+            gap: 50px;
+            font-size: 14px;
+            font-weight: 400;
+                letter-spacing: 1.4px;
+    line-height: 1.2em;
+            height: 65px;;
+        }
+        .location-pill span{
+            width: 35%;
+        }
+
+        svg.globe-icon {
+    background-color: grey;
+    padding: 10px;
+    border-radius: 120px;
+    width: 35px !important;
+    height: 36px !important;
+}
+
+
+
+        .right-box {
+            position: absolute;
+            right: 60px; top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            z-index: 30;
+            opacity: 0;
+        }
+
+        .freelance-text { 
+            font-size: 22px; 
+            line-height: 1.2; 
+            font-weight: 300; 
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .freelance-text span.arrow {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .marquee-wrapper {
+            position: absolute;
+            bottom: 1%; 
+            width: 100%;
+            z-index: 10;
+            opacity: 0;
+        }
+
+        .marquee-content { display: flex; white-space: nowrap; }
+        .marquee-text {
+            font-size: 15vw; 
+            font-weight: 600;
+            color: #fff; 
+            padding-right: 80px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        /* --- MOBILE UPDATES --- */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding-top: 0; /* Full height utilize karne ke liye */
+            }
+
+            .reveal-container {
+                width: 100vw; /* Mobile par width full */
+                height: 100vh; /* Mobile par image container full height */
+                margin-top: 0;
+            }
+
+            .hero-img {
+                height: 100%; /* Parallax mobile par remove kar sakte hain ya adjust */
+            }
+
+            .marquee-wrapper {
+                bottom: 25%; /* Mobile par image ke upar text position */
+                top: auto;
+                z-index: 15;
+            }
+
+            .marquee-text { font-size: 22vw; }
+
+            .mobile-info-footer {
+                position: absolute; /* Relative se absolute kiya taake image ke upar overlay ho */
+                bottom: -24;
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                /* align-items: flex-end; */
+                padding: 30px 20px;
+                box-sizing: border-box;
+                z-index: 20;
+            }
+
+            .right-box {
+    
+    right: 0px;
+    
+}
+
+            .left-box, .right-box {
+                position: relative;
+                opacity: 1;
+            }
+
+            .location-pill {
+                padding: 4px 10px;
+                font-size: 11px;
+                margin-left: -20px;
+                gap: 20px;
+            }
+            .location-pill span{
+            width: 35%;
+        }
+
+        svg.globe-icon {
+    
+    padding: 8px;
+   
+    width: 30px !important;
+    height: 30px !important;
+}
+
+
+            .freelance-text {
+                font-size: 14px;
+                align-items: flex-start; /* Right side par rakha taake clear dikhe */
+                text-align: left;
+            }
+            
+            .freelance-text span.arrow { margin-bottom: 8px; }
+        }
+
+        @keyframes rotateGlobe { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .next-section {
+            height: 100vh;
+            background: #1c1d20;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="hero-section">
+        <div class="reveal-container" id="mainReveal">
+            <img src="images/mainimg.png" alt="Sami Shaikh" class="hero-img" id="heroImg">
+        </div>
+
+        <div class="marquee-wrapper" id="marqueeBox">
+            <div class="marquee-content" id="marqueeContent">
+                <div class="marquee-text">Sami Shaikh —</div>
+                <div class="marquee-text">Sami Shaikh —</div>
+            </div>
+        </div>
+
+        <div class="mobile-info-footer">
+            <div class="left-box" id="locationBox">
+                <div class="location-pill">
+                    <span>Located in that Pakistan</span>
+                    <svg class="globe-icon" style="width:20px; height:20px; animation: rotateGlobe 8s linear infinite;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="right-box" id="freelanceBox">
+                <div class="freelance-text">
+                    <span class="arrow"><img src="icons/right-down.png" alt=""></span>
+                    Freelance<br>Developer
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="next-section">
+        Next Projects
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        window.addEventListener("load", function() {
+            const tl = gsap.timeline({ 
+                defaults: { ease: "expo.out", duration: 1.8 } 
+            });
+
+            tl.set("#mainReveal", { autoAlpha: 1 });
+
+            // Entrance Animation
+            tl.from("#mainReveal", { yPercent: 100 })
+              .from("#heroImg", { yPercent: -100, scale: 1.3 }, "<")
+              .fromTo("#locationBox", { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 1.5 }, "-=1.2")
+              .fromTo("#freelanceBox", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 1.5 }, "<")
+              .fromTo("#marqueeBox", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2 }, "-=1");
+
+            // Marquee Loop
+            let marquee = document.getElementById("marqueeContent");
+            let marqueeTween = gsap.to(marquee, {
+                xPercent: -50, 
+                duration: 18,
+                repeat: -1,
+                ease: "none"
+            });
+
+            // Fast Marquee on Scroll
+            gsap.to(marqueeTween, {
+                timeScale: 4,
+                scrollTrigger: {
+                    trigger: ".hero-section",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: 1
+                }
+            });
+
+            // Parallax Effect (Disabled on mobile for cleaner look if needed)
+            if (window.innerWidth > 768) {
+                gsap.to("#heroImg", {
+                    y: 120,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: ".hero-section",
+                        start: "top top",
+                        end: "bottom top",
+                        scrub: true
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

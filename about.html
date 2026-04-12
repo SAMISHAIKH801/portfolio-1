@@ -1,0 +1,611 @@
+
+
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sami Shaikh | Portfolio Animation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .spacer { height: 100vh; display: flex; align-items: center; justify-content: center; color: #444; }
+
+        .manifesto-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #0e0e0c;
+            padding: 0 8%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .left-content { width: 55%; }
+
+        .about-tag {
+            color: #ff3c31;
+            font-size: 14px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .manifesto-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 7.5rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+
+        .line { display: block; white-space: nowrap; }
+        .line-1 { padding-left: 0%; }
+        .line-2 { padding-left: 10%; }
+        .line-3 { padding-left: 15%; }
+        .line-4 { padding-left: 5%; }
+
+        .word {
+            display: inline-block;
+            color: #1a1a1a; 
+            margin-right: 0.15em;
+        }
+
+        /* Right Side Content Styling */
+        .right-content {
+            width: 40%;
+            display: flex;
+            justify-content: flex-end; /* Desktop par right side */
+        }
+
+        .bio-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e8e2d6;
+            font-weight: 400;
+            max-width: 420px;
+            text-align: left;
+        }
+
+        .char-box {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
+
+        .char {
+            display: inline-block;
+            transform: translateY(100%);
+            white-space: pre;
+        }
+
+        .footer-tag {
+            position: absolute;
+            bottom: 40px;
+            right: 5%;
+            font-size: 11px;
+            color: #333;
+            letter-spacing: 2px;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .manifesto-container {
+                flex-direction: column; /* Stack vertically */
+                justify-content: center;
+                text-align: center;
+                padding: 0 5%;
+            }
+
+            .left-content, .right-content {
+                width: 100%;
+                padding-left: 0;
+            }
+
+            .manifesto-text {
+                font-size: clamp(2.5rem, 12vw, 4rem);
+                margin-bottom: 40px;
+            }
+
+            .line { padding-left: 0 !important; } /* Mobile par alignment reset */
+
+            .right-content {
+                justify-content: center; /* Center bio text */
+            }
+
+            .bio-text {
+                text-align: center;
+                max-width: 100%;
+            }
+
+            .about-tag {
+                margin-bottom: 10px;
+            }
+        }
+
+        .footer-spacer { height: 100vh; background: #000; }
+    </style>
+</head>
+<body>
+
+    <div class="spacer">SCROLL DOWN</div>
+
+    <section class="manifesto-container">
+        <div class="left-content">
+            <div class="about-tag">About Us</div>
+            <div class="manifesto-text" id="text">
+                <span class="line line-1">I’m a Developer</span>
+                <span class="line line-2">crafting SHOPIFY,</span>
+                <span class="line line-3">WORDPRESS &</span>
+                <span class="line line-4">CUSTOM FRONTEND</span>
+            </div>
+        </div>
+
+        <div class="right-content">
+            <p class="bio-text" id="bio">I am an IT student based in Pakistan, dedicated to building high-quality websites. I specialize in WordPress and Shopify, using HTML, CSS, and JavaScript to deliver exactly what you need. Whether you want a professional site built on a premium theme or a fully custom-coded store from scratch, I ensure your project is fast, responsive, and easy to manage.</p>
+        </div>
+
+        <div class="footer-tag">SAMI SHAIKH / 2026</div>
+    </section>
+
+    <div class="footer-spacer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. Left Text Splitting (Words)
+        const leftTextContainer = document.getElementById('text');
+        const leftLines = leftTextContainer.querySelectorAll('.line');
+        leftLines.forEach(line => {
+            const words = line.innerText.split(' ');
+            line.innerHTML = '';
+            words.forEach(word => {
+                const span = document.createElement('span');
+                span.classList.add('word');
+                span.innerText = word;
+                line.appendChild(span);
+                line.appendChild(document.createTextNode(' '));
+            });
+        });
+
+        // 2. Right Text Splitting (Characters)
+        const bioElement = document.getElementById('bio');
+        const characters = bioElement.innerText.split('');
+        bioElement.innerHTML = '';
+        characters.forEach(char => {
+            const charBox = document.createElement('span');
+            charBox.classList.add('char-box');
+            
+            const charSpan = document.createElement('span');
+            charSpan.classList.add('char');
+            charSpan.innerText = char;
+            
+            charBox.appendChild(charSpan);
+            bioElement.appendChild(charBox);
+        });
+
+        const allWords = document.querySelectorAll('.word');
+        const allChars = document.querySelectorAll('.char');
+
+        // 3. Sequential Timeline
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".manifesto-container",
+                start: "top top",
+                end: "+=4000",
+                scrub: 1,
+                pin: true,
+            }
+        });
+
+        tl.to(allWords, {
+            color: "#e8e2d6",
+            stagger: 0.1,
+            ease: "none"
+        });
+
+        tl.to(allChars, {
+            y: "0%",
+            stagger: 0.01, /* Speed thori fast ki hai mobile ke liye */
+            duration: 0.8,
+            ease: "power2.out"
+        }, "+=0.1");
+
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sami Shaikh | Portfolio Animation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .spacer { height: 100vh; display: flex; align-items: center; justify-content: center; color: #444; }
+
+        .manifesto-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #0e0e0c;
+            padding: 0 8%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .left-content { width: 55%; }
+
+        .about-tag {
+            color: #ff3c31;
+            font-size: 14px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .manifesto-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 7.5rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+
+        .line { display: block; white-space: nowrap; }
+        .line-1 { padding-left: 0%; }
+        .line-2 { padding-left: 10%; }
+        .line-3 { padding-left: 15%; }
+        .line-4 { padding-left: 5%; }
+
+        .word {
+            display: inline-block;
+            color: #1a1a1a; 
+            margin-right: 0.15em;
+        }
+
+        .right-content {
+            width: 40%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .bio-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e8e2d6;
+            font-weight: 400;
+            max-width: 420px;
+            text-align: left;
+        }
+
+        .char-box {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
+
+        .char {
+            display: inline-block;
+            transform: translateY(100%);
+            white-space: pre;
+        }
+
+        .footer-tag {
+            position: absolute;
+            bottom: 40px;
+            right: 5%;
+            font-size: 11px;
+            color: #333;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .manifesto-container {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding: 0 5%;
+            }
+            .left-content, .right-content { width: 100%; padding-left: 0; }
+            .manifesto-text { font-size: clamp(2.5rem, 12vw, 4rem); margin-bottom: 40px; }
+            .line { padding-left: 0 !important; }
+            .right-content { justify-content: center; }
+            .bio-text { text-align: center; max-width: 100%; }
+        }
+
+        .footer-spacer { height: 100vh; background: #000; }
+    </style>
+</head>
+<body>
+
+    <div class="spacer">SCROLL DOWN</div>
+
+    <section class="manifesto-container">
+        <div class="left-content">
+            <div class="about-tag">About Us</div>
+            <div class="manifesto-text" id="text">
+                <span class="line line-1">I’m a Developer</span>
+                <span class="line line-2">crafting SHOPIFY,</span>
+                <span class="line line-3">WORDPRESS &</span>
+                <span class="line line-4">CUSTOM FRONTEND</span>
+            </div>
+        </div>
+
+        <div class="right-content">
+            <p class="bio-text" id="bio">I am an IT student based in Pakistan, dedicated to building high-quality websites. I specialize in WordPress and Shopify, using HTML, CSS, and JavaScript to deliver exactly what you need. Whether you want a professional site built on a premium theme or a fully custom-coded store from scratch, I ensure your project is fast, responsive, and easy to manage.</p>
+        </div>
+
+        <div class="footer-tag">SAMI SHAIKH / 2026</div>
+    </section>
+
+    <div class="footer-spacer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. Splitting Logic (Waisa hi rahega)
+        const leftTextContainer = document.getElementById('text');
+        const leftLines = leftTextContainer.querySelectorAll('.line');
+        leftLines.forEach(line => {
+            const words = line.innerText.split(' ');
+            line.innerHTML = '';
+            words.forEach(word => {
+                const span = document.createElement('span');
+                span.classList.add('word');
+                span.innerText = word;
+                line.appendChild(span);
+                line.appendChild(document.createTextNode(' '));
+            });
+        });
+
+        const bioElement = document.getElementById('bio');
+        const characters = bioElement.innerText.split('');
+        bioElement.innerHTML = '';
+        characters.forEach(char => {
+            const charBox = document.createElement('span');
+            charBox.classList.add('char-box');
+            const charSpan = document.createElement('span');
+            charSpan.classList.add('char');
+            charSpan.innerText = char;
+            charBox.appendChild(charSpan);
+            bioElement.appendChild(charBox);
+        });
+
+        const allWords = document.querySelectorAll('.word');
+        const allChars = document.querySelectorAll('.char');
+
+        // 2. Left Side: POORA WORD EK SAATH WHITE HOGA
+        gsap.to(allWords, {
+            scrollTrigger: {
+                trigger: ".manifesto-container",
+                start: "top top",
+                end: "+=2000",
+                scrub: 0.1, // Isko thora fast rakha hai taake snap feel barh jaye
+                pin: true,
+            },
+            color: "#e8e2d6",
+            stagger: 0.1,
+            duration: 0.05, // Bohot kam duration takay letter-by-letter na lage
+            ease: "power1.inOut" 
+        });
+
+        // 3. Right Side: Auto Play (Waisa hi rahega)
+        gsap.to(allChars, {
+            scrollTrigger: {
+                trigger: ".manifesto-container",
+                start: "top 40%",
+                toggleActions: "play none none none",
+                scrub: false
+            },
+            y: "0%",
+            stagger: 0.01,
+            duration: 1,
+            ease: "power3.out"
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifesto Scroll Animation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .spacer {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #444;
+        }
+
+        .manifesto-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start; /* Tags ko left par rakhne ke liye */
+            background-color: #0e0e0c; /* Reference image wala dark grey/black mix */
+            padding: 0 8%;
+            box-sizing: border-box;
+        }
+
+        .about-tag {
+            color: #ff3c31;
+            font-size: 14px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 700;
+            opacity: 0.8;
+        }
+
+        /* Heading Main Container */
+        .manifesto-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 10vw, 8.5rem);
+            line-height: 0.85;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        /* Line by line alignment like reference */
+        .line {
+            display: block;
+            white-space: nowrap;
+        }
+
+        .line-1 { padding-left: 5%; }
+        .line-2 { padding-left: 15%; }
+        .line-3 { padding-left: 20%; }
+        .line-4 { padding-left: 0%; }
+
+        .word {
+            display: inline-block;
+            color: #1a1a1a; /* Initially hidden/dark like the image */
+            margin-right: 0.15em;
+        }
+
+        /* Credits style */
+        .footer-tag {
+            position: absolute;
+            bottom: 40px;
+            right: 5%;
+            font-size: 11px;
+            color: #333;
+            letter-spacing: 2px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-spacer {
+            height: 100vh;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="spacer">SCROLL DOWN</div>
+
+    <section class="manifesto-container">
+        <div class="about-tag">About Us</div>
+        
+        <div class="manifesto-text" id="text">
+            <span class="line line-1">I’m a Developer </span>
+            <span class="line line-2">crafting SHOPIFY,</span>
+            <span class="line line-3"> WORDPRESS &</span>
+            <span class="line line-4">CUSTOM FRONTEND</span>
+        </div>
+
+        <div class="footer-tag " >SAMI SHAIKH / 2026</div>
+    </section>
+
+    <div class="footer-spacer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Text splitting logic
+        const textContainer = document.getElementById('text');
+        const lines = textContainer.querySelectorAll('.line');
+        
+        lines.forEach(line => {
+            const words = line.innerText.split(' ');
+            line.innerHTML = '';
+            words.forEach(word => {
+                const span = document.createElement('span');
+                span.classList.add('word');
+                span.innerText = word;
+                line.appendChild(span);
+                // Space add karne ke liye
+                line.appendChild(document.createTextNode(' '));
+            });
+        });
+
+        const allWords = document.querySelectorAll('.word');
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".manifesto-container",
+                start: "top top",
+                end: "+=2000",
+                scrub: 1,
+                pin: true,
+            }
+        });
+
+        // Color transition to off-white/cream like the image
+        tl.to(allWords, {
+            color: "#e8e2d6", 
+            stagger: 0.2,
+            ease: "power1.inOut"
+        });
+    </script>
+</body>
+</html> -->

@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sami Shaikh - Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="style.css">
+
+
+
+
+
+
+
+    <style>
+
+        html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+    </style>
+
+    
+</head>
+<body>
+
+    <main class="hero-section">
+        <div class="reveal-container" id="mainReveal">
+            <img src="images/mainimg.png" alt="Sami Shaikh" class="hero-img" id="heroImg">
+        </div>
+
+        <div class="marquee-wrapper" id="marqueeBox">
+            <div class="marquee-content" id="marqueeContent">
+                <div class="marquee-text">Sami Shaikh —</div>
+                <div class="marquee-text">Sami Shaikh —</div>
+            </div>
+        </div>
+
+        <div class="mobile-info-footer">
+            <div class="left-box" id="locationBox">
+                <div class="location-pill">
+                    <span>Located in that Pakistan</span>
+                    <svg class="globe-icon" style="width:20px; height:20px; animation: rotateGlobe 8s linear infinite;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="right-box" id="freelanceBox">
+                <div class="freelance-text">
+                    <span class="arrow"><img src="icons/right-down.png" alt=""></span>
+                    Freelance<br>Developer
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- --------------------------- about section start ---------------------  -->
+
+
+
+     <section class="manifesto-container">
+        <div class="left-content">
+            <div class="about-tag">About Us</div>
+            <div class="manifesto-text" id="text">
+                <span class="line line-1">I’m a Developer</span>
+                <span class="line line-2">crafting SHOPIFY,</span>
+                <span class="line line-3">WORDPRESS &</span>
+                <span class="line line-4">CUSTOM FRONTEND</span>
+            </div>
+        </div>
+
+        <div class="right-content">
+            <p class="bio-text" id="bio">I am an IT student based in Pakistan, dedicated to building high-quality websites. I specialize in WordPress and Shopify, using HTML, CSS, and JavaScript to deliver exactly what you need. Whether you want a professional site built on a premium theme or a fully custom-coded store from scratch, I ensure your project is fast, responsive, and easy to manage.</p>
+        </div>
+
+        <div class="footer-tag">SAMI SHAIKH / 2026</div>
+    </section>
+    
+
+    <!-- --------------------------- about section end ---------------------  -->
+
+
+
+
+
+
+
+    <section class="next-section">
+        Next Projects
+    </section>
+
+
+    
+    <section class="next-section">
+        Next Projects
+    </section>
+    
+    <section class="next-section">
+        Next Projects
+    </section>
+
+
+
+    
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+<script>
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        touchMultiplier: 2,
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Ye integration zaroori hai
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
+</script>
+
+<script src="script.js"></script>
+ 
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
