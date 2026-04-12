@@ -125,3 +125,105 @@
     
 
     // <!-- --------------------------- about section  js end ---------------------  -->
+
+
+
+
+
+
+
+
+
+    // ----------------------- skill section js start -------------------
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+        const portfolioSection = document.getElementById('portfolio');
+        const progressLine = document.getElementById('scroll-progress');
+
+        // 1. Scroll Progress Line Logic
+        const updateProgress = () => {
+            if (!portfolioSection || !progressLine) return;
+            const sectionRect = portfolioSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            const startPoint = windowHeight * 0.8;
+            const currentPosition = startPoint - sectionRect.top;
+            let progress = currentPosition / sectionRect.height;
+            
+            progress = Math.max(0, Math.min(1, progress));
+            progressLine.style.height = `${progress * 100}%`;
+        };
+
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+
+        // 2. Heading Split Text
+        document.querySelectorAll('.main-heading').forEach(h => {
+            const text = h.textContent;
+            h.innerHTML = '';
+            [...text].forEach((char, i) => {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.style.transitionDelay = `${i * 40}ms`;
+                span.innerHTML = char === ' ' ? '&nbsp;' : char;
+                h.appendChild(span);
+            });
+        });
+
+        // 3. REFINED INTERSECTION OBSERVER
+        // Isse elements tab reveal honge jab wo screen ke center ke qareeb honge
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    const rows = entry.target.querySelectorAll('.list-row');
+                    rows.forEach((row, index) => {
+                        // Staggered timing for premium feel
+                        setTimeout(() => {
+                            row.classList.add('show');
+                        }, 200 + (index * 200)); 
+                    });
+
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { 
+            threshold: 0.25, // Trigger tab hoga jab section ka 25% hissa nazar aaye
+            rootMargin: "0px 0px -20% 0px" // Bottom se 20% gap rakha hai (Center-ish trigger)
+        });
+
+        document.querySelectorAll('.column').forEach(col => revealObserver.observe(col));
+
+        // 4. Direction-aware Hover (Desktop Only)
+        if (window.innerWidth > 900) {
+            document.querySelectorAll('.list-row').forEach(row => {
+                const bg = row.querySelector('.hover-bg');
+                if(!bg) return;
+
+                row.addEventListener('mouseenter', (e) => {
+                    const rect = row.getBoundingClientRect();
+                    const entryY = e.clientY - rect.top;
+                    bg.style.transition = 'none';
+                    bg.style.transform = (entryY < rect.height / 2) ? 'translateY(-100%)' : 'translateY(100%)';
+                    requestAnimationFrame(() => {
+                        bg.style.transition = 'transform 0.6s cubic-bezier(0.19, 1, 0.22, 1)';
+                        bg.style.transform = 'translateY(0)';
+                    });
+                });
+
+                row.addEventListener('mouseleave', (e) => {
+                    const rect = row.getBoundingClientRect();
+                    const exitY = e.clientY - rect.top;
+                    bg.style.transform = (exitY < rect.height / 2) ? 'translateY(-100%)' : 'translateY(100%)';
+                });
+            });
+        }
+    });
+
+
+
+
+
+        // ----------------------- skill section js end -------------------

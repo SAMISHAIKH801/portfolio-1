@@ -1,0 +1,1155 @@
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+ <!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Portfolio - Sami Shaikh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: #e5e5e5;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .portfolio-section {
+            display: flex;
+            width: 90%;
+            max-width: 1400px;
+            min-height: 80vh; 
+            margin: 100px auto;
+            gap: clamp(40px, 8vw, 100px);
+            position: relative;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .center-line-container {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background-color: #2a2a2a;
+            transform: translateX(-50%);
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background-color: #ff4d4d;
+            transition: height 0.1s ease-out; 
+        }
+
+        .column { 
+            flex: 1; 
+            position: relative; 
+            width: 100%;
+        }
+
+        .section-label {
+            color: #ff4d4d;
+            font-size: clamp(10px, 1.5vw, 12px);
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .main-heading {
+            font-family: 'Bebas Neue', sans-serif !important;
+            font-size: clamp(45px, 7vw, 90px);
+            font-weight: 400;
+            margin-bottom: clamp(30px, 5vw, 50px);
+            letter-spacing: 2px;
+            line-height: 0.85;
+            color: rgba(255, 255, 255, 0.05); /* Fade default color */
+        }
+
+        .char { display: inline-block; transition: color 0.6s ease; }
+        .visible .char { color: #ffffff; }
+
+        /* Animation base for list items */
+        .list-row {
+            position: relative;
+            display: flex;
+            padding: 20px 15px;
+            border-bottom: 1px solid #2a2a2a;
+            cursor: pointer;
+            overflow: hidden;
+            
+            /* Hidden by default for fade animation */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Active class when in view */
+        .list-row.show { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        .hover-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #ffffff;
+            transform: translateY(100%); 
+            z-index: 1;
+            pointer-events: none;
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .row-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            transition: color 0.4s ease;
+        }
+
+        .icon-box {
+            width: clamp(40px, 5vw, 48px);
+            height: clamp(40px, 5vw, 48px);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            transition: all 0.4s ease;
+            flex-shrink: 0;
+        }
+
+        .icon-box i { font-size: 18px; color: #ffffff; }
+
+        .title-group { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
+            flex-grow: 1; 
+        }
+
+        .row-title { 
+            font-size: clamp(16px, 2.5vw, 20px); 
+            font-weight: 500; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+
+        .row-details { 
+            font-size: 11px; 
+            opacity: 0.5; 
+            margin-top: 4px;
+            color: #888;
+            transition: all 0.4s ease;
+        }
+        
+        .row-year {
+            font-size: clamp(12px, 2vw, 15px);
+            font-weight: 400;
+            opacity: 0.3;
+            margin-left: auto; 
+            white-space: nowrap;
+        }
+
+        /* Hover states */
+        @media (min-width: 901px) {
+            .list-row:hover .row-content { color: #000; }
+            .list-row:hover .icon-box { background: rgba(0, 0, 0, 0.08); border-color: rgba(0, 0, 0, 0.2); }
+            .list-row:hover .icon-box i { color: #000; }
+            .list-row:hover .row-details { opacity: 0.8; color: #333; }
+            .list-row:hover .row-year { color: #000; opacity: 0.6; }
+        }
+
+        @media (max-width: 900px) {
+            .portfolio-section { 
+                flex-direction: column; 
+                margin: 60px auto; 
+                gap: 50px; 
+                width: 92%;
+            }
+            .center-line-container { display: none; }
+            .main-heading { color: #ffffff; }
+            .row-details { opacity: 0.6; }
+            .hover-bg { display: none; }
+        }
+
+        .spacer { height: 100vh; }
+    </style>
+
+    <style>
+    /* ... (Baqi saara CSS wahi rahega) ... */
+
+    /* Sirf is Media Query ko update karein */
+    @media (max-width: 900px) {
+        .portfolio-section { 
+            flex-direction: column; 
+            margin: 60px auto; 
+            gap: 50px; 
+            width: 92%;
+        }
+        .center-line-container { display: none; }
+        
+        /* FIX: Mobile par default color white nahi hona chahiye, 
+           warna animation visible nahi hogi */
+        .main-heading { 
+            color: rgba(255, 255, 255, 0.05); 
+        }
+        .visible .char { color: #ffffff; } /* Reveal effect for mobile */
+
+        .row-details { opacity: 0.6; }
+        .hover-bg { display: none; }
+    }
+
+    .spacer { height: 100vh; }
+</style>
+
+
+</head>
+<body>
+
+<div class="spacer"></div>
+
+<section class="portfolio-section" id="portfolio">
+    <div class="center-line-container">
+        <div class="progress-line" id="scroll-progress"></div>
+    </div>
+
+    <div class="column" id="skills-col">
+        <span class="section-label">TECH STACK</span>
+        <h2 class="main-heading">Skills</h2>
+        <div class="list-container">
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-brands fa-wordpress"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">WordPress</span>
+                        <span class="row-details">Elementor Pro • WooCommerce • Theme Customization • Performance Optimization </span>
+                    </div>
+                    <span class="row-year">Expert</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-brands fa-shopify"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">Shopify</span>
+                        <span class="row-details">Custom Liquid Sections • Theme Customization • App Integration • Store Migration </span>
+                    </div>
+                    <span class="row-year">Expert</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-solid fa-code"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">Frontend</span>
+                        <span class="row-details">HTML5 • CSS3 • JavaScript (ES6) • Bootstrap • Custom Web Development • Responsive Design</span>
+                    </div>
+                    <span class="row-year">Advanced</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="column" id="work-col">
+        <span class="section-label">MY JOURNEY</span>
+        <h2 class="main-heading">EXPERIENCE</h2>
+        <div class="list-container">
+
+
+
+              <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">TheDevMates</span>
+                        <span class="row-details">Wordpress Developer</span>
+                    </div>
+                    <span class="row-year">(Aug) 2024 — (Jan) 2025</span>
+                </div>
+            </div>
+
+
+              <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">UMW Media</span>
+                        <span class="row-details">Wordpress Developer</span>
+                    </div>
+                    <span class="row-year">(July) 2025 — (Aug) 2025</span>
+                </div>
+            </div>
+
+             <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">Apex Square</span>
+                        <span class="row-details">Wordpress & Shopify Developer</span>
+                    </div>
+                    <span class="row-year">(Sep) 2025 — Present</span>
+                </div>
+            </div>
+
+       
+        </div>
+    </div>
+</section>
+
+<div class="spacer"></div>
+
+
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const portfolioSection = document.getElementById('portfolio');
+        const progressLine = document.getElementById('scroll-progress');
+
+        // 1. Center Line Progress Logic
+        const updateProgress = () => {
+            if (!portfolioSection) return;
+            const sectionRect = portfolioSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const startPoint = windowHeight * 0.7;
+            const currentPosition = startPoint - sectionRect.top;
+            let progress = currentPosition / (sectionRect.height);
+            progress = Math.max(0, Math.min(1, progress));
+            if(progressLine) progressLine.style.height = `${progress * 100}%`;
+        };
+
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+
+        // 2. Heading Split Text Setup
+        document.querySelectorAll('.main-heading').forEach(h => {
+            const text = h.textContent;
+            h.innerHTML = '';
+            [...text].forEach((char, i) => {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.style.transitionDelay = `${i * 30}ms`;
+                span.innerHTML = char === ' ' ? '&nbsp;' : char;
+                h.appendChild(span);
+            });
+        });
+
+        // 3. REVEAL ANIMATION: Optimized for Mobile
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Activate Heading
+                    entry.target.classList.add('visible');
+                    
+                    // Stagger Reveal List Items
+                    const rows = entry.target.querySelectorAll('.list-row');
+                    rows.forEach((row, index) => {
+                        setTimeout(() => {
+                            row.classList.add('show');
+                        }, 200 + (index * 100)); // Mobile ke liye speed thodi tez rakhi hai
+                    });
+                    
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { 
+            rootMargin: '0px 0px -20px 0px', // Halka sa trigger point adjust kiya
+            threshold: 0.05 // 5% element nazar aate hi animation start ho jayegi
+        });
+
+        document.querySelectorAll('.column').forEach(col => revealObserver.observe(col));
+
+        // 4. Direction-aware Hover (Desktop Only)
+        if (window.innerWidth > 900) {
+            document.querySelectorAll('.list-row').forEach(row => {
+                const bg = row.querySelector('.hover-bg');
+                if(!bg) return;
+
+                row.addEventListener('mouseenter', (e) => {
+                    const rect = row.getBoundingClientRect();
+                    const entryY = e.clientY - rect.top;
+                    bg.style.transition = 'none';
+                    bg.style.transform = (entryY < rect.height / 2) ? 'translateY(-100%)' : 'translateY(100%)';
+                    requestAnimationFrame(() => {
+                        bg.style.transition = 'transform 0.6s cubic-bezier(0.19, 1, 0.22, 1)';
+                        bg.style.transform = 'translateY(0)';
+                    });
+                });
+
+                row.addEventListener('mouseleave', (e) => {
+                    const rect = row.getBoundingClientRect();
+                    const exitY = e.clientY - rect.top;
+                    bg.style.transform = (exitY < rect.height / 2) ? 'translateY(-100%)' : 'translateY(100%)';
+                });
+            });
+        }
+    });
+</script>
+
+
+
+
+ </body>
+</html> -->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Portfolio - Sami Shaikh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: #e5e5e5;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .portfolio-section {
+            display: flex;
+            width: 90%;
+            max-width: 1400px;
+            min-height: 80vh; 
+            margin: 100px auto;
+            gap: clamp(40px, 8vw, 100px);
+            position: relative;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .center-line-container {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background-color: #2a2a2a;
+            transform: translateX(-50%);
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background-color: #ff4d4d;
+            transition: height 0.1s ease-out; 
+        }
+
+        .column { 
+            flex: 1; 
+            position: relative; 
+            width: 100%;
+        }
+
+        .section-label {
+            color: #ff4d4d;
+            font-size: clamp(10px, 1.5vw, 12px);
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .main-heading {
+            font-family: 'Bebas Neue', sans-serif !important;
+            font-size: clamp(45px, 7vw, 90px);
+            font-weight: 400;
+            margin-bottom: clamp(30px, 5vw, 50px);
+            letter-spacing: 2px;
+            line-height: 0.85;
+            color: rgba(255, 255, 255, 0.05);
+        }
+
+        .char { display: inline-block; transition: color 0.8s ease; }
+        .visible .char { color: #ffffff; }
+
+        /* --- UPDATED LIST ROW ANIMATION --- */
+        .list-row {
+            position: relative;
+            display: flex;
+            padding: 20px 15px;
+            border-bottom: 1px solid #2a2a2a;
+            cursor: pointer;
+            overflow: hidden;
+            
+            /* Initial State for Smooth Fade */
+            opacity: 0;
+            transform: translateY(60px) scale(0.98);
+            filter: blur(8px);
+            transition: 
+                opacity 1.4s ease, 
+                transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 1.2s ease;
+        }
+
+        /* Triggered class */
+        .list-row.show { 
+            opacity: 1; 
+            transform: translateY(0) scale(1); 
+            filter: blur(0);
+        }
+
+        .hover-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #ffffff;
+            transform: translateY(100%); 
+            z-index: 1;
+            pointer-events: none;
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .row-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            transition: color 0.4s ease;
+        }
+
+        .icon-box {
+            width: clamp(40px, 5vw, 48px);
+            height: clamp(40px, 5vw, 48px);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            transition: all 0.4s ease;
+            flex-shrink: 0;
+        }
+
+        .icon-box i { font-size: 18px; color: #ffffff; }
+
+        .title-group { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
+            flex-grow: 1; 
+        }
+
+        .row-title { 
+            font-size: clamp(16px, 2.5vw, 20px); 
+            font-weight: 500; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+
+        .row-details { 
+            font-size: 11px; 
+            opacity: 0.5; 
+            margin-top: 4px;
+            color: #888;
+            transition: all 0.4s ease;
+        }
+        
+        .row-year {
+            font-size: clamp(12px, 2vw, 15px);
+            font-weight: 400;
+            opacity: 0.3;
+            margin-left: auto; 
+            white-space: nowrap;
+        }
+
+        @media (min-width: 901px) {
+            .list-row:hover .row-content { color: #000; }
+            .list-row:hover .icon-box { background: rgba(0, 0, 0, 0.08); border-color: rgba(0, 0, 0, 0.2); }
+            .list-row:hover .icon-box i { color: #000; }
+            .list-row:hover .row-details { opacity: 0.8; color: #333; }
+            .list-row:hover .row-year { color: #000; opacity: 0.6; }
+        }
+
+        @media (max-width: 900px) {
+            .portfolio-section { 
+                flex-direction: column; 
+                margin: 60px auto; 
+                gap: 50px; 
+                width: 92%;
+            }
+            .center-line-container { display: none; }
+            .hover-bg { display: none; }
+        }
+
+        .spacer { height: 100vh; }
+    </style>
+</head>
+<body>
+
+<div class="spacer"></div>
+
+<section class="portfolio-section" id="portfolio">
+    <div class="center-line-container">
+        <div class="progress-line" id="scroll-progress"></div>
+    </div>
+
+    <div class="column">
+        <span class="section-label">TECH STACK</span>
+        <h2 class="main-heading">Skills</h2>
+        <div class="list-container">
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-brands fa-wordpress"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">WordPress</span>
+                        <span class="row-details">Elementor Pro • WooCommerce • Theme Customization</span>
+                    </div>
+                    <span class="row-year">Expert</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-brands fa-shopify"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">Shopify</span>
+                        <span class="row-details">Custom Liquid Sections • App Integration • Store Migration</span>
+                    </div>
+                    <span class="row-year">Expert</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-solid fa-code"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">Frontend</span>
+                        <span class="row-details">HTML5 • CSS3 • JavaScript (ES6) • Responsive Design</span>
+                    </div>
+                    <span class="row-year">Advanced</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <span class="section-label">MY JOURNEY</span>
+        <h2 class="main-heading">EXPERIENCE</h2>
+        <div class="list-container">
+             <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">TheDevMates</span>
+                        <span class="row-details">Wordpress Developer</span>
+                    </div>
+                    <span class="row-year">2024 — 2025</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">UMW Media</span>
+                        <span class="row-details">Wordpress Developer</span>
+                    </div>
+                    <span class="row-year">2025 — 2025</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">Apex Square</span>
+                        <span class="row-details">Wordpress & Shopify Developer</span>
+                    </div>
+                    <span class="row-year">2025 — Present</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="spacer"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const portfolioSection = document.getElementById('portfolio');
+        const progressLine = document.getElementById('scroll-progress');
+
+        // 1. Scroll Progress Line Logic
+        const updateProgress = () => {
+            if (!portfolioSection || !progressLine) return;
+            const sectionRect = portfolioSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            const startPoint = windowHeight * 0.8;
+            const currentPosition = startPoint - sectionRect.top;
+            let progress = currentPosition / sectionRect.height;
+            
+            progress = Math.max(0, Math.min(1, progress));
+            progressLine.style.height = `${progress * 100}%`;
+        };
+
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+
+        // 2. Heading Split Text
+        document.querySelectorAll('.main-heading').forEach(h => {
+            const text = h.textContent;
+            h.innerHTML = '';
+            [...text].forEach((char, i) => {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.style.transitionDelay = `${i * 40}ms`;
+                span.innerHTML = char === ' ' ? '&nbsp;' : char;
+                h.appendChild(span);
+            });
+        });
+
+        // 3. REFINED INTERSECTION OBSERVER
+        // Isse elements tab reveal honge jab wo screen ke center ke qareeb honge
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    const rows = entry.target.querySelectorAll('.list-row');
+                    rows.forEach((row, index) => {
+                        // Staggered timing for premium feel
+                        setTimeout(() => {
+                            row.classList.add('show');
+                        }, 200 + (index * 200)); 
+                    });
+
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { 
+            threshold: 0.25, // Trigger tab hoga jab section ka 25% hissa nazar aaye
+            rootMargin: "0px 0px -20% 0px" // Bottom se 20% gap rakha hai (Center-ish trigger)
+        });
+
+        document.querySelectorAll('.column').forEach(col => revealObserver.observe(col));
+
+        // 4. Direction-aware Hover (Desktop Only)
+        if (window.innerWidth > 900) {
+            document.querySelectorAll('.list-row').forEach(row => {
+                const bg = row.querySelector('.hover-bg');
+                if(!bg) return;
+
+                row.addEventListener('mouseenter', (e) => {
+                    const rect = row.getBoundingClientRect();
+                    const entryY = e.clientY - rect.top;
+                    bg.style.transition = 'none';
+                    bg.style.transform = (entryY < rect.height / 2) ? 'translateY(-100%)' : 'translateY(100%)';
+                    requestAnimationFrame(() => {
+                        bg.style.transition = 'transform 0.6s cubic-bezier(0.19, 1, 0.22, 1)';
+                        bg.style.transform = 'translateY(0)';
+                    });
+                });
+
+                row.addEventListener('mouseleave', (e) => {
+                    const rect = row.getBoundingClientRect();
+                    const exitY = e.clientY - rect.top;
+                    bg.style.transform = (exitY < rect.height / 2) ? 'translateY(-100%)' : 'translateY(100%)';
+                });
+            });
+        }
+    });
+
+
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ------- correct code bottom-------------------- -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Directional Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: #e5e5e5;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .portfolio-section {
+            display: flex;
+            width: 92%;
+            max-width: 1400px;
+            margin: 150px auto;
+            gap: 100px;
+            position: relative;
+        }
+
+        /* 1. Progress Line Fix */
+        .center-line-container {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background-color: #2a2a2a;
+            transform: translateX(-50%);
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background-color: #ff4d4d;
+            /* Linear calculation ensures it completes exactly at the bottom */
+            transition: height 0.05s linear; 
+        }
+
+        .column { flex: 1; position: relative; }
+
+        /* Heading with Bebas Neue */
+        .main-heading {
+            font-family: 'Bebas Neue', sans-serif !important;
+            font-size: clamp(50px, 8vw, 100px);
+            font-weight: 400;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+            line-height: 0.85;
+            color: rgba(255, 255, 255, 0.05);
+        }
+
+        .char {
+            display: inline-block;
+            transition: color 0.6s ease;
+        }
+
+        .visible .char {
+            color: #ffffff;
+        }
+
+        /* List Styling */
+        .list-row {
+            position: relative;
+            display: flex;
+            padding: 30px 15px; /* Slightly reduced padding */
+            border-bottom: 1px solid #2a2a2a;
+            cursor: pointer;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .list-row.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hover-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            transform: translateY(100%); 
+            z-index: 1;
+            pointer-events: none;
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .row-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.4s ease;
+        }
+
+        /* Smaller Titles as requested */
+        .row-title { 
+            font-size: 22px; 
+            font-weight: 500; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+        
+        /* Dates Aligned to Right */
+        .row-year {
+            font-size: 16px;
+            font-weight: 400;
+            opacity: 0.5;
+            text-align: right;
+            margin-left: auto; /* Pushes to right */
+            margin-right: 20px;
+        }
+
+        .row-details { 
+            font-size: 13px; 
+            opacity: 0; 
+            transform: translateX(10px); 
+            transition: all 0.4s ease; 
+            color: #777; 
+            min-width: 120px;
+            text-align: right;
+        }
+
+        @media (min-width: 901px) {
+            .list-row:hover .row-content { color: #000; }
+            .list-row:hover .row-details { opacity: 1; transform: translateX(0); color: #333; }
+            .list-row:hover .row-year { color: #000; opacity: 0.4; }
+        }
+
+        @media (max-width: 900px) {
+            .portfolio-section { flex-direction: column; margin: 80px auto; gap: 60px; }
+            .center-line-container { display: none; }
+            .list-row { flex-direction: column; opacity: 1; transform: none; padding: 20px 5px; }
+            .row-content { flex-direction: row; flex-wrap: wrap; }
+            .row-year { margin-left: 10px; font-size: 14px; }
+            .row-details { opacity: 1; transform: none; text-align: left; margin-top: 5px; width: 100%; }
+            .hover-bg { display: none; }
+            .main-heading { color: #ffffff; margin-bottom: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="portfolio-section" id="portfolio">
+    <div class="center-line-container">
+        <div class="progress-line" id="scroll-progress"></div>
+    </div>
+
+    <div class="column">
+        <h2 class="main-heading">MY TOOLKIT</h2>
+        <div class="list-container">
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <span class="row-title">WordPress</span>
+                    <span class="row-details">Elementor • Divi • Woo</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <span class="row-title">Shopify</span>
+                    <span class="row-details">Liquid • OS 2.0 • Custom</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <span class="row-title">Frontend</span>
+                    <span class="row-details">HTML5 • JS • GSAP</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <span class="row-title">Backend</span>
+                    <span class="row-details">Node.js (Learning)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <h2 class="main-heading">EXPERIENCE</h2>
+        <div class="list-container">
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <span class="row-title">APESSQUARE</span>
+                    <span class="row-year">2025 — 2026</span>
+                    <span class="row-details">Full-Stack Dev</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <span class="row-title">UMW MEDIA</span>
+                    <span class="row-year">2024 — 2025</span>
+                    <span class="row-details">Web Developer</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <span class="row-title">THE DEVMATS</span>
+                    <span class="row-year">2023 — 2024</span>
+                    <span class="row-details">Freelance</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <span class="row-title">Virtual Uni</span>
+                    <span class="row-year">2022 — 2026</span>
+                    <span class="row-details">IT Degree</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const portfolioSection = document.getElementById('portfolio');
+        const progressLine = document.getElementById('scroll-progress');
+
+        // Improved Scroll Logic: Fills exactly within the section boundaries
+        const updateProgress = () => {
+            const sectionRect = portfolioSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Starts filling when the top of section is at the middle of the screen
+            // Completes when the bottom of section hits the middle of the screen
+            const startPoint = windowHeight / 2;
+            const endPoint = windowHeight / 2;
+
+            let totalScrollableHeight = sectionRect.height;
+            let currentPosition = startPoint - sectionRect.top;
+
+            let progress = currentPosition / totalScrollableHeight;
+            
+            progress = Math.max(0, Math.min(1, progress));
+            progressLine.style.height = `${progress * 100}%`;
+        };
+
+        window.addEventListener('scroll', updateProgress);
+        updateProgress(); // Initial check
+
+        // Heading Animation
+        const headings = document.querySelectorAll('.main-heading');
+        headings.forEach(h => {
+            const text = h.textContent;
+            h.innerHTML = '';
+            [...text].forEach((char, i) => {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.style.transitionDelay = `${i * 35}ms`;
+                span.innerHTML = char === ' ' ? '&nbsp;' : char;
+                h.appendChild(span);
+            });
+        });
+
+        // Entrance Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    entry.target.querySelectorAll('.list-row').forEach((row, i) => {
+                        setTimeout(() => row.classList.add('show'), 300 + (i * 120));
+                    });
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.column').forEach(col => observer.observe(col));
+
+        // Hover Logic
+        document.querySelectorAll('.list-row').forEach(row => {
+            const bg = row.querySelector('.hover-bg');
+            row.addEventListener('mouseenter', (e) => {
+                const rect = row.getBoundingClientRect();
+                const entryY = e.clientY - rect.top;
+                bg.style.transition = 'none';
+                bg.style.transform = (entryY < rect.height / 2) ? 'translateY(-100%)' : 'translateY(100%)';
+                requestAnimationFrame(() => {
+                    bg.style.transition = 'transform 0.6s cubic-bezier(0.19, 1, 0.22, 1)';
+                    bg.style.transform = 'translateY(0)';
+                });
+            });
+            row.addEventListener('mouseleave', (e) => {
+                const rect = row.getBoundingClientRect();
+                const exitY = e.clientY - rect.top;
+                bg.style.transform = (exitY < rect.height / 2) ? 'translateY(-100%)' : 'translateY(100%)';
+            });
+        });
+    });
+</script>
+
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+

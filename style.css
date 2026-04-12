@@ -11,11 +11,18 @@
 }
         body, html {
             margin: 0; padding: 0;
-            
+            background-color: #000;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             overflow-x: hidden;
         }
 
+          body {
+           
+            color: #e5e5e5;
+           
+            margin: 0;
+            overflow-x: hidden;
+        }
         .hero-section {
             background-color: #999d9e;
             position: relative;
@@ -301,7 +308,7 @@
 
         .char {
             display: inline-block;
-            transform: translateY(100%);
+            /* transform: translateY(100%); */
             white-space: pre;
         }
 
@@ -332,3 +339,193 @@
    
 
      /* --------------------------- about section  css end ---------------------   */
+
+
+
+
+
+
+
+ /* -------------------- UPDATED SKILL SECTION CSS ------------------ */
+
+.portfolio-section {
+    background-color: #000 !important;
+    display: flex;
+    width: 90%;
+    max-width: 1400px;
+    min-height: 80vh; 
+    margin: 100px auto;
+    gap: clamp(40px, 8vw, 100px);
+    position: relative;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.center-line-container {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: #2a2a2a;
+    transform: translateX(-50%);
+}
+
+.progress-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background-color: #ff4d4d;
+    transition: height 0.1s ease-out; 
+}
+
+.column { 
+    flex: 1; 
+    position: relative; 
+    width: 100%;
+}
+
+.section-label {
+    font-family: 'Inter', sans-serif; /* Inter Font */
+    color: #ff4d4d;
+    font-size: clamp(10px, 1.5vw, 12px);
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.main-heading {
+    font-family: 'Bebas Neue', sans-serif !important; /* Bebas Font */
+    font-size: clamp(45px, 7vw, 90px);
+    font-weight: 400;
+    margin-bottom: clamp(30px, 5vw, 50px);
+    letter-spacing: 2px;
+    line-height: 0.85;
+    color: rgba(255, 255, 255, 0.05);
+}
+
+.char { display: inline-block; transition: color 0.8s ease; }
+.visible .char { color: #ffffff; }
+
+/* --- LIST ROW STYLES --- */
+.list-row {
+    position: relative;
+    display: flex;
+    padding: 25px 15px;
+    border-bottom: 1px solid #2a2a2a;
+    cursor: pointer;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(60px) scale(0.98);
+    filter: blur(8px);
+    transition: 
+        opacity 1.4s ease, 
+        transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 1.2s ease;
+}
+
+.list-row.show { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+    filter: blur(0);
+}
+
+.hover-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #ffffff;
+    transform: translateY(100%); 
+    z-index: 1;
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.row-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    transition: color 0.4s ease;
+}
+
+.icon-box {
+    width: clamp(40px, 5vw, 48px);
+    height: clamp(40px, 5vw, 48px);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    transition: all 0.4s ease;
+    flex-shrink: 0;
+}
+
+.icon-box i { font-size: 18px; color: #ffffff; }
+
+.title-group { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    flex-grow: 1; 
+}
+
+/* Row Title (WordPress, Shopify, etc.) with Bebas Neue */
+.row-title { 
+    font-family: 'Bebas Neue', sans-serif !important; 
+    font-size: clamp(22px, 3vw, 28px); /* Slightly larger for Bebas */
+    font-weight: 400; 
+    text-transform: uppercase; 
+    letter-spacing: 1.5px;
+    line-height: 1;
+}
+
+/* Details and Year with Inter */
+.row-details { 
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; 
+    opacity: 0.5; 
+    margin-top: 6px;
+    color: #888;
+    letter-spacing: 0.5px;
+    transition: all 0.4s ease;
+}
+
+.row-year {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(12px, 2vw, 14px);
+    font-weight: 500;
+    opacity: 0.3;
+    margin-left: auto; 
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+/* Desktop Hover Effects */
+@media (min-width: 901px) {
+    .list-row:hover .row-content { color: #000; }
+    .list-row:hover .icon-box { background: rgba(0, 0, 0, 0.08); border-color: rgba(0, 0, 0, 0.2); }
+    .list-row:hover .icon-box i { color: #000; }
+    .list-row:hover .row-details { opacity: 0.8; color: #333; }
+    .list-row:hover .row-year { color: #000; opacity: 0.6; }
+}
+
+@media (max-width: 900px) {
+    .portfolio-section { 
+        flex-direction: column; 
+        margin: 60px auto; 
+        gap: 50px; 
+        width: 92%;
+    }
+    .center-line-container { display: none; }
+    .hover-bg { display: none; }
+}
+
