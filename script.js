@@ -227,3 +227,105 @@
 
 
         // ----------------------- skill section js end -------------------
+
+
+
+
+
+        // --------------- work sec js start ----------------
+
+
+
+     
+      gsap.registerPlugin(ScrollTrigger);
+
+        // 1. Splitting Title into Words
+        const pTitle = document.getElementById('portfolio-title-trigger');
+        if(pTitle) {
+            const words = pTitle.innerText.split(' ');
+            pTitle.innerHTML = '';
+            words.forEach(word => {
+                const span = document.createElement('span');
+                span.classList.add('featured-title-word');
+                span.innerText = word;
+                pTitle.appendChild(span);
+                pTitle.appendChild(document.createTextNode(' '));
+            });
+        }
+
+        // 2. Splitting Project Text into Characters
+        document.querySelectorAll('.project-animate-text').forEach(el => {
+            const chars = el.innerText.split('');
+            el.innerHTML = '';
+            chars.forEach(char => {
+                const box = document.createElement('span');
+                box.classList.add('project-char-box');
+                const span = document.createElement('span');
+                span.classList.add('project-char');
+                span.innerText = char;
+                box.appendChild(span);
+                el.appendChild(box);
+            });
+        });
+
+       // 3. UPDATED CURSOR LOGIC (Better Movement)
+        const pCursor = document.querySelector("#portfolio-cursor");
+        
+        if(pCursor) {
+            // Mouse move logic with quick GSAP follow
+            window.addEventListener("mousemove", (e) => {
+                gsap.to(pCursor, { 
+                    x: e.clientX, 
+                    y: e.clientY, 
+                    duration: 0.10, 
+                    ease: "power2.out" 
+                });
+            });
+
+            document.querySelectorAll(".project-card-link").forEach(link => {
+                link.addEventListener("mouseenter", () => gsap.to(pCursor, { scale: 1, duration: 0.3 }));
+                link.addEventListener("mouseleave", () => gsap.to(pCursor, { scale: 0, duration: 0.3 }));
+            });
+        }
+
+        // 4. Title Animation
+        gsap.to(".featured-title-word", {
+            scrollTrigger: {
+                trigger: ".portfolio-header-row",
+                start: "top 80%",
+                end: "bottom 20%",
+                scrub: 0.5,
+            },
+            color: "#ffffff",
+            stagger: 0.1
+        });
+
+        // 5. Project Cards Reveal Animation
+        document.querySelectorAll(".project-card-item").forEach((card) => {
+            const box = card.querySelector(".project-reveal-box");
+            const img = card.querySelector(".project-reveal-img");
+            const chars = card.querySelectorAll(".project-char");
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+            tl.fromTo(box, 
+                { yPercent: 50, clipPath: "inset(100% 0% 0% 0%)" }, 
+                { yPercent: 0, clipPath: "inset(0% 0% 0% 0%)", duration: 1.2, ease: "expo.out", visibility: "visible" }
+            )
+            .from(img, { scale: 1.2, duration: 1.2, ease: "expo.out" }, "<")
+            .to(chars, {
+                y: "0%",
+                stagger: 0.01,
+                duration: 0.6,
+                ease: "power3.out"
+            }, "-=0.6");
+        });
+
+
+                // --------------- work sec js start ----------------

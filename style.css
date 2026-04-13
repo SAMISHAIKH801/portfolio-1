@@ -1,88 +1,92 @@
-
-
-
-
-
-       /* Direct container aur uske andar ke har word par font apply karein */
-.manifesto-text, 
-.manifesto-text .word, 
+/* Direct container aur uske andar ke har word par font apply karein */
+.manifesto-text,
+.manifesto-text .word,
 .manifesto-text .line {
     font-family: 'Bebas Neue', sans-serif !important;
 }
-        body, html {
-            margin: 0; padding: 0;
-            background-color: #000;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            overflow-x: hidden;
-        }
 
-          body {
-           
-            color: #e5e5e5;
-           
-            margin: 0;
-            overflow-x: hidden;
-        }
-        .hero-section {
-            background-color: #999d9e;
-            position: relative;
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
+body,
+html {
+    margin: 0;
+    padding: 0;
+    background-color: #0e0e0c;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+}
 
-        .reveal-container {
-            position: relative;
-            height: 100vh;
-            width: 45vw;
-            z-index: 5;
-            overflow: hidden;
-            visibility: hidden;
-        }
+body {
 
-        .hero-img {
-            width: 100%; 
-            height: 120%; /* Desktop parallax ke liye extra height */
-            object-fit: cover;
-            display: block;
-            position: absolute;
-            top: 0;
-        }
+    color: #e5e5e5;
 
-        .left-box {
-            position: absolute;
-            left: 0; top: 50%;
-            transform: translateY(-50%);
-            z-index: 40;
-            opacity: 0;
-                width: min-content;
+    margin: 0;
+    overflow-x: hidden;
+}
 
-        }
+.hero-section {
+    background-color: #999d9e;
+    /* background-color: #e01313; */
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
 
-        .location-pill {
-            background: rgba(28, 29, 32, 0.8);
-            backdrop-filter: blur(10px);
-            color: #fff;
-            display: flex;
-            align-items: center;
-                justify-content: right;
-            padding: 14px 20px 14px 24px; 
-            border-radius: 0 100px 100px 0;
-            gap: 50px;
-            font-size: 14px;
-            font-weight: 400;
-                letter-spacing: 1.4px;
+.reveal-container {
+    position: relative;
+    height: 100vh;
+    width: 45vw;
+    z-index: 5;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.hero-img {
+    width: 100%;
+    height: 120%;
+    /* Desktop parallax ke liye extra height */
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0;
+}
+
+.left-box {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+    opacity: 0;
+    width: min-content;
+
+}
+
+.location-pill {
+    background: rgba(28, 29, 32, 0.8);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 14px 20px 14px 24px;
+    border-radius: 0 100px 100px 0;
+    gap: 50px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1.4px;
     line-height: 1.2em;
-            height: 65px;;
-        }
-        .location-pill span{
-            width: 35%;
-        }
+    height: 65px;
+    ;
+}
 
-        svg.globe-icon {
+.location-pill span {
+    width: 35%;
+}
+
+svg.globe-icon {
     background-color: grey;
     padding: 10px;
     border-radius: 120px;
@@ -92,134 +96,161 @@
 
 
 
-        .right-box {
-            position: absolute;
-            right: 60px; top: 50%;
-            transform: translateY(-50%);
-            color: #fff;
-            z-index: 30;
-            opacity: 0;
-        }
-
-        .freelance-text { 
-            font-size: 22px; 
-            line-height: 1.2; 
-            font-weight: 300; 
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .freelance-text span.arrow {
-            font-size: 30px;
-            margin-bottom: 15px;
-        }
-
-        .marquee-wrapper {
-            position: absolute;
-            bottom: 1%; 
-            width: 100%;
-            z-index: 10;
-            opacity: 0;
-        }
-
-        .marquee-content { display: flex; white-space: nowrap; }
-        .marquee-text {
-            font-size: 15vw; 
-            font-weight: 600;
-            color: #fff; 
-            padding-right: 80px;
-            text-transform: uppercase;
-            line-height: 1;
-        }
-
-        /* --- MOBILE UPDATES --- */
-        @media (max-width: 768px) {
-            .hero-section {
-                padding-top: 0; /* Full height utilize karne ke liye */
-            }
-
-            .reveal-container {
-                width: 100vw; /* Mobile par width full */
-                height: 100vh; /* Mobile par image container full height */
-                margin-top: 0;
-            }
-
-            .hero-img {
-                height: 100%; /* Parallax mobile par remove kar sakte hain ya adjust */
-            }
-
-            .marquee-wrapper {
-                bottom: 25%; /* Mobile par image ke upar text position */
-                top: auto;
-                z-index: 15;
-            }
-
-            .marquee-text { font-size: 22vw; }
-
-            .mobile-info-footer {
-                position: absolute; /* Relative se absolute kiya taake image ke upar overlay ho */
-                bottom: -24;
-                display: flex;
-                width: 100%;
-                justify-content: space-between;
-                /* align-items: flex-end; */
-                padding: 30px 20px;
-                box-sizing: border-box;
-                z-index: 20;
-            }
-
-            .right-box {
-    
-    right: 0px;
-    
+.right-box {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    z-index: 30;
+    opacity: 0;
 }
 
-            .left-box, .right-box {
-                position: relative;
-                opacity: 1;
-            }
+.freelance-text {
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
-            .location-pill {
-                padding: 4px 10px;
-                font-size: 11px;
-                margin-left: -20px;
-                gap: 20px;
-            }
-            .location-pill span{
-            width: 35%;
-        }
+.freelance-text span.arrow {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
 
-        svg.globe-icon {
-    
-    padding: 8px;
-   
-    width: 30px !important;
-    height: 30px !important;
+.marquee-wrapper {
+    position: absolute;
+    bottom: 1%;
+    width: 100%;
+    z-index: 10;
+    opacity: 0;
+}
+
+.marquee-content {
+    display: flex;
+    white-space: nowrap;
+}
+
+.marquee-text {
+    font-size: 15vw;
+    font-weight: 600;
+    color: #fff;
+    padding-right: 80px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+/* --- MOBILE UPDATES --- */
+@media (max-width: 768px) {
+    .hero-section {
+        padding-top: 0;
+        /* Full height utilize karne ke liye */
+    }
+
+    .reveal-container {
+        width: 100vw;
+        /* Mobile par width full */
+        height: 100vh;
+        /* Mobile par image container full height */
+        margin-top: 0;
+    }
+
+    .hero-img {
+        height: 100%;
+        /* Parallax mobile par remove kar sakte hain ya adjust */
+    }
+
+    .marquee-wrapper {
+        bottom: 25%;
+        /* Mobile par image ke upar text position */
+        top: auto;
+        z-index: 15;
+    }
+
+    .marquee-text {
+        font-size: 22vw;
+    }
+
+    .mobile-info-footer {
+        position: absolute;
+        /* Relative se absolute kiya taake image ke upar overlay ho */
+        bottom: -24;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        /* align-items: flex-end; */
+        padding: 30px 20px;
+        box-sizing: border-box;
+        z-index: 20;
+    }
+
+    .right-box {
+
+        right: 0px;
+
+    }
+
+    .left-box,
+    .right-box {
+        position: relative;
+        opacity: 1;
+    }
+
+    .location-pill {
+        padding: 4px 10px;
+        font-size: 11px;
+        margin-left: -20px;
+        gap: 20px;
+    }
+
+    .location-pill span {
+        width: 35%;
+    }
+
+    svg.globe-icon {
+
+        padding: 8px;
+
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+
+    .freelance-text {
+        font-size: 14px;
+        align-items: flex-start;
+        /* Right side par rakha taake clear dikhe */
+        text-align: left;
+    }
+
+    .freelance-text span.arrow {
+        margin-bottom: 8px;
+    }
+}
+
+@keyframes rotateGlobe {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.next-section {
+    height: 100vh;
+    background: #1c1d20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 3rem;
 }
 
 
-            .freelance-text {
-                font-size: 14px;
-                align-items: flex-start; /* Right side par rakha taake clear dikhe */
-                text-align: left;
-            }
-            
-            .freelance-text span.arrow { margin-bottom: 8px; }
-        }
-
-        @keyframes rotateGlobe { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        .next-section {
-            height: 100vh;
-            background: #1c1d20;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 3rem;
-        }
-    
 
 
 
@@ -233,127 +264,171 @@
 
 
 
-
-        /* --------------------------- about section css start ---------------------   */
-
-
-  
-       
-
-        .spacer { height: 100vh; display: flex; align-items: center; justify-content: center; color: #444; }
-
-        .manifesto-container {
-            position: relative;
-            width: 100%;
-            height: 100vh; 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #0e0e0c;
-            padding: 0 8%;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-
-        .left-content { width: 55%; }
-
-        .about-tag {
-            color: #ff3c31;
-            font-size: 14px;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        .manifesto-text {
-            font-family: 'Bebas Neue', sans-serif !important;
-            font-size: clamp(3rem, 8vw, 7.5rem);
-            line-height: 0.9;
-            text-transform: uppercase;
-        }
-
-        .line { display: block; white-space: nowrap; }
-        .line-1 { padding-left: 0%; }
-        .line-2 { padding-left: 10%; }
-        .line-3 { padding-left: 15%; }
-        .line-4 { padding-left: 5%; }
-
-        .word {
-            display: inline-block;
-            color: #1a1a1a; 
-            margin-right: 0.15em;
-        }
-
-        .right-content {
-            width: 40%;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .bio-text {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #e8e2d6;
-            font-weight: 400;
-            max-width: 420px;
-            text-align: left;
-        }
-
-        .char-box {
-            display: inline-block;
-            overflow: hidden;
-            vertical-align: bottom;
-        }
-
-        .char {
-            display: inline-block;
-            /* transform: translateY(100%); */
-            white-space: pre;
-        }
-
-        .footer-tag {
-            position: absolute;
-            bottom: 40px;
-            right: 5%;
-            font-size: 11px;
-            color: #333;
-            letter-spacing: 2px;
-        }
-
-        @media (max-width: 768px) {
-            .manifesto-container {
-                flex-direction: column;
-                justify-content: center;
-                text-align: center;
-                padding: 0 5%;
-            }
-            .left-content, .right-content { width: 100%; padding-left: 0; }
-            .manifesto-text { font-size: clamp(2.5rem, 12vw, 4rem); margin-bottom: 40px; }
-            .line { padding-left: 0 !important; }
-            .right-content { justify-content: center; }
-            .bio-text { text-align: center; max-width: 100%; }
-        }
-
-        .footer-spacer { height: 100vh; background: #000; }
-   
-
-     /* --------------------------- about section  css end ---------------------   */
+/* --------------------------- about section css start ---------------------   */
 
 
 
 
 
+.spacer {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #444;
+}
+
+.manifesto-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0e0e0c;
+    padding: 0 8%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.left-content {
+    width: 55%;
+}
+
+.about-tag {
+    color: #ff3c31;
+    font-size: 14px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.manifesto-text {
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: clamp(3rem, 8vw, 7.5rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+}
+
+.line {
+    display: block;
+    white-space: nowrap;
+}
+
+.line-1 {
+    padding-left: 0%;
+}
+
+.line-2 {
+    padding-left: 10%;
+}
+
+.line-3 {
+    padding-left: 15%;
+}
+
+.line-4 {
+    padding-left: 5%;
+}
+
+.word {
+    display: inline-block;
+    color: #1a1a1a;
+    margin-right: 0.15em;
+}
+
+.right-content {
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.bio-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #e8e2d6;
+    font-weight: 400;
+    max-width: 420px;
+    text-align: left;
+}
+
+.char-box {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+}
+
+.char {
+    display: inline-block;
+    /* transform: translateY(100%); */
+    white-space: pre;
+}
+
+.footer-tag {
+    position: absolute;
+    bottom: 40px;
+    right: 5%;
+    font-size: 11px;
+    color: #333;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+    .manifesto-container {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 0 5%;
+    }
+
+    .left-content,
+    .right-content {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .manifesto-text {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+        margin-bottom: 40px;
+    }
+
+    .line {
+        padding-left: 0 !important;
+    }
+
+    .right-content {
+        justify-content: center;
+    }
+
+    .bio-text {
+        text-align: center;
+        max-width: 100%;
+    }
+}
+
+.footer-spacer {
+    height: 100vh;
+    background: #000;
+}
 
 
- /* -------------------- UPDATED SKILL SECTION CSS ------------------ */
+/* --------------------------- about section  css end ---------------------   */
+
+
+
+
+
+
+
+/* -------------------- UPDATED SKILL SECTION CSS ------------------ */
 
 .portfolio-section {
-    background-color: #000 !important;
+    background-color: #0e0e0c !important;
     display: flex;
     width: 90%;
     max-width: 1400px;
-    min-height: 80vh; 
+    min-height: 80vh;
     margin: 100px auto;
     gap: clamp(40px, 8vw, 100px);
     position: relative;
@@ -378,17 +453,18 @@
     width: 100%;
     height: 0%;
     background-color: #ff4d4d;
-    transition: height 0.1s ease-out; 
+    transition: height 0.1s ease-out;
 }
 
-.column { 
-    flex: 1; 
-    position: relative; 
+.column {
+    flex: 1;
+    position: relative;
     width: 100%;
 }
 
 .section-label {
-    font-family: 'Inter', sans-serif; /* Inter Font */
+    font-family: 'Inter', sans-serif;
+    /* Inter Font */
     color: #ff4d4d;
     font-size: clamp(10px, 1.5vw, 12px);
     font-weight: 700;
@@ -399,7 +475,8 @@
 }
 
 .main-heading {
-    font-family: 'Bebas Neue', sans-serif !important; /* Bebas Font */
+    font-family: 'Bebas Neue', sans-serif !important;
+    /* Bebas Font */
     font-size: clamp(45px, 7vw, 90px);
     font-weight: 400;
     margin-bottom: clamp(30px, 5vw, 50px);
@@ -408,8 +485,14 @@
     color: rgba(255, 255, 255, 0.05);
 }
 
-.char { display: inline-block; transition: color 0.8s ease; }
-.visible .char { color: #ffffff; }
+.char {
+    display: inline-block;
+    color 0.8s ease;
+}
+
+.visible .char {
+    color: #ffffff;
+}
 
 /* --- LIST ROW STYLES --- */
 .list-row {
@@ -422,23 +505,26 @@
     opacity: 0;
     transform: translateY(60px) scale(0.98);
     filter: blur(8px);
-    transition: 
-        opacity 1.4s ease, 
+    transition:
+        opacity 1.4s ease,
         transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
         filter 1.2s ease;
 }
 
-.list-row.show { 
-    opacity: 1; 
-    transform: translateY(0) scale(1); 
+.list-row.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
     filter: blur(0);
 }
 
 .hover-bg {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: #ffffff;
-    transform: translateY(100%); 
+    transform: translateY(100%);
     z-index: 1;
     pointer-events: none;
     transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
@@ -469,30 +555,34 @@
     flex-shrink: 0;
 }
 
-.icon-box i { font-size: 18px; color: #ffffff; }
+.icon-box i {
+    font-size: 18px;
+    color: #ffffff;
+}
 
-.title-group { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-start; 
-    flex-grow: 1; 
+.title-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
 }
 
 /* Row Title (WordPress, Shopify, etc.) with Bebas Neue */
-.row-title { 
-    font-family: 'Bebas Neue', sans-serif !important; 
-    font-size: clamp(22px, 3vw, 28px); /* Slightly larger for Bebas */
-    font-weight: 400; 
-    text-transform: uppercase; 
+.row-title {
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: clamp(22px, 3vw, 28px);
+    /* Slightly larger for Bebas */
+    font-weight: 400;
+    text-transform: uppercase;
     letter-spacing: 1.5px;
     line-height: 1;
 }
 
 /* Details and Year with Inter */
-.row-details { 
+.row-details {
     font-family: 'Inter', sans-serif;
-    font-size: 11px; 
-    opacity: 0.5; 
+    font-size: 11px;
+    opacity: 0.5;
     margin-top: 6px;
     color: #888;
     letter-spacing: 0.5px;
@@ -504,28 +594,251 @@
     font-size: clamp(12px, 2vw, 14px);
     font-weight: 500;
     opacity: 0.3;
-    margin-left: auto; 
+    margin-left: auto;
     white-space: nowrap;
     text-transform: uppercase;
 }
 
 /* Desktop Hover Effects */
 @media (min-width: 901px) {
-    .list-row:hover .row-content { color: #000; }
-    .list-row:hover .icon-box { background: rgba(0, 0, 0, 0.08); border-color: rgba(0, 0, 0, 0.2); }
-    .list-row:hover .icon-box i { color: #000; }
-    .list-row:hover .row-details { opacity: 0.8; color: #333; }
-    .list-row:hover .row-year { color: #000; opacity: 0.6; }
+    .list-row:hover .row-content {
+        color: #000;
+    }
+
+    .list-row:hover .icon-box {
+        background: #00000036;
+        border-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .list-row:hover .icon-box i {
+        color: #000;
+    }
+
+    .list-row:hover .row-details {
+        opacity: 0.8;
+        color: #333;
+    }
+
+    .list-row:hover .row-year {
+        color: #000;
+        opacity: 0.6;
+    }
 }
 
 @media (max-width: 900px) {
-    .portfolio-section { 
-        flex-direction: column; 
-        margin: 60px auto; 
-        gap: 50px; 
+    .portfolio-section {
+        flex-direction: column;
+        margin: 60px auto;
+        gap: 50px;
         width: 92%;
     }
-    .center-line-container { display: none; }
-    .hover-bg { display: none; }
+
+    .center-line-container {
+        display: none;
+    }
+
+    .hover-bg {
+        display: none;
+    }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+/* ------------- work section css start-----------------  */
+
+
+
+
+
+
+
+/* FIXED CURSOR CSS */
+#portfolio-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    background-color: #b4f4e0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    /* Bohat zaroori hai */
+    z-index: 99999;
+    /* Sab se oopar */
+    transform: translate(-50%, -50%) scale(0);
+    /* Center alignment */
+    transition: transform 0.3s ease-out;
+}
+
+#portfolio-cursor svg {
+    width: 25px;
+    height: 25px;
+    stroke: #000;
+}
+
+/* Disable default cursor on cards */
+.project-card-link {
+    cursor: none !important;
+}
+
+.portfolio-work-section {
+    padding: 0px 4% 50px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.portfolio-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0px;
+}
+
+.portfolio-main-title {
+    font-family: 'Bebas Neue', sans-serif !important;
+    /* Bebas Font */
+    font-size: clamp(45px, 7vw, 90px);
+    font-weight: 400;
+    letter-spacing: 2px;
+    line-height: 0.9;
+    text-transform: uppercase;
+}
+
+/* Renamed title word class */
+.featured-title-word {
+    color: #1a1a1a;
+    display: inline-block;
+    margin-right: 0.2em;
+}
+
+.portfolio-header-desc {
+    max-width: 280px;
+    font-size: 11px;
+    text-transform: uppercase;
+    line-height: 1.5;
+    color: #888;
+    text-align: right;
+}
+
+.portfolio-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px 40px;
+}
+
+.project-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.project-reveal-box {
+    position: relative;
+    width: 100%;
+    height: clamp(190px, 35vw, 380px);
+    overflow: hidden;
+    border-radius: 20px;
+    background: #151515;
+    visibility: hidden;
+}
+
+.project-reveal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: filter 0.6s ease, transform 0.6s ease;
+}
+
+.project-card-link:hover .project-reveal-img {
+    filter: blur(8px) brightness(0.7);
+    transform: scale(1.05);
+}
+
+.project-card-info {
+    margin-top: 25px;
+}
+
+.project-card-name {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 400;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
+.project-card-category {
+    font-size: 10px;
+    color: #666;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+/* Renamed character reveal classes */
+.project-char-box {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+}
+
+.project-char {
+    display: inline-block;
+    transform: translateY(100%);
+    white-space: pre;
+}
+
+.portfolio-spacer {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    letter-spacing: 10px;
+    font-size: 12px;
+}
+
+@media (max-width: 900px) {
+    .portfolio-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 30px 40px;
+    }
+
+    .portfolio-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .portfolio-header-desc {
+        text-align: left;
+    }
+
+    h2#portfolio-title-trigger {
+        margin-bottom: -22px;
+    }
+
+    .portfolio-work-section {
+    padding: 0px 4%;
+   
+}
+}
+
+
+/* ------------- work section css end-----------------  */
