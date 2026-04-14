@@ -1,0 +1,732 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Portfolio Section</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@300;400;700&display=swap');
+        
+        body { background-color: #000; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .serif { font-family: 'Playfair Display', serif; }
+        
+        /* Centered Marquee Background */
+        .marquee-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: 15vw;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
+            width: 200%; /* Extra width for movement */
+            text-align: center;
+        }
+
+        /* Snellenberg Style Liquid Button */
+        .btn-magnetic-wrap {
+            display: inline-block;
+            position: relative;
+            padding: 30px; /* Magnetic hit area */
+        }
+
+        .btn-custom {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: transparent;
+            z-index: 1;
+            transition: border-color 0.4s ease;
+        }
+
+        /* The "Liquid" Fill Effect */
+        .btn-fill {
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background-color: #fff; /* Fill color */
+            top: 100%; /* Start from below */
+            left: -25%;
+            border-radius: 50%; /* Gives that rounded bubble look */
+            z-index: -1;
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .btn-custom:hover .btn-fill {
+            transform: translateY(-120%); /* Moves up on hover */
+        }
+
+        .btn-custom:hover {
+            border-color: transparent;
+        }
+
+        .btn-text {
+            color: white;
+            z-index: 2;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.4s ease;
+        }
+
+        .btn-custom:hover .btn-text {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="h-screen flex items-center justify-center text-gray-500 italic">Scroll Down...</div>
+
+    <section id="contact-section" class="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black">
+        
+        <div class="marquee-bg" id="bg-text">
+            PROTOCOL // PROTOCOL // PROTOCOL
+        </div>
+
+        <div class="relative z-10 flex flex-col items-center text-center">
+            
+            <div class="flex items-center space-x-2 mb-6">
+                <span class="h-2 w-2 bg-red-600 rounded-full animate-pulse"></span>
+                <span class="text-red-600 text-[10px] tracking-[0.3em] uppercase font-bold">Channel Open</span>
+            </div>
+
+            <h2 class="text-5xl md:text-7xl serif italic leading-tight mb-4">
+                What if we <br> worked together?
+            </h2>
+
+            <a href="mailto:shaikh@example.com" class="text-red-500 hover:text-red-400 transition-colors text-lg mb-10">
+                shaikh@example.com
+            </a>
+
+            <div class="btn-magnetic-wrap" id="magnetic-area">
+                <a href="#" class="btn-custom" id="magnetic-btn">
+                    <div class="btn-fill"></div>
+                    <span class="btn-text">Initiate<br>Contact</span>
+                </a>
+            </div>
+
+            <div class="flex space-x-8 mt-12 text-[10px] tracking-[0.2em] text-red-600 font-bold uppercase">
+                <a href="#" class="hover:text-white transition-colors">[ Github ]</a>
+                <a href="#" class="hover:text-white transition-colors">[ Linkedin ]</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="h-screen"></div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. Marquee Movement (Centered)
+        gsap.to("#bg-text", {
+            xPercent: -20, // Move horizontally
+            scrollTrigger: {
+                trigger: "#contact-section",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.5
+            }
+        });
+
+        // 2. Magnetic Effect Logic
+        const btnWrap = document.querySelector('#magnetic-area');
+        const btn = document.querySelector('#magnetic-btn');
+
+        btnWrap.addEventListener('mousemove', (e) => {
+            const rect = btnWrap.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            // Button moves less than the cursor (strength)
+            gsap.to(btn, {
+                x: x * 0.4,
+                y: y * 0.4,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+
+        btnWrap.addEventListener('mouseleave', () => {
+            gsap.to(btn, {
+                x: 0,
+                y: 0,
+                duration: 0.5,
+                ease: "elastic.out(1, 0.3)"
+            });
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Protocol | Paktech Solutions Hub</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        body { margin: 0; padding: 0; background-color: #000; overflow-x: hidden; }
+
+        .contact-section-wrapper {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+            overflow: hidden;
+            color: white;
+        }
+
+        /* Perfectly Centered Background Text */
+        .contact-marquee-container {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Ensures dead center */
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .contact-marquee-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 18vw;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+            transform: rotate(-12deg);
+            user-select: none;
+            will-change: transform;
+        }
+
+        /* Premium Heading & Color Reveal Animation */
+        .contact-heading {
+            font-family: 'Bebas Neue', sans-serif !important;
+            line-height: 0.85;
+            letter-spacing: -0.01em;
+            z-index: 10;
+            text-transform: uppercase;
+        }
+
+        .contact-title-word {
+            color: #222; /* Initial dark color like featured works */
+            display: inline-block;
+            margin-right: 0.1em;
+        }
+
+        .contact-email {
+            font-family: 'Inter', sans-serif;
+            color: #ef4444; 
+            transition: opacity 0.3s ease;
+            z-index: 10;
+            text-decoration: none;
+        }
+
+        /* Magnetic Liquid Button Styles */
+        .contact-btn-magnetic {
+            display: inline-block;
+            position: relative;
+            padding: 40px;
+            z-index: 20;
+        }
+
+        .contact-btn-main {
+            position: relative;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: transparent;
+            transition: border-color 0.4s ease;
+            text-decoration: none;
+        }
+
+        .contact-btn-fill {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            top: 100%; /* Start from bottom */
+            left: 0;
+            border-radius: 50%;
+            z-index: 1;
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .contact-btn-main:hover .contact-btn-fill {
+            transform: translateY(-100%); /* Fill up entirely */
+        }
+
+        .contact-btn-text {
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            transition: color 0.4s ease;
+            line-height: 1.2;
+            z-index: 2;
+        }
+
+        .contact-btn-main:hover .contact-btn-text {
+            color: #000; /* Text turns black on hover */
+        }
+
+        .contact-links-wrap a {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.25em;
+            color: #b91c1c; 
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .contact-links-wrap a:hover { color: #fff; }
+
+        @media (max-width: 768px) {
+            .contact-btn-main { width: 140px; height: 140px; }
+            .contact-marquee-text { font-size: 36vw; }
+
+             .contact-marquee-container {
+            position: absolute;
+            top: 70%;
+            
+        }
+
+            .contact-btn-magnetic {
+
+    padding: 10px;
+    z-index: 20;
+}
+
+        }
+
+        .spacer { height: 100vh; background: #000; }
+    </style>
+</head>
+<body>
+
+    <div class="spacer"></div>
+
+    <section class="contact-section-wrapper" id="isolated-contact-section">
+        
+        <div class="contact-marquee-container">
+            <div class="contact-marquee-text" id="isolated-bg-text">
+                PROTOCOL // PROTOCOL // PROTOCOL // PROTOCOL
+            </div>
+        </div>
+        
+        
+        
+
+        <div class="relative z-10 flex flex-col items-center text-center px-4">
+            
+            <div class="flex items-center space-x-3 mb-6">
+                <span class="h-2 w-2 bg-red-600 rounded-full animate-pulse shadow-[0_0_12px_#dc2626]"></span>
+                <span class="text-red-600 text-[10px] tracking-[0.5em] uppercase font-bold" style="font-family: 'Inter';">Channel Open</span>
+            </div>
+
+            <h2 class="contact-heading text-6xl sm:text-7xl md:text-[120px]" id="contact-main-title">
+                WHAT IF WE WORKED TOGETHER?
+            </h2>
+
+            <a href="mailto:shaikh@example.com" class="contact-email text-lg md:text-xl mt-6 mb-4 hover:opacity-70">
+                shaikh@example.com
+            </a>
+
+            <div class="contact-btn-magnetic" id="contact-mag-area">
+                <a href="#" class="contact-btn-main" id="contact-mag-btn">
+                    <div class="contact-btn-fill"></div>
+                    <span class="contact-btn-text">Initiate<br>Contact</span>
+                </a>
+            </div>
+
+            <div class="contact-links-wrap flex space-x-10 mt-8">
+                <a href="#">[ Github ]</a>
+                <a href="#">[ Linkedin ]</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="spacer"></div>
+
+    <script>
+        (function() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 1. Marquee Animation
+            gsap.to("#isolated-bg-text", {
+                x: -500,
+                scrollTrigger: {
+                    trigger: "#isolated-contact-section",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1.2
+                }
+            });
+
+            // 2. Title Word Split & Reveal (Same as Featured Works)
+            const contactTitle = document.getElementById('contact-main-title');
+            const words = contactTitle.innerText.split(' ');
+            contactTitle.innerHTML = '';
+            
+            words.forEach((word, index) => {
+                const span = document.createElement('span');
+                span.classList.add('contact-title-word');
+                // Adding <br> for layout if needed (matching your original design)
+                if(index === 3) { 
+                    contactTitle.appendChild(document.createElement('br'));
+                }
+                span.innerText = word;
+                contactTitle.appendChild(span);
+                contactTitle.appendChild(document.createTextNode(' '));
+            });
+
+            gsap.to(".contact-title-word", {
+                scrollTrigger: {
+                    trigger: "#isolated-contact-section",
+                    start: "top 70%",
+                    end: "top 20%",
+                    scrub: 0.5,
+                },
+                color: "#ffffff",
+                stagger: 0.1
+            });
+
+            // 3. Magnetic Effect Logic
+            const wrap = document.querySelector('#contact-mag-area');
+            const btn = document.querySelector('#contact-mag-btn');
+
+            wrap.addEventListener('mousemove', (e) => {
+                const rect = wrap.getBoundingClientRect();
+                const x = (e.clientX - rect.left - rect.width / 2) * 0.4; 
+                const y = (e.clientY - rect.top - rect.height / 2) * 0.4;
+
+                gsap.to(btn, {
+                    x: x,
+                    y: y,
+                    duration: 0.4,
+                    ease: "power2.out"
+                });
+            });
+
+            wrap.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Protocol | Paktech Solutions Hub</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* CSS resets for isolation */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+        }
+
+        /* Isolated Section Wrapper */
+        .contact-section-wrapper {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+            overflow: hidden;
+            color: white;
+        }
+
+        /* Perfectly Centered Background Text */
+        .contact-marquee-container {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .contact-marquee-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 18vw;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+            transform: rotate(-12deg);
+            user-select: none;
+            will-change: transform;
+        }
+
+        /* Premium Heading Typography */
+        .contact-heading {
+            font-family: 'Bebas Neue', sans-serif !important;
+            line-height: 0.85;
+            letter-spacing: -0.01em;
+            z-index: 10;
+            text-transform: uppercase;
+        }
+
+        .contact-email {
+            font-family: 'Inter', sans-serif;
+            color: #ef4444; 
+            transition: opacity 0.3s ease;
+            z-index: 10;
+            text-decoration: none;
+        }
+
+        /* Magnetic Liquid Button Styles */
+        .contact-btn-magnetic {
+            display: inline-block;
+            position: relative;
+            padding: 40px;
+            z-index: 20;
+        }
+
+        .contact-btn-main {
+            position: relative;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: transparent;
+            transition: border-color 0.4s ease;
+            text-decoration: none;
+        }
+
+        .contact-btn-fill {
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background-color: #fff;
+            top: 100%;
+            left: -25%;
+            border-radius: 50%;
+            z-index: -1;
+            /* Cubic-bezier for liquid physical feel */
+            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .contact-btn-main:hover .contact-btn-fill {
+            transform: translateY(-120%);
+        }
+
+        .contact-btn-text {
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            transition: color 0.4s ease;
+            line-height: 1.2;
+            z-index: 2;
+        }
+
+        .contact-btn-main:hover .contact-btn-text {
+            color: #000;
+        }
+
+        /* Bottom Link Styling */
+        .contact-links-wrap a {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.25em;
+            color: #b91c1c; 
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .contact-links-wrap a:hover {
+            color: #fff;
+        }
+
+        /* Responsive scaling */
+        @media (max-width: 768px) {
+            .contact-btn-main { width: 140px; height: 140px; }
+            .contact-marquee-text { font-size: 25vw; }
+            .contact-heading { line-height: 0.9; }
+        }
+
+        .box{
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box"></div>
+
+    <section class="contact-section-wrapper" id="isolated-contact-section">
+        
+        <div class="contact-marquee-container">
+            <div class="contact-marquee-text" id="isolated-bg-text">
+                PROTOCOL // PROTOCOL // PROTOCOL // PROTOCOL
+            </div>
+        </div>
+
+        <div class="relative z-10 flex flex-col items-center text-center px-4">
+            
+            <div class="flex items-center space-x-3 mb-6">
+                <span class="h-2 w-2 bg-red-600 rounded-full animate-pulse shadow-[0_0_12px_#dc2626]"></span>
+                <span class="text-red-600 text-[10px] tracking-[0.5em] uppercase font-bold" style="font-family: 'Inter';">Channel Open</span>
+            </div>
+
+            <h2 class="contact-heading text-6xl sm:text-7xl md:text-[120px]">
+                WHAT IF WE <br class="hidden md:block"> WORKED TOGETHER?
+            </h2>
+
+            <a href="mailto:shaikh@example.com" class="contact-email text-lg md:text-xl mt-6 mb-4 hover:opacity-70">
+                shaikh@example.com
+            </a>
+
+            <div class="contact-btn-magnetic" id="contact-mag-area">
+                <a href="#" class="contact-btn-main" id="contact-mag-btn">
+                    <div class="contact-btn-fill"></div>
+                    <span class="contact-btn-text">Initiate<br>Contact</span>
+                </a>
+            </div>
+
+            <div class="contact-links-wrap flex space-x-10 mt-8">
+                <a href="#">[ Github ]</a>
+                <a href="#">[ Linkedin ]</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scoped script to avoid variable clashing
+        (function() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 1. Smooth Marquee Animation
+            gsap.to("#isolated-bg-text", {
+                x: -500,
+                scrollTrigger: {
+                    trigger: "#isolated-contact-section",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1.2
+                }
+            });
+
+            // 2. Magnetic Effect Logic
+            const wrap = document.querySelector('#contact-mag-area');
+            const btn = document.querySelector('#contact-mag-btn');
+
+            wrap.addEventListener('mousemove', (e) => {
+                const rect = wrap.getBoundingClientRect();
+                const relX = e.clientX - rect.left;
+                const relY = e.clientY - rect.top;
+                
+                // Strength factor for movement
+                const x = (relX - rect.width / 2) * 0.4; 
+                const y = (relY - rect.height / 2) * 0.4;
+
+                gsap.to(btn, {
+                    x: x,
+                    y: y,
+                    duration: 0.4,
+                    ease: "power2.out"
+                });
+            });
+
+            // Return to center with elastic ease
+            wrap.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html> -->

@@ -328,4 +328,93 @@
         });
 
 
-                // --------------- work sec js start ----------------
+   // --------------- work sec js start ----------------
+
+
+
+
+
+
+
+
+
+         // --------------- contact sec js start ----------------
+
+
+
+
+
+        (function() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 1. Marquee Animation
+            gsap.to("#isolated-bg-text", {
+                x: -500,
+                scrollTrigger: {
+                    trigger: "#isolated-contact-section",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1.2
+                }
+            });
+
+            // 2. Title Word Split & Reveal (Same as Featured Works)
+            const contactTitle = document.getElementById('contact-main-title');
+            const words = contactTitle.innerText.split(' ');
+            contactTitle.innerHTML = '';
+            
+            words.forEach((word, index) => {
+                const span = document.createElement('span');
+                span.classList.add('contact-title-word');
+                // Adding <br> for layout if needed (matching your original design)
+                if(index === 3) { 
+                    contactTitle.appendChild(document.createElement('br'));
+                }
+                span.innerText = word;
+                contactTitle.appendChild(span);
+                contactTitle.appendChild(document.createTextNode(' '));
+            });
+
+            gsap.to(".contact-title-word", {
+                scrollTrigger: {
+                    trigger: "#isolated-contact-section",
+                    start: "top 70%",
+                    end: "top 20%",
+                    scrub: 0.5,
+                },
+                color: "#ffffff",
+                stagger: 0.1
+            });
+
+            // 3. Magnetic Effect Logic
+            const wrap = document.querySelector('#contact-mag-area');
+            const btn = document.querySelector('#contact-mag-btn');
+
+            wrap.addEventListener('mousemove', (e) => {
+                const rect = wrap.getBoundingClientRect();
+                const x = (e.clientX - rect.left - rect.width / 2) * 0.4; 
+                const y = (e.clientY - rect.top - rect.height / 2) * 0.4;
+
+                gsap.to(btn, {
+                    x: x,
+                    y: y,
+                    duration: 0.4,
+                    ease: "power2.out"
+                });
+            });
+
+            wrap.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        })();
+
+
+
+
+
+            // --------------- contact sec js end ----------------
