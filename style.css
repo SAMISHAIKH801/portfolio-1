@@ -359,9 +359,9 @@ svg.globe-icon {
     vertical-align: bottom;
 }
 
-.char {
+  #bio .char {
     display: inline-block;
-    /* transform: translateY(100%); */
+    transform: translateY(100%);
     white-space: pre;
 }
 
@@ -867,7 +867,7 @@ svg.globe-icon {
             background-color: #0e0e0c;
             overflow: hidden;
             color: white;
-            margin: 40px 0px;
+            margin: 60px 0px;
         }
 
         /* Perfectly Centered Background Text */
