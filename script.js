@@ -1,4 +1,138 @@
 
+
+
+
+// Awwwards-style Deep Smooth Scroll
+const lenis = new Lenis({
+    duration: 2.2,          // Scroll ka momentum thoda lamba chalega (Slow stop)
+    lerp: 0.04,             // [SABSE ZAROORI] Isse kam karne se scroll "makhann" ho jata hai (Range: 0.01 - 0.1)
+    wheelMultiplier: 0.7,   // Mouse wheel ki speed thodi kam kar di taake "slow" feel aaye
+    smoothWheel: true,
+    syncTouch: true,        // Mobile par bhi wahi slow premium feel
+    orientation: 'vertical',
+});
+
+// ScrollTrigger ko update karte rehna zaroori hai
+lenis.on('scroll', ScrollTrigger.update);
+
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+
+// Performance optimization
+gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+});
+gsap.ticker.lagSmoothing(0);
+
+// ------------- page scroll naimtion end -------------- 
+
+
+
+
+// ---------------------- header css start ------------ 
+
+
+
+
+        // --- 1. Robust Letter Animation Logic ---
+        function initTextAnimations() {
+            document.querySelectorAll('.anim-text').forEach(el => {
+                const text = el.textContent;
+                const offset = el.dataset.y || 20; // Custom offset for large menu items
+                el.innerHTML = '';
+                
+                // Wrap each character
+                [...text].forEach(char => {
+                    const span = document.createElement('span');
+                    span.textContent = char === ' ' ? '\u00A0' : char;
+                    span.classList.add('char');
+                    el.appendChild(span);
+                });
+
+                // Smooth Hover Effect
+                el.addEventListener('mouseenter', () => {
+                    const chars = el.querySelectorAll('.char');
+                    gsap.killTweensOf(chars); // Prevent glitching on fast hover
+                    
+                    gsap.timeline()
+                        .to(chars, {
+                            y: -offset, 
+                            stagger: 0.02, 
+                            duration: 0.3, 
+                            ease: "power2.in"
+                        })
+                        .set(chars, { y: offset })
+                        .to(chars, {
+                            y: 0, 
+                            stagger: 0.02, 
+                            duration: 0.4, 
+                            ease: "power2.out"
+                        });
+                });
+            });
+        }
+
+        initTextAnimations();
+
+        // --- 2. Desktop Sticky Burger Scroll Reveal ---
+        if (window.innerWidth > 768) {
+            gsap.to(".sticky-burger", {
+                scrollTrigger: {
+                    trigger: "body",
+                    start: "top -120",
+                    toggleActions: "play none none reverse"
+                },
+                scale: 1,
+                duration: 0.4,
+                ease: "back.out(1.7)"
+            });
+        }
+
+        // --- 3. Overlay Menu Timeline ---
+        const menuOverlay = document.querySelector('.menu-overlay');
+        let menuTl = gsap.timeline({ paused: true });
+
+        menuTl.to(menuOverlay, {
+            clipPath: "circle(150% at 100% 0%)",
+            duration: 1.2,
+            ease: "expo.inOut",
+            onStart: () => menuOverlay.classList.add('active')
+        })
+        .from(".menu-link .char", {
+            y: 100,
+            stagger: 0.02,
+            duration: 0.8,
+            ease: "power4.out"
+        }, "-=0.7")
+        .from(".social-link", {
+            opacity: 0,
+            y: 15,
+            stagger: 0.08,
+            duration: 0.5
+        }, "-=0.5");
+
+        function toggleMenu() { menuTl.play(); }
+        function hideMenu() { 
+            menuTl.reverse();
+            setTimeout(() => menuOverlay.classList.remove('active'), 1200);
+        }
+
+        document.getElementById('desktop-trigger').addEventListener('click', toggleMenu);
+   
+
+
+
+
+// ---------------------- header css end ------------ 
+
+
+
+
+
    
         gsap.registerPlugin(ScrollTrigger);
 
@@ -37,7 +171,7 @@
             });
 
             // Parallax Effect (Disabled on mobile for cleaner look if needed)
-            if (window.innerWidth > 768) {
+            if (window.innerWidth > 168) {
                 gsap.to("#heroImg", {
                     y: 180,
                     ease: "none",

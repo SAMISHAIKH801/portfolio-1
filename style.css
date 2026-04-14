@@ -1,3 +1,38 @@
+
+
+
+
+
+
+/* Layout ko stable rakhne ke liye */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Base performance boost - No Layout Change */
+body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+
+
 /* Direct container aur uske andar ke har word par font apply karein */
 .manifesto-text,
 .manifesto-text .word,
@@ -21,6 +56,113 @@ body {
     margin: 0;
     overflow-x: hidden;
 }
+
+
+
+
+
+
+
+
+
+
+/* // ---------------------- header css start ------------  */
+
+
+
+
+ 
+        /* :root { --bg-color: #e5e2da; --dark: #1a1a1a; --accent: #ffffff; } */
+        /* * { margin: 0; padding: 0; box-sizing: border-box; } */
+        /* body { background-color: #fff; overflow-x: hidden; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; } */
+
+        /* --- Main Header --- */
+        .main-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px 50px; background: #e5e2da; position: relative; z-index: 10;
+        }
+        .logo { font-size: 28px; font-weight: 900; font-family: 'Bebas Neue', sans-serif; color: #000; text-decoration: none; }
+        .center-menu { display: flex; gap: 40px; }
+
+        /* Animation Text Core */
+        .anim-text {
+            display: inline-block; text-decoration: none; color: inherit;
+            cursor: pointer; overflow: hidden; vertical-align: middle;
+            will-change: transform;
+        }
+        .header-nav-link { font-size: 14px; font-weight: 600; height: 20px; line-height: 20px; color: #000; }
+        .char { display: inline-block; will-change: transform; pointer-events: none; }
+
+        .header-btn {
+            display: flex; align-items: center; background: #1a1a1a;
+            color: white; padding: 8px 16px; border-radius: 6px; cursor: pointer; gap: 10px;
+            text-decoration: none; min-width: max-content;
+        }
+        .btn-img img { width: 30px; height: 30px; border-radius: 4px; object-fit: cover; }
+        .btn-text-wrap { color: white !important; font-size: 13px; height: 18px; line-height: 18px; }
+
+        /* --- Sticky Burger (Desktop) --- */
+        .sticky-burger {
+            position: fixed; top: 30px; right: 40px; width: 65px; height: 65px;
+            background: #1a1a1a; border-radius: 50%; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; cursor: pointer; z-index: 100;
+            transform: scale(0); box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .line { width: 22px; height: 2px; background: white; margin: 3px 0; pointer-events: none; }
+
+        /* --- Menu Overlay --- */
+        .menu-overlay {
+            position: fixed; top: 0; right: 0; width: 100%; max-width: 550px;
+            height: 100vh; background: #1a1a1a; z-index: 200; color: white;
+            padding: 80px 60px; display: flex; flex-direction: column;
+            clip-path: circle(0% at 100% 0%); pointer-events: none;
+            transition: visibility 0.5s;
+        }
+        .menu-overlay.active { pointer-events: all; visibility: visible; }
+        .overlay-logo { font-family: 'Bebas Neue', sans-serif; font-size: 32px; margin-bottom: 50px; color: #fff; text-decoration: none; }
+        .overlay-nav { display: flex; flex-direction: column; gap: 5px; flex-grow: 1; }
+        
+        /* Menu Links - High Contrast */
+        .menu-link {
+            font-size: 70px; color: white; text-decoration: none;
+            font-family: 'Bebas Neue', sans-serif; line-height: 1.1;
+            display: block; height: 80px;
+        }
+
+        .overlay-footer { display: flex; gap: 20px; border-top: 1px solid #333; padding-top: 30px; flex-wrap: wrap; }
+        .social-link { color: #888; text-decoration: none; font-size: 12px; transition: color 0.3s; }
+        .social-link:hover { color: #fff; }
+        .close-btn { position: absolute; top: 35px; right: 45px; font-size: 40px; cursor: pointer; color: #fff; line-height: 1; }
+
+        /* --- Mobile Optimization --- */
+        @media (max-width: 768px) {
+            .main-header { padding: 15px 20px; height: 70px; }
+            .center-menu { display: none; }
+            .main-header .logo { font-size: 22px; position: absolute; left: 50%; transform: translateX(-50%); }
+            
+            .mobile-trigger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 11; width: 30px; }
+            .mobile-trigger .line { background: #000; width: 20px; height: 2px; }
+
+            .header-btn { padding: 6px 10px; gap: 6px; }
+            .btn-img img { width: 24px; height: 24px; }
+            .btn-text-wrap { font-size: 11px; }
+
+            .menu-link { font-size: 55px; height: 65px; }
+            .menu-overlay { max-width: 100%; padding: 80px 30px; }
+        }
+
+        @media (min-width: 769px) { .mobile-trigger { display: none; } }
+
+
+
+
+/* // ---------------------- header css end ------------  */
+
+
+
+
+
+
 
 .hero-section {
     background-color: #999d9e;
