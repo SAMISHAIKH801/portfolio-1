@@ -25,7 +25,7 @@ html.lenis {
   pointer-events: none;
 }
 
-/* Base performance boost - No Layout Change */
+
 body {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -79,12 +79,15 @@ body {
         /* --- Main Header --- */
         .main-header {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 25px 50px; background: #e5e2da; position: relative; z-index: 10;
+            padding: 25px 50px;   z-index: 10;
+                position: absolute;
+    width: 100%;
+    background-color: transparent;
         }
         .logo { font-size: 28px; font-weight: 900; font-family: 'Bebas Neue', sans-serif; color: #000; text-decoration: none; }
         .center-menu { display: flex; gap: 40px; }
 
-        /* Animation Text Core */
+        
         .anim-text {
             display: inline-block; text-decoration: none; color: inherit;
             cursor: pointer; overflow: hidden; vertical-align: middle;
@@ -101,16 +104,29 @@ body {
         .btn-img img { width: 30px; height: 30px; border-radius: 4px; object-fit: cover; }
         .btn-text-wrap { color: white !important; font-size: 13px; height: 18px; line-height: 18px; }
 
-        /* --- Sticky Burger (Desktop) --- */
+       
         .sticky-burger {
-            position: fixed; top: 30px; right: 40px; width: 65px; height: 65px;
-            background: #1a1a1a; border-radius: 50%; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; cursor: pointer; z-index: 100;
-            transform: scale(0); box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .line { width: 22px; height: 2px; background: white; margin: 3px 0; pointer-events: none; }
+    position: fixed; 
+    top: 30px; 
+    right: 40px; 
+    width: 60px; 
+    height: 60px;
+    background: #1a1a1a; 
+    border-radius: 50%; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    cursor: pointer; 
+    z-index: 100;
+    /* Yeh important hai taake start mein nazar na aaye */
+    transform: scale(0); 
+    visibility: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: visibility 0.3s;
+}
+        .nav-line { width: 22px; height: 2px; background: white; margin: 3px 0; pointer-events: none; }
 
-        /* --- Menu Overlay --- */
         .menu-overlay {
             position: fixed; top: 0; right: 0; width: 100%; max-width: 550px;
             height: 100vh; background: #1a1a1a; z-index: 200; color: white;
@@ -122,7 +138,7 @@ body {
         .overlay-logo { font-family: 'Bebas Neue', sans-serif; font-size: 32px; margin-bottom: 50px; color: #fff; text-decoration: none; }
         .overlay-nav { display: flex; flex-direction: column; gap: 5px; flex-grow: 1; }
         
-        /* Menu Links - High Contrast */
+        
         .menu-link {
             font-size: 70px; color: white; text-decoration: none;
             font-family: 'Bebas Neue', sans-serif; line-height: 1.1;
@@ -134,25 +150,89 @@ body {
         .social-link:hover { color: #fff; }
         .close-btn { position: absolute; top: 35px; right: 45px; font-size: 40px; cursor: pointer; color: #fff; line-height: 1; }
 
-        /* --- Mobile Optimization --- */
-        @media (max-width: 768px) {
-            .main-header { padding: 15px 20px; height: 70px; }
-            .center-menu { display: none; }
-            .main-header .logo { font-size: 22px; position: absolute; left: 50%; transform: translateX(-50%); }
-            
-            .mobile-trigger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 11; width: 30px; }
-            .mobile-trigger .line { background: #000; width: 20px; height: 2px; }
+        
+    /* --- Desktop vs Mobile visibility --- */
+@media (min-width: 769px) {
+    .mobile-trigger { display: none !important; }
+}
 
-            .header-btn { padding: 6px 10px; gap: 6px; }
-            .btn-img img { width: 24px; height: 24px; }
-            .btn-text-wrap { font-size: 11px; }
+@media (max-width: 768px) {
+    /* 1. Desktop menu ko sakhti se hide kiya */
+    .center-menu, 
+    .header-nav-link
+    { 
+        display: none !important; 
+    }
 
-            .menu-link { font-size: 55px; height: 65px; }
-            .menu-overlay { max-width: 100%; padding: 80px 30px; }
-        }
+    /* 2. Header Container - Flex layout for 3 items */
+    .main-header { 
+        padding: 10px 15px !important; 
+        height: 65px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        background: transparent !important;
+    }
 
-        @media (min-width: 769px) { .mobile-trigger { display: none; } }
+    /* 3. LEFT: Hamburger Icon */
+    .mobile-trigger { 
+        display: flex !important; 
+        flex-direction: column !important;
+        gap: 4px !important;
+        width: 30px !important;
+        order: 1 !important; /* Force to left */
+        z-index: 110;
+    }
+    .mobile-trigger .nav-line { 
+        width: 20px !important; 
+        height: 2px !important; 
+        background: #000 !important; 
+    }
 
+    /* 4. CENTER: Logo (Sami Shaikh) */
+    .main-header .logo { 
+        position: absolute !important;
+        left: 50% !important;
+                top: 27%;
+        transform: translateX(-50%) !important;
+        font-size: 22px !important;
+        font-weight: 900 !important;
+        margin: 0 !important;
+        display: block !important;
+        order: 2 !important;
+        white-space: nowrap;
+    }
+
+    /* 5. RIGHT: Let's Talk Button */
+    .header-btn { 
+        display: flex !important;
+        order: 3 !important; /* Force to right */
+        padding: 5px 5px !important;
+        border-radius: 4px !important;
+        gap: 4px !important;
+        background: #1a1a1a !important;
+        min-width: auto !important;
+    }
+    .btn-img img { 
+        width: 23px !important; 
+        height: 23px !important; 
+        border-radius: 3px !important;
+    }
+    .btn-text-wrap { 
+        font-size: 10px !important; 
+        font-weight: 700 !important;
+        color: white !important;
+    }
+
+    /* 6. FULL SCREEN OVERLAY (When menu opens) */
+    .menu-overlay {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 80px 30px !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+}
 
 
 
@@ -225,7 +305,7 @@ body {
 }
 
 .location-pill span {
-    width: 35%;
+    width: 45%;
 }
 
 svg.globe-icon {
@@ -412,13 +492,7 @@ svg.globe-icon {
 
 
 
-.spacer {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #444;
-}
+
 
 .manifesto-container {
     position: relative;

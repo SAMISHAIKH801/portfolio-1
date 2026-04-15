@@ -78,19 +78,23 @@ gsap.ticker.lagSmoothing(0);
 
         initTextAnimations();
 
-        // --- 2. Desktop Sticky Burger Scroll Reveal ---
-        if (window.innerWidth > 768) {
-            gsap.to(".sticky-burger", {
-                scrollTrigger: {
-                    trigger: "body",
-                    start: "top -120",
-                    toggleActions: "play none none reverse"
-                },
-                scale: 1,
-                duration: 0.4,
-                ease: "back.out(1.7)"
-            });
-        }
+      // --- Desktop Sticky Burger Reveal Logic ---
+if (window.innerWidth > 768) {
+    gsap.to(".sticky-burger", {
+        scrollTrigger: {
+            trigger: "body",
+            start: "top -120", // Jab 120px scroll hoga tab aayega
+            toggleActions: "play none none reverse",
+            onEnter: () => gsap.set(".sticky-burger", { visibility: "visible" }),
+            onLeaveBack: () => gsap.set(".sticky-burger", { visibility: "hidden" })
+        },
+        scale: 1,
+        duration: 0.4,
+        ease: "back.out(1.7)"
+    });
+}
+
+// Baki ka Overlay logic (toggleMenu/hideMenu) wahi rahega jo pehle tha.
 
         // --- 3. Overlay Menu Timeline ---
         const menuOverlay = document.querySelector('.menu-overlay');
