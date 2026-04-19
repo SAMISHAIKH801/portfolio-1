@@ -1,0 +1,811 @@
+
+
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sami Shaikh | Portfolio Animation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .spacer { height: 100vh; display: flex; align-items: center; justify-content: center; color: #444; }
+
+        .manifesto-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #0e0e0c;
+            padding: 0 8%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .left-content { width: 55%; }
+
+        .about-tag {
+            color: #ff3c31;
+            font-size: 14px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .manifesto-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 7.5rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+
+        .line { display: block; white-space: nowrap; }
+        .line-1 { padding-left: 0%; }
+        .line-2 { padding-left: 10%; }
+        .line-3 { padding-left: 15%; }
+        .line-4 { padding-left: 5%; }
+
+        .word {
+            display: inline-block;
+            color: #1a1a1a; 
+            margin-right: 0.15em;
+        }
+
+        /* Right Side Content Styling */
+        .right-content {
+            width: 40%;
+            display: flex;
+            justify-content: flex-end; /* Desktop par right side */
+        }
+
+        .bio-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e8e2d6;
+            font-weight: 400;
+            max-width: 420px;
+            text-align: left;
+        }
+
+        .char-box {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
+
+        .char {
+            display: inline-block;
+            transform: translateY(100%);
+            white-space: pre;
+        }
+
+        .footer-tag {
+            position: absolute;
+            bottom: 40px;
+            right: 5%;
+            font-size: 11px;
+            color: #333;
+            letter-spacing: 2px;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .manifesto-container {
+                flex-direction: column; /* Stack vertically */
+                justify-content: center;
+                text-align: center;
+                padding: 0 5%;
+            }
+
+            .left-content, .right-content {
+                width: 100%;
+                padding-left: 0;
+            }
+
+            .manifesto-text {
+                font-size: clamp(2.5rem, 12vw, 4rem);
+                margin-bottom: 40px;
+            }
+
+            .line { padding-left: 0 !important; } /* Mobile par alignment reset */
+
+            .right-content {
+                justify-content: center; /* Center bio text */
+            }
+
+            .bio-text {
+                text-align: center;
+                max-width: 100%;
+            }
+
+            .about-tag {
+                margin-bottom: 10px;
+            }
+        }
+
+        .footer-spacer { height: 100vh; background: #000; }
+    </style>
+</head>
+<body>
+
+    <div class="spacer">SCROLL DOWN</div>
+
+    <section class="manifesto-container">
+        <div class="left-content">
+            <div class="about-tag">About Us</div>
+            <div class="manifesto-text" id="text">
+                <span class="line line-1">I’m a Developer</span>
+                <span class="line line-2">crafting SHOPIFY,</span>
+                <span class="line line-3">WORDPRESS &</span>
+                <span class="line line-4">CUSTOM FRONTEND</span>
+            </div>
+        </div>
+
+        <div class="right-content">
+            <p class="bio-text" id="bio">I am an IT student based in Pakistan, dedicated to building high-quality websites. I specialize in WordPress and Shopify, using HTML, CSS, and JavaScript to deliver exactly what you need. Whether you want a professional site built on a premium theme or a fully custom-coded store from scratch, I ensure your project is fast, responsive, and easy to manage.</p>
+        </div>
+
+        <div class="footer-tag">SAMI SHAIKH / 2026</div>
+    </section>
+
+    <div class="footer-spacer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. Left Text Splitting (Words)
+        const leftTextContainer = document.getElementById('text');
+        const leftLines = leftTextContainer.querySelectorAll('.line');
+        leftLines.forEach(line => {
+            const words = line.innerText.split(' ');
+            line.innerHTML = '';
+            words.forEach(word => {
+                const span = document.createElement('span');
+                span.classList.add('word');
+                span.innerText = word;
+                line.appendChild(span);
+                line.appendChild(document.createTextNode(' '));
+            });
+        });
+
+        // 2. Right Text Splitting (Characters)
+        const bioElement = document.getElementById('bio');
+        const characters = bioElement.innerText.split('');
+        bioElement.innerHTML = '';
+        characters.forEach(char => {
+            const charBox = document.createElement('span');
+            charBox.classList.add('char-box');
+            
+            const charSpan = document.createElement('span');
+            charSpan.classList.add('char');
+            charSpan.innerText = char;
+            
+            charBox.appendChild(charSpan);
+            bioElement.appendChild(charBox);
+        });
+
+        const allWords = document.querySelectorAll('.word');
+        const allChars = document.querySelectorAll('.char');
+
+        // 3. Sequential Timeline
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".manifesto-container",
+                start: "top top",
+                end: "+=4000",
+                scrub: 1,
+                pin: true,
+            }
+        });
+
+        tl.to(allWords, {
+            color: "#e8e2d6",
+            stagger: 0.1,
+            ease: "none"
+        });
+
+        tl.to(allChars, {
+            y: "0%",
+            stagger: 0.01, /* Speed thori fast ki hai mobile ke liye */
+            duration: 0.8,
+            ease: "power2.out"
+        }, "+=0.1");
+
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+    <section class="den-agency-wrapper">
+        <div class="den-agency-container">
+            <h1 class="den-agency-heading" id="denAnimatedText">Helping brands thrive in the digital world</h1>
+            
+            <div class="den-agency-divider">
+                <div class="den-agency-blue-circle">
+                    <div class="den-agency-globe-wrapper">
+                        <div class="den-agency-globe-inner">
+                            <div class="den-line-v den-v1"></div>
+                            <div class="den-line-v den-v2"></div>
+                            <div class="den-line-v den-v3"></div>
+                            <div class="den-line-v den-v4"></div>
+                            <div class="den-line-h"></div>
+                            <div class="den-line-h den-h1"></div>
+                            <div class="den-line-h den-h2"></div>
+                            <div class="den-line-h den-h3"></div>
+                            <div class="den-line-h den-h4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        /* Container styling to avoid affecting global body */
+        .den-agency-wrapper {
+            margin: 0;
+            padding: 100px 0;
+            background: #ffffff;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .den-agency-container {
+            width: 85%;
+            max-width: 1100px;
+            position: relative;
+        }
+
+        /* --- Text Animation --- */
+        .den-agency-heading {
+            font-size: 70px; /* Standard size for desktop */
+            font-weight: 500;
+            line-height: 1.1;
+            color: #1a1a1a;
+            margin-bottom: 90px;
+            letter-spacing: -0.02em;
+        }
+
+        /* Responsive font size without clamp if you prefer traditional */
+        @media (max-width: 768px) {
+            .den-agency-heading { font-size: 40px; }
+        }
+
+        .den-word { display: inline-block; margin-right: 0.25em; overflow: hidden; vertical-align: bottom; }
+        
+        .den-char {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(12px);
+            transform: translateY(100%);
+            animation: denSmokeReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes denSmokeReveal {
+            to { opacity: 1; filter: blur(0); transform: translateY(0); }
+        }
+
+        /* --- Divider & Circle --- */
+        .den-agency-divider {
+            width: 100%;
+            height: 1px;
+            background: #ededed;
+            position: relative;
+        }
+
+        .den-agency-blue-circle {
+            position: absolute;
+            right: 15%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 155px;
+            height: 155px;
+            background: #4459f2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(68, 89, 242, 0.3);
+        }
+
+        /* --- Globe Logic --- */
+        .den-agency-globe-wrapper {
+            width: 75px;
+            height: 75px;
+            position: relative;
+            perspective: 800px; 
+        }
+
+        .den-agency-globe-inner {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: denRotateGlobe3D 20s linear infinite;
+        }
+
+        .den-line-v, .den-line-h {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 0.8px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            box-sizing: border-box;
+            background: transparent;
+        }
+
+        /* Longitude Positions */
+        .den-v1 { transform: rotateY(0deg); }
+        .den-v2 { transform: rotateY(45deg); }
+        .den-v3 { transform: rotateY(90deg); }
+        .den-v4 { transform: rotateY(135deg); }
+
+        /* Latitude Positions */
+        .den-h1 { transform: rotateX(90deg) translateZ(18px) scale(0.9); }
+        .den-h2 { transform: rotateX(90deg) translateZ(-18px) scale(0.9); }
+        .den-h3 { transform: rotateX(90deg) translateZ(30px) scale(0.6); }
+        .den-h4 { transform: rotateX(90deg) translateZ(-30px) scale(0.6); }
+        .den-agency-globe-inner .den-line-h:not([class*="den-h"]) { transform: rotateX(90deg); }
+
+        /* Poles */
+        .den-agency-globe-inner::before, .den-agency-globe-inner::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+        }
+        .den-agency-globe-inner::before { transform: translate(-50%, -50%) translateZ(37px); }
+        .den-agency-globe-inner::after { transform: translate(-50%, -50%) translateZ(-37px); }
+
+        @keyframes denRotateGlobe3D {
+            0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(180deg); }
+        }
+    </style>
+
+    <script>
+        (function() {
+            const textElement = document.getElementById('denAnimatedText');
+            if(!textElement) return;
+            
+            const words = textElement.innerText.split(' ');
+            textElement.innerHTML = '';
+
+            words.forEach((word, wordIndex) => {
+                const wordSpan = document.createElement('span');
+                wordSpan.className = 'den-word';
+                word.split('').forEach((char, charIndex) => {
+                    const charSpan = document.createElement('span');
+                    charSpan.className = 'den-char';
+                    charSpan.innerText = char;
+                    charSpan.style.animationDelay = `${(wordIndex * 0.12) + (charIndex * 0.03)}s`;
+                    wordSpan.appendChild(charSpan);
+                });
+                textElement.appendChild(wordSpan);
+            });
+        })();
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sami Shaikh | Portfolio Animation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .spacer { height: 100vh; display: flex; align-items: center; justify-content: center; color: #444; }
+
+        .manifesto-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #0e0e0c;
+            padding: 0 8%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .left-content { width: 55%; }
+
+        .about-tag {
+            color: #ff3c31;
+            font-size: 14px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .manifesto-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 7.5rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+
+        .line { display: block; white-space: nowrap; }
+        .line-1 { padding-left: 0%; }
+        .line-2 { padding-left: 10%; }
+        .line-3 { padding-left: 15%; }
+        .line-4 { padding-left: 5%; }
+
+        .word {
+            display: inline-block;
+            color: #1a1a1a; 
+            margin-right: 0.15em;
+        }
+
+        .right-content {
+            width: 40%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .bio-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e8e2d6;
+            font-weight: 400;
+            max-width: 420px;
+            text-align: left;
+        }
+
+        .char-box {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
+
+        .char {
+            display: inline-block;
+            transform: translateY(100%);
+            white-space: pre;
+        }
+
+        .footer-tag {
+            position: absolute;
+            bottom: 40px;
+            right: 5%;
+            font-size: 11px;
+            color: #333;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .manifesto-container {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding: 0 5%;
+            }
+            .left-content, .right-content { width: 100%; padding-left: 0; }
+            .manifesto-text { font-size: clamp(2.5rem, 12vw, 4rem); margin-bottom: 40px; }
+            .line { padding-left: 0 !important; }
+            .right-content { justify-content: center; }
+            .bio-text { text-align: center; max-width: 100%; }
+        }
+
+        .footer-spacer { height: 100vh; background: #000; }
+    </style>
+</head>
+<body>
+
+    <div class="spacer">SCROLL DOWN</div>
+
+    <section class="manifesto-container">
+        <div class="left-content">
+            <div class="about-tag">About Us</div>
+            <div class="manifesto-text" id="text">
+                <span class="line line-1">I’m a Developer</span>
+                <span class="line line-2">crafting SHOPIFY,</span>
+                <span class="line line-3">WORDPRESS &</span>
+                <span class="line line-4">CUSTOM FRONTEND</span>
+            </div>
+        </div>
+
+        <div class="right-content">
+            <p class="bio-text" id="bio">I am an IT student based in Pakistan, dedicated to building high-quality websites. I specialize in WordPress and Shopify, using HTML, CSS, and JavaScript to deliver exactly what you need. Whether you want a professional site built on a premium theme or a fully custom-coded store from scratch, I ensure your project is fast, responsive, and easy to manage.</p>
+        </div>
+
+        <div class="footer-tag">SAMI SHAIKH / 2026</div>
+    </section>
+
+    <div class="footer-spacer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. Splitting Logic (Waisa hi rahega)
+        const leftTextContainer = document.getElementById('text');
+        const leftLines = leftTextContainer.querySelectorAll('.line');
+        leftLines.forEach(line => {
+            const words = line.innerText.split(' ');
+            line.innerHTML = '';
+            words.forEach(word => {
+                const span = document.createElement('span');
+                span.classList.add('word');
+                span.innerText = word;
+                line.appendChild(span);
+                line.appendChild(document.createTextNode(' '));
+            });
+        });
+
+        const bioElement = document.getElementById('bio');
+        const characters = bioElement.innerText.split('');
+        bioElement.innerHTML = '';
+        characters.forEach(char => {
+            const charBox = document.createElement('span');
+            charBox.classList.add('char-box');
+            const charSpan = document.createElement('span');
+            charSpan.classList.add('char');
+            charSpan.innerText = char;
+            charBox.appendChild(charSpan);
+            bioElement.appendChild(charBox);
+        });
+
+        const allWords = document.querySelectorAll('.word');
+        const allChars = document.querySelectorAll('.char');
+
+        // 2. Left Side: POORA WORD EK SAATH WHITE HOGA
+        gsap.to(allWords, {
+            scrollTrigger: {
+                trigger: ".manifesto-container",
+                start: "top top",
+                end: "+=2000",
+                scrub: 0.1, // Isko thora fast rakha hai taake snap feel barh jaye
+                pin: true,
+            },
+            color: "#e8e2d6",
+            stagger: 0.1,
+            duration: 0.05, // Bohot kam duration takay letter-by-letter na lage
+            ease: "power1.inOut" 
+        });
+
+        // 3. Right Side: Auto Play (Waisa hi rahega)
+        gsap.to(allChars, {
+            scrollTrigger: {
+                trigger: ".manifesto-container",
+                start: "top 40%",
+                toggleActions: "play none none none",
+                scrub: false
+            },
+            y: "0%",
+            stagger: 0.01,
+            duration: 1,
+            ease: "power3.out"
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifesto Scroll Animation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .spacer {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #444;
+        }
+
+        .manifesto-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start; /* Tags ko left par rakhne ke liye */
+            background-color: #0e0e0c; /* Reference image wala dark grey/black mix */
+            padding: 0 8%;
+            box-sizing: border-box;
+        }
+
+        .about-tag {
+            color: #ff3c31;
+            font-size: 14px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 700;
+            opacity: 0.8;
+        }
+
+        /* Heading Main Container */
+        .manifesto-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 10vw, 8.5rem);
+            line-height: 0.85;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        /* Line by line alignment like reference */
+        .line {
+            display: block;
+            white-space: nowrap;
+        }
+
+        .line-1 { padding-left: 5%; }
+        .line-2 { padding-left: 15%; }
+        .line-3 { padding-left: 20%; }
+        .line-4 { padding-left: 0%; }
+
+        .word {
+            display: inline-block;
+            color: #1a1a1a; /* Initially hidden/dark like the image */
+            margin-right: 0.15em;
+        }
+
+        /* Credits style */
+        .footer-tag {
+            position: absolute;
+            bottom: 40px;
+            right: 5%;
+            font-size: 11px;
+            color: #333;
+            letter-spacing: 2px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-spacer {
+            height: 100vh;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="spacer">SCROLL DOWN</div>
+
+    <section class="manifesto-container">
+        <div class="about-tag">About Us</div>
+        
+        <div class="manifesto-text" id="text">
+            <span class="line line-1">I’m a Developer </span>
+            <span class="line line-2">crafting SHOPIFY,</span>
+            <span class="line line-3"> WORDPRESS &</span>
+            <span class="line line-4">CUSTOM FRONTEND</span>
+        </div>
+
+        <div class="footer-tag " >SAMI SHAIKH / 2026</div>
+    </section>
+
+    <div class="footer-spacer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Text splitting logic
+        const textContainer = document.getElementById('text');
+        const lines = textContainer.querySelectorAll('.line');
+        
+        lines.forEach(line => {
+            const words = line.innerText.split(' ');
+            line.innerHTML = '';
+            words.forEach(word => {
+                const span = document.createElement('span');
+                span.classList.add('word');
+                span.innerText = word;
+                line.appendChild(span);
+                // Space add karne ke liye
+                line.appendChild(document.createTextNode(' '));
+            });
+        });
+
+        const allWords = document.querySelectorAll('.word');
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".manifesto-container",
+                start: "top top",
+                end: "+=2000",
+                scrub: 1,
+                pin: true,
+            }
+        });
+
+        // Color transition to off-white/cream like the image
+        tl.to(allWords, {
+            color: "#e8e2d6", 
+            stagger: 0.2,
+            ease: "power1.inOut"
+        });
+    </script>
+</body>
+</html> -->

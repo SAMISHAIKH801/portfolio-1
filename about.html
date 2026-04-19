@@ -1,154 +1,112 @@
-
-
-
-
-
-
-<!-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sami Shaikh | Portfolio Animation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            margin: 0;
-            background-color: #000;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
+    <title>Sami Shaikh | Portfolio</title>
 
-        .spacer { height: 100vh; display: flex; align-items: center; justify-content: center; color: #444; }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        .manifesto-container {
-            position: relative;
-            width: 100%;
-            height: 100vh; 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #0e0e0c;
-            padding: 0 8%;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        .left-content { width: 55%; }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        .about-tag {
-            color: #ff3c31;
-            font-size: 14px;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        .manifesto-text {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(3rem, 8vw, 7.5rem);
-            line-height: 0.9;
-            text-transform: uppercase;
-        }
-
-        .line { display: block; white-space: nowrap; }
-        .line-1 { padding-left: 0%; }
-        .line-2 { padding-left: 10%; }
-        .line-3 { padding-left: 15%; }
-        .line-4 { padding-left: 5%; }
-
-        .word {
-            display: inline-block;
-            color: #1a1a1a; 
-            margin-right: 0.15em;
-        }
-
-        /* Right Side Content Styling */
-        .right-content {
-            width: 40%;
-            display: flex;
-            justify-content: flex-end; /* Desktop par right side */
-        }
-
-        .bio-text {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #e8e2d6;
-            font-weight: 400;
-            max-width: 420px;
-            text-align: left;
-        }
-
-        .char-box {
-            display: inline-block;
-            overflow: hidden;
-            vertical-align: bottom;
-        }
-
-        .char {
-            display: inline-block;
-            transform: translateY(100%);
-            white-space: pre;
-        }
-
-        .footer-tag {
-            position: absolute;
-            bottom: 40px;
-            right: 5%;
-            font-size: 11px;
-            color: #333;
-            letter-spacing: 2px;
-        }
-
-        /* Mobile Responsive Styles */
-        @media (max-width: 768px) {
-            .manifesto-container {
-                flex-direction: column; /* Stack vertically */
-                justify-content: center;
-                text-align: center;
-                padding: 0 5%;
-            }
-
-            .left-content, .right-content {
-                width: 100%;
-                padding-left: 0;
-            }
-
-            .manifesto-text {
-                font-size: clamp(2.5rem, 12vw, 4rem);
-                margin-bottom: 40px;
-            }
-
-            .line { padding-left: 0 !important; } /* Mobile par alignment reset */
-
-            .right-content {
-                justify-content: center; /* Center bio text */
-            }
-
-            .bio-text {
-                text-align: center;
-                max-width: 100%;
-            }
-
-            .about-tag {
-                margin-bottom: 10px;
-            }
-        }
-
-        .footer-spacer { height: 100vh; background: #000; }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="all-page.css">
 </head>
 <body>
 
-    <div class="spacer">SCROLL DOWN</div>
+    <!-- // ---------------------- header sec start ------------  -->
+ <header class="main-header">
+        <div class="mobile-trigger" onclick="toggleMenu()">
+            <div class="nav-line"></div>
+            <div class="nav-line"></div>
+        </div>
 
-    <section class="manifesto-container">
+        <a href="/index.html" class="logo">SAMI SHAIKH</a>
+        
+        <nav class="center-menu">
+            <a href="#" class="anim-text header-nav-link">HOME</a>
+            <a href="#" class="anim-text header-nav-link">WORK</a>
+            <a href="/about.html" class="anim-text header-nav-link">ABOUT</a>
+        </nav>
+
+        <a href="#" class="header-btn">
+            <div class="btn-img"><img src="images/Gemini_Generated_Image_awqpwoawqpwoawqp7.png" alt="S"></div>
+            <div class="anim-text btn-text-wrap">LET'S TALK</div>
+        </a>
+    </header>
+
+    <div class="sticky-burger" id="desktop-trigger">
+        <div class="nav-line"></div>
+        <div class="nav-line"></div>
+    </div>
+
+    <div class="menu-overlay">
+        <div class="close-btn" onclick="hideMenu()">&times;</div>
+        <a href="/index.html" class="overlay-logo">SAMI SHAIKH</a>
+        
+        <nav class="overlay-nav">
+            <a href="#" class="menu-link anim-text" data-y="75">HOME</a>
+            <a href="#" class="menu-link anim-text" data-y="75">WORK</a>
+            <a href="/about.html" class="menu-link anim-text" data-y="75">ABOUT</a>
+        </nav>
+
+        <div class="overlay-footer">
+            <a href="#" class="social-link">GITHUB</a>
+            <a href="#" class="social-link">LINKEDIN</a>
+            <a href="#" class="social-link">INSTAGRAM</a>
+            <a href="#" class="social-link">FACEBOOK</a>
+        </div>
+    </div>
+<!-- // ---------------------- header sec end ------------  -->
+
+
+<!-- ----------- about hero sec start ---------- -->
+
+
+
+ 
+    <section class="den-agency-wrapper">
+        <div class="den-agency-container">
+            <h1 class="den-agency-heading" id="denAnimatedText">Helping brands thrive in the digital world</h1>
+            
+            <div class="den-agency-divider">
+                <div class="den-agency-blue-circle">
+                    <div class="den-agency-globe-wrapper">
+                        <div class="den-agency-globe-inner">
+                            <div class="den-line-v den-v1"></div>
+                            <div class="den-line-v den-v2"></div>
+                            <div class="den-line-v den-v3"></div>
+                            <div class="den-line-v den-v4"></div>
+                            <div class="den-line-h"></div>
+                            <div class="den-line-h den-h1"></div>
+                            <div class="den-line-h den-h2"></div>
+                            <div class="den-line-h den-h3"></div>
+                            <div class="den-line-h den-h4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- ----------- about hero sec end ---------- -->
+
+
+
+    <!-- --------------------------- about section start ---------------------  -->
+     <section class="manifesto-container">
         <div class="left-content">
-            <div class="about-tag">About Us</div>
+              <div class="flex items-center space-x-3 mb-6">
+                <span class="h-2 w-2 bg-red-600 rounded-full animate-pulse shadow-[0_0_12px_#dc2626]"></span>
+                <span class="text-red-600 text-[10px] tracking-[0.5em] uppercase font-bold" style="font-family: 'Inter';">About Us</span>
+            </div>
+
             <div class="manifesto-text" id="text">
                 <span class="line line-1">I’m a Developer</span>
                 <span class="line line-2">crafting SHOPIFY,</span>
@@ -160,452 +118,168 @@
         <div class="right-content">
             <p class="bio-text" id="bio">I am an IT student based in Pakistan, dedicated to building high-quality websites. I specialize in WordPress and Shopify, using HTML, CSS, and JavaScript to deliver exactly what you need. Whether you want a professional site built on a premium theme or a fully custom-coded store from scratch, I ensure your project is fast, responsive, and easy to manage.</p>
         </div>
-
-        <div class="footer-tag">SAMI SHAIKH / 2026</div>
     </section>
+    <!-- --------------------------- about section end ---------------------  -->
 
-    <div class="footer-spacer"></div>
+   <!-- ------------------------------ skill section start ------------------------  -->
+   <section class="portfolio-section" id="portfolio">
+    <div class="center-line-container">
+        <div class="progress-line" id="scroll-progress"></div>
+    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        // 1. Left Text Splitting (Words)
-        const leftTextContainer = document.getElementById('text');
-        const leftLines = leftTextContainer.querySelectorAll('.line');
-        leftLines.forEach(line => {
-            const words = line.innerText.split(' ');
-            line.innerHTML = '';
-            words.forEach(word => {
-                const span = document.createElement('span');
-                span.classList.add('word');
-                span.innerText = word;
-                line.appendChild(span);
-                line.appendChild(document.createTextNode(' '));
-            });
-        });
-
-        // 2. Right Text Splitting (Characters)
-        const bioElement = document.getElementById('bio');
-        const characters = bioElement.innerText.split('');
-        bioElement.innerHTML = '';
-        characters.forEach(char => {
-            const charBox = document.createElement('span');
-            charBox.classList.add('char-box');
-            
-            const charSpan = document.createElement('span');
-            charSpan.classList.add('char');
-            charSpan.innerText = char;
-            
-            charBox.appendChild(charSpan);
-            bioElement.appendChild(charBox);
-        });
-
-        const allWords = document.querySelectorAll('.word');
-        const allChars = document.querySelectorAll('.char');
-
-        // 3. Sequential Timeline
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".manifesto-container",
-                start: "top top",
-                end: "+=4000",
-                scrub: 1,
-                pin: true,
-            }
-        });
-
-        tl.to(allWords, {
-            color: "#e8e2d6",
-            stagger: 0.1,
-            ease: "none"
-        });
-
-        tl.to(allChars, {
-            y: "0%",
-            stagger: 0.01, /* Speed thori fast ki hai mobile ke liye */
-            duration: 0.8,
-            ease: "power2.out"
-        }, "+=0.1");
-
-    </script>
-</body>
-</html> -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sami Shaikh | Portfolio Animation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            margin: 0;
-            background-color: #000;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
-
-        .spacer { height: 100vh; display: flex; align-items: center; justify-content: center; color: #444; }
-
-        .manifesto-container {
-            position: relative;
-            width: 100%;
-            height: 100vh; 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #0e0e0c;
-            padding: 0 8%;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-
-        .left-content { width: 55%; }
-
-        .about-tag {
-            color: #ff3c31;
-            font-size: 14px;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        .manifesto-text {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(3rem, 8vw, 7.5rem);
-            line-height: 0.9;
-            text-transform: uppercase;
-        }
-
-        .line { display: block; white-space: nowrap; }
-        .line-1 { padding-left: 0%; }
-        .line-2 { padding-left: 10%; }
-        .line-3 { padding-left: 15%; }
-        .line-4 { padding-left: 5%; }
-
-        .word {
-            display: inline-block;
-            color: #1a1a1a; 
-            margin-right: 0.15em;
-        }
-
-        .right-content {
-            width: 40%;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .bio-text {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #e8e2d6;
-            font-weight: 400;
-            max-width: 420px;
-            text-align: left;
-        }
-
-        .char-box {
-            display: inline-block;
-            overflow: hidden;
-            vertical-align: bottom;
-        }
-
-        .char {
-            display: inline-block;
-            transform: translateY(100%);
-            white-space: pre;
-        }
-
-        .footer-tag {
-            position: absolute;
-            bottom: 40px;
-            right: 5%;
-            font-size: 11px;
-            color: #333;
-            letter-spacing: 2px;
-        }
-
-        @media (max-width: 768px) {
-            .manifesto-container {
-                flex-direction: column;
-                justify-content: center;
-                text-align: center;
-                padding: 0 5%;
-            }
-            .left-content, .right-content { width: 100%; padding-left: 0; }
-            .manifesto-text { font-size: clamp(2.5rem, 12vw, 4rem); margin-bottom: 40px; }
-            .line { padding-left: 0 !important; }
-            .right-content { justify-content: center; }
-            .bio-text { text-align: center; max-width: 100%; }
-        }
-
-        .footer-spacer { height: 100vh; background: #000; }
-    </style>
-</head>
-<body>
-
-    <div class="spacer">SCROLL DOWN</div>
-
-    <section class="manifesto-container">
-        <div class="left-content">
-            <div class="about-tag">About Us</div>
-            <div class="manifesto-text" id="text">
-                <span class="line line-1">I’m a Developer</span>
-                <span class="line line-2">crafting SHOPIFY,</span>
-                <span class="line line-3">WORDPRESS &</span>
-                <span class="line line-4">CUSTOM FRONTEND</span>
+    <div class="column">
+         <div class="flex items-center space-x-3 mb-6">
+                <span class="h-2 w-2 bg-red-600 rounded-full animate-pulse shadow-[0_0_12px_#dc2626]"></span>
+                <span class="text-red-600 text-[10px] tracking-[0.5em] uppercase font-bold" style="font-family: 'Inter';">TECH STACK</span>
+            </div>
+        <h2 class="main-heading">Skills</h2>
+        <div class="list-container">
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-brands fa-wordpress"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">WordPress</span>
+                        <span class="row-details">Elementor Pro • WooCommerce • Theme Customization</span>
+                    </div>
+                    <span class="row-year">Expert</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-brands fa-shopify"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">Shopify</span>
+                        <span class="row-details">Custom Liquid Sections • App Integration • Store Migration</span>
+                    </div>
+                    <span class="row-year">Expert</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-solid fa-code"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">Frontend</span>
+                        <span class="row-details">HTML5 • CSS3 • JavaScript (ES6) • Responsive Design</span>
+                    </div>
+                    <span class="row-year">Advanced</span>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div class="right-content">
-            <p class="bio-text" id="bio">I am an IT student based in Pakistan, dedicated to building high-quality websites. I specialize in WordPress and Shopify, using HTML, CSS, and JavaScript to deliver exactly what you need. Whether you want a professional site built on a premium theme or a fully custom-coded store from scratch, I ensure your project is fast, responsive, and easy to manage.</p>
+    <div class="column">
+         <div class="flex items-center space-x-3 mb-6">
+                <span class="h-2 w-2 bg-red-600 rounded-full animate-pulse shadow-[0_0_12px_#dc2626]"></span>
+                <span class="text-red-600 text-[10px] tracking-[0.5em] uppercase font-bold" style="font-family: 'Inter';">MY JOURNEY</span>
+            </div>
+
+        <h2 class="main-heading">EXPERIENCE</h2>
+        <div class="list-container">
+             <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">TheDevMates</span>
+                        <span class="row-details">Wordpress Developer</span>
+                    </div>
+                    <span class="row-year">2024 — 2025</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">UMW Media</span>
+                        <span class="row-details">Wordpress Developer</span>
+                    </div>
+                    <span class="row-year">2025 — 2025</span>
+                </div>
+            </div>
+            <div class="list-row">
+                <div class="hover-bg"></div>
+                <div class="row-content">
+                    <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="title-group">
+                        <span class="row-title">Apex Square</span>
+                        <span class="row-details">Wordpress & Shopify Developer</span>
+                    </div>
+                    <span class="row-year">2025 — Present</span>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
+   <!-- ------------------------------ skill section end ------------------------  -->
 
-        <div class="footer-tag">SAMI SHAIKH / 2026</div>
-    </section>
 
-    <div class="footer-spacer"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
 
-        // 1. Splitting Logic (Waisa hi rahega)
-        const leftTextContainer = document.getElementById('text');
-        const leftLines = leftTextContainer.querySelectorAll('.line');
-        leftLines.forEach(line => {
-            const words = line.innerText.split(' ');
-            line.innerHTML = '';
-            words.forEach(word => {
-                const span = document.createElement('span');
-                span.classList.add('word');
-                span.innerText = word;
-                line.appendChild(span);
-                line.appendChild(document.createTextNode(' '));
-            });
-        });
 
-        const bioElement = document.getElementById('bio');
-        const characters = bioElement.innerText.split('');
-        bioElement.innerHTML = '';
-        characters.forEach(char => {
-            const charBox = document.createElement('span');
-            charBox.classList.add('char-box');
-            const charSpan = document.createElement('span');
-            charSpan.classList.add('char');
-            charSpan.innerText = char;
-            charBox.appendChild(charSpan);
-            bioElement.appendChild(charBox);
-        });
+ <!-- --------------------- fppter section end ---------------  -->
+            
 
-        const allWords = document.querySelectorAll('.word');
-        const allChars = document.querySelectorAll('.char');
 
-        // 2. Left Side: POORA WORD EK SAATH WHITE HOGA
-        gsap.to(allWords, {
-            scrollTrigger: {
-                trigger: ".manifesto-container",
-                start: "top top",
-                end: "+=2000",
-                scrub: 0.1, // Isko thora fast rakha hai taake snap feel barh jaye
-                pin: true,
-            },
-            color: "#e8e2d6",
-            stagger: 0.1,
-            duration: 0.05, // Bohot kam duration takay letter-by-letter na lage
-            ease: "power1.inOut" 
-        });
 
-        // 3. Right Side: Auto Play (Waisa hi rahega)
-        gsap.to(allChars, {
-            scrollTrigger: {
-                trigger: ".manifesto-container",
-                start: "top 40%",
-                toggleActions: "play none none none",
-                scrub: false
-            },
-            y: "0%",
-            stagger: 0.01,
-            duration: 1,
-            ease: "power3.out"
-        });
-    </script>
+
+
+
+
+
+
+ <footer class="dsgn-footer">
+    <div id="matter-container"></div>
+    <div class="bg-outline-text">SHAIKH</div>
+
+    <div class="content-overlay">
+        <span class="tagline">Karachi, Pakistan</span>
+        <h2 class="huge-title">LET'S START<br>SOMETHING BIG.</h2>
+        <a href="mailto:samishaikh737@gmail.com" class="cta-mail">samishaikh737@gmail.com</a>
+
+        <div class="card-footer-ui">
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="#">Work</a></li>
+                <li><a href="/about.html">About</a></li>
+                
+            </ul>
+
+            <div class="social-circle-flex">
+                <a href="#" class="social-item"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="social-item"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="social-item"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+      <!-- --------------------- footer section end ---------------  -->
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+<script src="all-page.js"></script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manifesto Scroll Animation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            margin: 0;
-            background-color: #000;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
-
-        .spacer {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #444;
-        }
-
-        .manifesto-container {
-            position: relative;
-            width: 100%;
-            height: 100vh; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start; /* Tags ko left par rakhne ke liye */
-            background-color: #0e0e0c; /* Reference image wala dark grey/black mix */
-            padding: 0 8%;
-            box-sizing: border-box;
-        }
-
-        .about-tag {
-            color: #ff3c31;
-            font-size: 14px;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            font-weight: 700;
-            opacity: 0.8;
-        }
-
-        /* Heading Main Container */
-        .manifesto-text {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(4rem, 10vw, 8.5rem);
-            line-height: 0.85;
-            text-transform: uppercase;
-            width: 100%;
-        }
-
-        /* Line by line alignment like reference */
-        .line {
-            display: block;
-            white-space: nowrap;
-        }
-
-        .line-1 { padding-left: 5%; }
-        .line-2 { padding-left: 15%; }
-        .line-3 { padding-left: 20%; }
-        .line-4 { padding-left: 0%; }
-
-        .word {
-            display: inline-block;
-            color: #1a1a1a; /* Initially hidden/dark like the image */
-            margin-right: 0.15em;
-        }
-
-        /* Credits style */
-        .footer-tag {
-            position: absolute;
-            bottom: 40px;
-            right: 5%;
-            font-size: 11px;
-            color: #333;
-            letter-spacing: 2px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .footer-spacer {
-            height: 100vh;
-            background: #000;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="spacer">SCROLL DOWN</div>
-
-    <section class="manifesto-container">
-        <div class="about-tag">About Us</div>
-        
-        <div class="manifesto-text" id="text">
-            <span class="line line-1">I’m a Developer </span>
-            <span class="line line-2">crafting SHOPIFY,</span>
-            <span class="line line-3"> WORDPRESS &</span>
-            <span class="line line-4">CUSTOM FRONTEND</span>
-        </div>
-
-        <div class="footer-tag " >SAMI SHAIKH / 2026</div>
-    </section>
-
-    <div class="footer-spacer"></div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Text splitting logic
-        const textContainer = document.getElementById('text');
-        const lines = textContainer.querySelectorAll('.line');
-        
-        lines.forEach(line => {
-            const words = line.innerText.split(' ');
-            line.innerHTML = '';
-            words.forEach(word => {
-                const span = document.createElement('span');
-                span.classList.add('word');
-                span.innerText = word;
-                line.appendChild(span);
-                // Space add karne ke liye
-                line.appendChild(document.createTextNode(' '));
-            });
-        });
-
-        const allWords = document.querySelectorAll('.word');
-
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".manifesto-container",
-                start: "top top",
-                end: "+=2000",
-                scrub: 1,
-                pin: true,
-            }
-        });
-
-        // Color transition to off-white/cream like the image
-        tl.to(allWords, {
-            color: "#e8e2d6", 
-            stagger: 0.2,
-            ease: "power1.inOut"
-        });
-    </script>
-</body>
-</html> -->

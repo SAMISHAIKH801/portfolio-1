@@ -1,0 +1,1040 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio Footer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-red: #ff2d55;
+            --dark-bg: #0a0a0a;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --text-gray: #a1a1a1;
+        }
+
+        body { background-color: var(--dark-bg); }
+
+        .dsgn-footer {
+            padding: 80px 0 40px;
+            background: var(--dark-bg);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #matter-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: auto; /* Interaction enable */
+        }
+
+        .footer-glass-card {
+            width: 92%;
+            max-width: 1300px;
+            background: rgba(15, 15, 15, 0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 40px;
+            padding: clamp(30px, 5vw, 80px);
+            position: relative;
+            z-index: 10; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 40px; 
+        }
+
+        .brand-col h2 { 
+            font-size: clamp(32px, 5vw, 56px); 
+            font-weight: 900; 
+            line-height: 0.9;
+            margin-bottom: 20px;
+            background: linear-gradient(to bottom, #fff 40%, #666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            color: var(--primary-red);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .email-link {
+            font-size: clamp(18px, 2vw, 24px);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 300;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 5px;
+            transition: 0.3s;
+        }
+
+        .email-link:hover { border-color: var(--primary-red); color: var(--primary-red); }
+
+        .footer-col h4 { 
+            font-size: 12px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            margin-bottom: 30px; 
+            color: var(--text-gray); 
+        }
+
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links li a { 
+            color: var(--text-gray); 
+            text-decoration: none; 
+            font-size: 15px; 
+            transition: 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links li a:hover { 
+            color: #fff; 
+            transform: translateX(8px); 
+        }
+
+        .social-flex { 
+            display: flex; 
+            gap: 12px; 
+            margin-top: 30px; 
+        }
+
+        .social-btn { 
+            height: 50px; width: 50px;
+            background: var(--glass-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 15px; color: #fff; font-size: 18px; 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+        }
+
+        .social-btn:hover { 
+            background: var(--primary-red);
+            transform: translateY(-8px) rotate(8deg);
+            box-shadow: 0 15px 30px rgba(255, 45, 85, 0.3);
+        }
+
+        .bottom-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: #555;
+            letter-spacing: 2px;
+        }
+
+        /* Responsive Grid Logic */
+        @media (max-width: 1100px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .brand-col { grid-column: span 2; margin-bottom: 40px; }
+        }
+
+        @media (max-width: 600px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .brand-col { grid-column: span 1; text-align: center; }
+            .social-flex { justify-content: center; }
+            .bottom-bar { flex-direction: column; gap: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<footer class="dsgn-footer">
+    <div id="matter-container"></div>
+
+    <div class="footer-glass-card">
+        <div class="footer-grid">
+            <div class="brand-col">
+                <span class="tagline">Next-Gen Developer</span>
+                <h2>LET'S MAKE<br>IT IMPACTFUL.</h2>
+                <a href="mailto:hello@shaikh.dev" class="email-link">shaikh@yourportfolio.com</a>
+                
+                <div class="social-flex">
+                    <a href="#" class="social-btn"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-btn"><i class="fa-brands fa-dribbble"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Capabilities</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Shopify Plus</a></li>
+                    <li><a href="#">Headless WP</a></li>
+                    <li><a href="#">React / Next.js</a></li>
+                    <li><a href="#">UI Animation</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Expertise</h4>
+                <ul class="footer-links">
+                    <li><a href="#">E-commerce</a></li>
+                    <li><a href="#">Custom CRM</a></li>
+                    <li><a href="#">Speed Optimization</a></li>
+                    <li><a href="#">API Integration</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Menu</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Work</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Process</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <span>© 2026 SHAIKH DESIGN — ALL RIGHTS RESERVED</span>
+            <span>KARACHI — ESTB 2021</span>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('.dsgn-footer');
+    const canvasTarget = document.getElementById('matter-container');
+    let animationStarted = false;
+
+    const { Engine, Render, Runner, Bodies, Composite, Mouse, MouseConstraint } = Matter;
+    const engine = Engine.create();
+    engine.world.gravity.y = 1.0; 
+
+    const render = Render.create({
+        element: canvasTarget,
+        engine: engine,
+        options: {
+            width: container.clientWidth,
+            height: container.clientHeight,
+            wireframes: false,
+            background: 'transparent',
+            pixelRatio: window.devicePixelRatio // Retina support
+        }
+    });
+
+    // Custom Styled Coins for Portfolio
+    const coinImages = [
+        'https://cdn.shopify.com/s/files/1/0711/2422/2114/files/69a29e99440f456aa434d1fa_coin-25.svg',
+        'https://cdn.shopify.com/s/files/1/0711/2422/2114/files/69a29e99440f456aa434d1fe_coin-5.svg',
+        'https://cdn.shopify.com/s/files/1/0711/2422/2114/files/69a29e99440f456aa434d1ff_coin-1.svg'
+    ];
+
+    function startAnimation() {
+        if (animationStarted) return;
+        animationStarted = true;
+
+        const isMobile = window.innerWidth < 768;
+        const coinCount = isMobile ? 12 : 28; 
+        const radius = isMobile ? 22 : 38;
+
+        const coins = [];
+        for (let i = 0; i < coinCount; i++) {
+            const x = Math.random() * container.clientWidth;
+            const y = -Math.random() * 1000 - 100; 
+
+            const coin = Bodies.circle(x, y, radius, {
+                restitution: 0.5, 
+                friction: 0.1,
+                render: {
+                    sprite: {
+                        texture: coinImages[i % coinImages.length],
+                        xScale: (radius * 2) / 100, 
+                        yScale: (radius * 2) / 100
+                    }
+                }
+            });
+            coins.push(coin);
+        }
+
+        // Invisible Boundaries
+        const ground = Bodies.rectangle(container.clientWidth/2, container.clientHeight + 50, container.clientWidth, 100, { isStatic: true });
+        const leftWall = Bodies.rectangle(-50, container.clientHeight/2, 100, container.clientHeight, { isStatic: true });
+        const rightWall = Bodies.rectangle(container.clientWidth + 50, container.clientHeight/2, 100, container.clientHeight, { isStatic: true });
+
+        // Accurate Mouse Interaction
+        const mouse = Mouse.create(render.canvas);
+        const mouseConstraint = MouseConstraint.create(engine, {
+            mouse: mouse,
+            constraint: { stiffness: 0.2, render: { visible: false } }
+        });
+
+        // Fix scroll on mobile while touching canvas
+        mouseConstraint.mouse.element.removeEventListener("mousewheel", mouseConstraint.mouse.mousewheel);
+        mouseConstraint.mouse.element.removeEventListener("DOMMouseScroll", mouseConstraint.mouse.mousewheel);
+
+        Composite.add(engine.world, [...coins, ground, leftWall, rightWall, mouseConstraint]);
+        
+        Render.run(render);
+        Runner.run(Runner.create(), engine);
+    }
+
+    // Performance Optimized Observer
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            startAnimation();
+        }
+    }, { threshold: 0.1 });
+
+    observer.observe(container);
+
+    // Resize Handler
+    window.addEventListener('resize', () => {
+        render.canvas.width = container.clientWidth;
+        render.canvas.height = container.clientHeight;
+        // Floor update on resize
+        Matter.Body.setPosition(ground, { x: container.clientWidth/2, y: container.clientHeight + 50 });
+    });
+});
+</script>
+
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sami Shaikh | Interactive Footer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body { 
+            background: #000000; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            overflow-x: hidden; 
+        }
+
+        .dsgn-footer {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            cursor: default;
+        }
+
+        #matter-container {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none; 
+        }
+
+        .bg-outline-text {
+            position: absolute;
+            font-size: clamp(100px, 25vw, 400px);
+            font-weight: 800;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+            z-index: 0;
+            white-space: nowrap;
+            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .content-overlay {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+            padding: 80px 40px 40px 40px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            pointer-events: none; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .content-overlay * { pointer-events: auto; }
+
+        .tagline {
+            font-size: 11px;
+            color: #ff2d55;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .huge-title {
+            font-size: clamp(35px, 8vw, 85px);
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 0.9;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+
+        .cta-mail {
+            font-size: clamp(16px, 2.5vw, 24px);
+            color: #ffffff;
+            text-decoration: none;
+            border-bottom: 1px solid #ff2d55;
+            padding-bottom: 5px;
+            font-weight: 300;
+            transition: 0.4s;
+            margin-bottom: 60px;
+        }
+
+        .cta-mail:hover { 
+            color: #ff2d55; 
+            letter-spacing: 1px; 
+        }
+
+        .card-footer-ui {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 30px;
+            margin-top: auto;
+        }
+
+        .nav-links { 
+            display: flex; 
+            gap: 25px; 
+            list-style: none; 
+        }
+
+        .nav-links a { 
+            color: #888888; 
+            text-decoration: none; 
+            font-size: 10px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: #ffffff; }
+
+        .social-circle-flex { display: flex; gap: 10px; }
+
+        .social-item {
+            width: 38px; 
+            height: 38px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            color: #ffffff; 
+            text-decoration: none;
+            transition: 0.4s;
+            font-size: 14px;
+        }
+
+        .social-item:hover { 
+            background: #ffffff; 
+            color: #000000; 
+            transform: scale(1.1); 
+        }
+
+        @media (max-width: 600px) {
+            .card-footer-ui { flex-direction: column; gap: 20px; }
+            .content-overlay { padding: 50px 20px 30px 20px; border-radius: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<footer class="dsgn-footer">
+    <div id="matter-container"></div>
+    <div class="bg-outline-text">SHAIKH</div>
+
+    <div class="content-overlay">
+        <span class="tagline">Karachi, Pakistan</span>
+        <h2 class="huge-title">LET'S START<br>SOMETHING BIG.</h2>
+        <a href="mailto:shaikh@portfolio.com" class="cta-mail">shaikh@portfolio.com</a>
+
+        <div class="card-footer-ui">
+            <ul class="nav-links">
+                <li><a href="#">Work</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <div class="social-circle-flex">
+                <a href="#" class="social-item"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="social-item"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="social-item"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('.dsgn-footer');
+    const canvasTarget = document.getElementById('matter-container');
+    let animationStarted = false;
+
+    const { Engine, Render, Runner, Bodies, Composite, Mouse, MouseConstraint } = Matter;
+    const engine = Engine.create();
+    
+    // Physics adjustments for stacking
+    engine.world.gravity.y = 1; 
+    engine.velocityIterations = 8; // More precision for stacking
+    engine.positionIterations = 1;
+
+    const render = Render.create({
+        element: canvasTarget,
+        engine: engine,
+        options: {
+            width: container.clientWidth,
+            height: container.clientHeight,
+            wireframes: false,
+            background: 'transparent',
+            pixelRatio: window.devicePixelRatio
+        }
+    });
+
+    const coinImages = [
+        'images/wordpress-removebg-preview.png',
+        'images/shopify-removebg-preview.png',
+        'images/html-removebg-preview.png',
+        'images/css-removebg-preview.png',
+        'images/js-removebg-preview.png'
+    ];
+
+    let ground, leftWall, rightWall;
+
+    function createBoundaries() {
+        if (ground) Composite.remove(engine.world, [ground, leftWall, rightWall]);
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+
+        // Ground ko thoda mota rakha hai taake stacking base solid ho
+        ground = Bodies.rectangle(width / 2, height + 25, width, 50, { isStatic: true, friction: 1 });
+        leftWall = Bodies.rectangle(-25, height / 2, 50, height, { isStatic: true, friction: 1 });
+        rightWall = Bodies.rectangle(width + 25, height / 2, 50, height, { isStatic: true, friction: 1 });
+
+        Composite.add(engine.world, [ground, leftWall, rightWall]);
+    }
+
+    function startAnimation() {
+        if (animationStarted) return;
+        animationStarted = true;
+
+        const isMobile = window.innerWidth < 768;
+        const coinCount = isMobile ? 35 : 65; // Mobile ke liye count thoda optimize kiya
+        const radius = isMobile ? 12 : 22;   // Size thoda barhaya taake stack nazar aaye
+
+        for (let i = 0; i < coinCount; i++) {
+            // Coins ko random width par lekin height mein gap ke sath phenka taake ek sath dhappa na ho
+            const x = (Math.random() * (container.clientWidth - 40)) + 20;
+            const y = isMobile ? -(i * 30) - 100 : -(i * 20) - 100; 
+
+            const coin = Bodies.circle(x, y, radius, {
+                restitution: 0.2, // Bounce kam kar diya (0.2)
+                friction: 0.8,    // Friction barha di taake ek dusre par rukein (Stacking)
+                frictionAir: 0.05, // Hawa mein thoda slow girein
+                density: 0.01,
+                render: {
+                    sprite: {
+                        texture: coinImages[i % coinImages.length],
+                        xScale: (radius * 2.2) / 100, 
+                        yScale: (radius * 2.2) / 100
+                    }
+                }
+            });
+            Composite.add(engine.world, coin);
+        }
+
+        createBoundaries();
+
+        const mouse = Mouse.create(container); 
+        const mouseConstraint = MouseConstraint.create(engine, {
+            mouse: mouse,
+            constraint: {
+                stiffness: 0.2,
+                render: { visible: false }
+            }
+        });
+
+        Composite.add(engine.world, mouseConstraint);
+        render.mouse = mouse;
+
+        mouseConstraint.mouse.element.removeEventListener("mousewheel", mouseConstraint.mouse.mousewheel);
+        mouseConstraint.mouse.element.removeEventListener("DOMMouseScroll", mouseConstraint.mouse.mousewheel);
+        
+        Render.run(render);
+        Runner.run(Runner.create(), engine);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            // Mobile par halka sa delay taake scroll smooth rahe
+            setTimeout(startAnimation, 300);
+        }
+    }, { threshold: 0.1 });
+
+    observer.observe(container);
+
+    window.addEventListener('resize', () => {
+        render.canvas.width = container.clientWidth;
+        render.canvas.height = container.clientHeight;
+        createBoundaries();
+    });
+});
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sami Shaikh | Interactive Footer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #ff2d55;
+            --bg: #000000;
+            --text-muted: #888;
+        }
+
+        body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+
+        .dsgn-footer {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        #matter-container {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+        .bg-outline-text {
+            position: absolute;
+            font-size: clamp(100px, 25vw, 400px);
+            font-weight: 800;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+            z-index: 0;
+            white-space: nowrap;
+            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Main Card Overlay */
+        .content-overlay {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+            padding: 80px 40px 40px 40px; /* Top padding zyada rakha hai design balance ke liye */
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .content-overlay * { pointer-events: auto; }
+
+        .tagline {
+            font-size: 11px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .huge-title {
+            font-size: clamp(35px, 8vw, 85px);
+            font-weight: 800;
+            color: #fff;
+            line-height: 0.9;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+
+        .cta-mail {
+            font-size: clamp(16px, 2.5vw, 24px);
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid var(--primary);
+            padding-bottom: 5px;
+            font-weight: 300;
+            transition: 0.4s;
+            margin-bottom: 60px;
+        }
+
+        .cta-mail:hover { color: var(--primary); letter-spacing: 1px; }
+
+        /* Card ke andar wale Nav Links aur Socials */
+        .card-footer-ui {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 30px;
+            margin-top: auto;
+        }
+
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { 
+            color: var(--text-muted); 
+            text-decoration: none; 
+            font-size: 10px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: #fff; }
+
+        .social-circle-flex { display: flex; gap: 10px; }
+        .social-item {
+            width: 38px; height: 38px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; text-decoration: none;
+            transition: 0.4s;
+            font-size: 14px;
+        }
+        .social-item:hover { background: #fff; color: #000; transform: scale(1.1); }
+
+        @media (max-width: 600px) {
+            .card-footer-ui { flex-direction: column; gap: 20px; }
+            .content-overlay { padding: 50px 20px 30px 20px; border-radius: 30px; }
+            .huge-title { margin-bottom: 20px; }
+            .cta-mail { margin-bottom: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<footer class="dsgn-footer">
+    <div class="bg-outline-text">SHAIKH</div>
+
+    <div id="matter-container"></div>
+
+    <div class="content-overlay">
+        <span class="tagline">Karachi, Pakistan</span>
+        <h2 class="huge-title">LET'S START<br>SOMETHING BIG.</h2>
+        <a href="mailto:shaikh@portfolio.com" class="cta-mail">shaikh@portfolio.com</a>
+
+        <div class="card-footer-ui">
+            <ul class="nav-links">
+                <li><a href="#">Work</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <div class="social-circle-flex">
+                <a href="#" class="social-item"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="social-item"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="social-item"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('.dsgn-footer');
+    const canvasTarget = document.getElementById('matter-container');
+    
+    const { Engine, Render, Runner, Bodies, Composite, Mouse, MouseConstraint } = Matter;
+    
+    const engine = Engine.create();
+    const runner = Runner.create();
+    
+    const render = Render.create({
+        element: canvasTarget,
+        engine: engine,
+        options: {
+            width: container.clientWidth,
+            height: container.clientHeight,
+            wireframes: false,
+            background: 'transparent',
+            pixelRatio: window.devicePixelRatio 
+        }
+    });
+
+    const coinImages = [
+        'images/wordpress-removebg-preview.png',
+        'images/shopify-removebg-preview.png',
+        'images/html-removebg-preview.png',
+        'images/css-removebg-preview.png',
+        'images/js-removebg-preview.png',
+        
+    ];
+
+    let ground, leftWall, rightWall;
+
+    function createBoundaries() {
+        if (ground) Composite.remove(engine.world, [ground, leftWall, rightWall]);
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+
+        ground = Bodies.rectangle(width/2, height + 25, width, 50, { isStatic: true });
+        leftWall = Bodies.rectangle(-25, height/2, 50, height, { isStatic: true });
+        rightWall = Bodies.rectangle(width + 25, height/2, 50, height, { isStatic: true });
+
+        Composite.add(engine.world, [ground, leftWall, rightWall]);
+    }
+
+ function initPhysics() {
+    const isMobile = window.innerWidth < 768;
+    const coinCount = isMobile ? 25 : 35; // Bohat zyada coins se glitch hota hai, isse balance rakhein
+    const radius = isMobile ? 20 : 30;
+
+    for (let i = 0; i < coinCount; i++) {
+        const x = Math.random() * container.clientWidth;
+        const y = -Math.random() * 1000 - 100;
+
+        const coin = Bodies.circle(x, y, radius, {
+            restitution: 0.6, // Thoda bounce barhaya hai taake takrane par natural lage
+            friction: 0.1,    // Thodi friction taake ek jagah tikein
+            frictionAir: 0.01, // Hawa mein girte waqt ki speed
+            density: 0.001,   // Weight taake mouse se move karne mein real lage
+            render: {
+                sprite: {
+                    texture: coinImages[i % coinImages.length],
+                    // Scale ko radius ke mutabiq fix kiya hai taake collision sahi ho
+                    xScale: (radius * 2.1) / 100, 
+                    yScale: (radius * 2.1) / 100
+                }
+            }
+        });
+        Composite.add(engine.world, coin);
+    }
+
+    createBoundaries();
+
+    // Mouse Interaction Fix
+    const mouse = Mouse.create(render.canvas);
+    
+    // Ye line important hai: Agar mouse overlay ke piche hai toh ye kaam karega
+    const mouseConstraint = MouseConstraint.create(engine, {
+        mouse: mouse,
+        constraint: {
+            stiffness: 0.2,
+            render: { visible: false }
+        }
+    });
+
+    Composite.add(engine.world, mouseConstraint);
+    
+    // Mouse scroll wheel interaction ko disable karna taake page scroll na ruke
+    mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
+    mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+
+    Render.run(render);
+    Runner.run(runner, engine);
+}
+
+
+
+
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            if (engine.world.bodies.length === 0) initPhysics();
+            runner.enabled = true;
+        } else {
+            runner.enabled = false;
+        }
+    }, { threshold: 0.1 });
+
+    observer.observe(container);
+
+    window.addEventListener('resize', () => {
+        render.canvas.width = container.clientWidth;
+        render.canvas.height = container.clientHeight;
+        createBoundaries();
+    });
+});
+</script>
+
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

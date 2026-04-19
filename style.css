@@ -26,6 +26,14 @@ html.lenis {
 }
 
 
+
+
+
+
+
+
+
+
 body {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -40,8 +48,7 @@ body {
     font-family: 'Bebas Neue', sans-serif !important;
 }
 
-body,
-html {
+body{
     margin: 0;
     padding: 0;
     background-color: #0e0e0c;
@@ -81,8 +88,16 @@ body {
             display: flex; justify-content: space-between; align-items: center;
             padding: 25px 50px;   z-index: 10;
                 position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
+    box-sizing: border-box;
     background-color: transparent;
+    opacity: 0;
+    transform: translate3d(0, -28px, 0);
+    animation: headerLoadIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.08s forwards;
+    will-change: transform, opacity;
         }
         .logo { font-size: 28px; font-weight: 900; font-family: 'Bebas Neue', sans-serif; color: #000; text-decoration: none; }
         .center-menu { display: flex; gap: 40px; }
@@ -102,7 +117,15 @@ body {
             text-decoration: none; min-width: max-content;
         }
         .btn-img img { width: 30px; height: 30px; border-radius: 4px; object-fit: cover; }
-        .btn-text-wrap { color: white !important; font-size: 13px; height: 18px; line-height: 18px; }
+        .btn-text-wrap {
+            color: white !important;
+            font-size: 13px;
+            height: 18px;
+            line-height: 18px;
+            display: inline-block;
+            white-space: nowrap;
+            min-width: 72px;
+        }
 
        
         .sticky-burger {
@@ -149,6 +172,17 @@ body {
         .social-link { color: #888; text-decoration: none; font-size: 12px; transition: color 0.3s; }
         .social-link:hover { color: #fff; }
         .close-btn { position: absolute; top: 35px; right: 45px; font-size: 40px; cursor: pointer; color: #fff; line-height: 1; }
+
+        @keyframes headerLoadIn {
+            from {
+                opacity: 0;
+                transform: translate3d(0, -28px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
 
         
     /* --- Desktop vs Mobile visibility --- */
@@ -293,15 +327,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: right;
-    padding: 14px 20px 14px 24px;
+    padding: 14px 16px 14px 24px;
     border-radius: 0 100px 100px 0;
-    gap: 50px;
+    gap: 20px;
     font-size: 14px;
     font-weight: 400;
     letter-spacing: 1.4px;
     line-height: 1.2em;
-    height: 65px;
-    ;
+    height: 90px;
+    
 }
 
 .location-pill span {
@@ -312,8 +346,8 @@ svg.globe-icon {
     background-color: grey;
     padding: 10px;
     border-radius: 120px;
-    width: 35px !important;
-    height: 36px !important;
+    width: 55px !important;
+    height: 55px !important;
 }
 
 
@@ -425,18 +459,20 @@ svg.globe-icon {
         font-size: 11px;
         margin-left: -20px;
         gap: 20px;
+        height: 60px;
     }
 
+    
     .location-pill span {
-        width: 35%;
+        width: 45%;
     }
 
     svg.globe-icon {
 
         padding: 8px;
 
-        width: 30px !important;
-        height: 30px !important;
+        width: 37px !important;
+        height: 37px !important;
     }
 
 
@@ -505,6 +541,7 @@ svg.globe-icon {
     padding: 0 8%;
     box-sizing: border-box;
     overflow: hidden;
+    
 }
 
 .left-content {
@@ -605,7 +642,7 @@ svg.globe-icon {
     }
 
     .manifesto-text {
-        font-size: clamp(2.5rem, 12vw, 4rem);
+        font-size: clamp(2.5rem, 15vw, 4rem);
         margin-bottom: 40px;
     }
 
@@ -911,7 +948,7 @@ svg.globe-icon {
 
 .portfolio-work-section {
     padding: 0px 4% 50px;
-    max-width: 1600px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -1229,3 +1266,236 @@ svg.globe-icon {
 
 
   /* ----------------------- contact section css start --------------------  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .branding-section {
+    position: relative;
+    padding: 120px 8%;
+    background-color: #ffffff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.branding-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.branding-line-mask {
+    overflow: hidden; /* Text ko nichy chupane ke liye */
+    margin-bottom: 5px;
+}
+
+.branding-title {
+    font-family: 'Helvetica', sans-serif; /* Ya jo aap use kar rahe hain */
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 0;
+    color: #1a1a1a;
+    /* Initial state: text nichy huga */
+    transform: translateY(110%); 
+}
+
+/* Globe Icon Container */
+.branding-icon-box {
+    margin-bottom: 20px;
+}
+
+.branding-globe {
+    width: 85px;
+    height: 85px;
+    background-color: #455ce9; /* Signature Blue */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 32px;
+    box-shadow: 0 15px 35px rgba(69, 92, 233, 0.25);
+    perspective: 1000px; /* 3D effect ke liye */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------- footer css start ----------------  */
+
+
+
+
+
+     
+
+        .dsgn-footer {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            cursor: default;
+        }
+
+        #matter-container {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none; 
+        }
+
+        .bg-outline-text {
+            position: absolute;
+            font-size: clamp(100px, 25vw, 400px);
+            font-weight: 800;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+            z-index: 0;
+            white-space: nowrap;
+            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .content-overlay {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            width: 90%;
+            max-width: 1400px;
+            padding: 80px 40px 40px 40px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            pointer-events: none; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .content-overlay * { pointer-events: auto; }
+
+        .tagline {
+            font-size: 11px;
+            color: #ff2d55;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .huge-title {
+            font-size: clamp(35px, 8vw, 85px);
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 0.9;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+
+        .cta-mail {
+            font-size: clamp(16px, 2.5vw, 24px);
+            color: #ffffff;
+            text-decoration: none;
+            border-bottom: 1px solid #ff2d55;
+            padding-bottom: 5px;
+            font-weight: 300;
+            transition: 0.4s;
+            margin-bottom: 60px;
+        }
+
+        .cta-mail:hover { 
+            color: #ff2d55; 
+            letter-spacing: 1px; 
+        }
+
+        .card-footer-ui {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 30px;
+            margin-top: auto;
+        }
+
+        .nav-links { 
+            display: flex; 
+            gap: 25px; 
+            list-style: none; 
+        }
+
+        .nav-links a { 
+            color: #888888; 
+            text-decoration: none; 
+            font-size: 10px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: #ffffff; }
+
+        .social-circle-flex { display: flex; gap: 10px; }
+
+        .social-item {
+            width: 38px; 
+            height: 38px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            color: #ffffff; 
+            text-decoration: none;
+            transition: 0.4s;
+            font-size: 14px;
+        }
+
+        .social-item:hover { 
+            background: #ffffff; 
+            color: #000000; 
+            transform: scale(1.1); 
+        }
+
+        @media (max-width: 600px) {
+            .card-footer-ui { flex-direction: column; gap: 20px; }
+            .content-overlay { padding: 50px 20px 30px 20px; border-radius: 30px; }
+        }
+
+
+
+
+
+
+/* ------------------- footer css end ----------------  */
