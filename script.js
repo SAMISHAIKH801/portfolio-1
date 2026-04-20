@@ -1,3 +1,145 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const synth = window.speechSynthesis;
+const soundBtn = document.getElementById('sound-toggle');
+const wave = document.getElementById('wave-container');
+const btnText = document.getElementById('btn-text');
+
+let isSoundEnabled = true; 
+let readSections = new Set();
+let isSpeaking = false;
+let speechQueue = [];
+
+function speakText(text) {
+    if (!isSoundEnabled || !text) return;
+
+    // Agar pehle se kuch bol raha hai, to queue mein daal do (beech mein nahi rukega)
+    if (synth.speaking) {
+        speechQueue.push(text);
+        return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    
+    // Male Voice & Speed Settings
+    const voices = synth.getVoices();
+    utterance.voice = voices.find(v => v.name.includes('Male') || v.name.includes('David')) || voices[0];
+    
+    utterance.rate = 1.25; // Halka sa mazeed fast
+    utterance.pitch = 0.9; 
+
+    utterance.onstart = () => { 
+        wave.style.display = 'flex';
+        isSpeaking = true;
+    };
+
+    utterance.onend = () => { 
+        isSpeaking = false;
+        // Check karein agar queue mein kuch bacha hai to wo parhein
+        if (speechQueue.length > 0) {
+            const nextText = speechQueue.shift();
+            speakText(nextText);
+        } else {
+            wave.style.display = 'none';
+        }
+    };
+
+    synth.speak(utterance);
+}
+
+// 1. AUTO-WELCOME (On Load/First Click)
+function initAutoVoice() {
+    if (!readSections.has('welcome')) {
+        speakText("Hi! Welcome to my portfolio. How can I help you today?");
+        readSections.add('welcome');
+    }
+}
+
+// Site load hote hi ya pehle touch/click par trigger
+window.addEventListener('load', initAutoVoice);
+document.addEventListener('click', initAutoVoice, { once: true });
+document.addEventListener('scroll', initAutoVoice, { once: true });
+
+// 2. Toggle Button Logic
+soundBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    isSoundEnabled = !isSoundEnabled;
+    
+    if (isSoundEnabled) {
+        btnText.innerText = "Voice ON";
+        soundBtn.style.borderColor = "#00ff00";
+        initAutoVoice();
+    } else {
+        btnText.innerText = "Voice OFF";
+        soundBtn.style.borderColor = "#444";
+        wave.style.display = 'none';
+        synth.cancel();
+        speechQueue = []; // Queue saaf kar den
+    }
+});
+
+// 3. Scroll Observer (Pora content read karne ke liye)
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        // Hero section ko ignore karein kyunki uska welcome msg fix hai
+        if (entry.isIntersecting && isSoundEnabled && !readSections.has(entry.target)) {
+            if (entry.target.classList.contains('hero-sectio')) {
+                readSections.add(entry.target);
+                return;
+            }
+
+            // Pora text uthayein bina cut kiye
+            const fullText = entry.target.getAttribute('data-msg') || entry.target.innerText;
+            speakText(fullText.trim()); 
+            readSections.add(entry.target);
+        }
+    });
+}, { threshold: 0.4 }); // Jab 40% section nazar aaye
+
+// Target elements
+document.querySelectorAll('.read-aloud, .hero-sectio').forEach(el => {
+    observer.observe(el);
+});
+
+
+
+
+
+
+
+
+
+
+
+// ---------------- loader js  ----------------------- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // GSAP Register
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,6 +164,11 @@ gsap.ticker.add((time) => {
     lenis.raf(time * 1000);
 });
 gsap.ticker.lagSmoothing(0);
+
+if (document.querySelector('.stage')) {
+    document.body.style.overflow = 'hidden';
+    if (lenis && typeof lenis.stop === 'function') lenis.stop();
+}
 
 
 // 2. Header & Menu Animations (Har page par apply hoga)
@@ -90,33 +237,47 @@ if (menuOverlay) {
 }
 
 
-// 3. Hero Section Reveal (Sirf Index/Hero wale page par)
-window.addEventListener("load", function() {
-    if (document.getElementById("mainReveal")) {
-        const tl = gsap.timeline({ defaults: { ease: "expo.out", duration: 1.8 } });
-        tl.set("#mainReveal", { autoAlpha: 1 });
-        tl.from("#mainReveal", { yPercent: 100 })
-          .from("#heroImg", { yPercent: -100, scale: 1.3 }, "<")
-          .fromTo("#locationBox", { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 1.5 }, "-=1.2")
-          .fromTo("#freelanceBox", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 1.5 }, "<")
-          .fromTo("#marqueeBox", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2 }, "-=1");
+// 3. Hero Section Reveal — loader ke baad hi (index); loader na ho to seedha load par
+let __indexHeroStarted = false;
+window.initIndexHeroAnimations = function () {
+    if (__indexHeroStarted || !document.getElementById('mainReveal')) return;
+    __indexHeroStarted = true;
 
-        let marquee = document.getElementById("marqueeContent");
-        if (marquee) {
-            let marqueeTween = gsap.to(marquee, { xPercent: -50, duration: 18, repeat: -1, ease: "none" });
-            gsap.to(marqueeTween, {
-                timeScale: 4,
-                scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: 1 }
-            });
-        }
+    const tl = gsap.timeline({ defaults: { ease: 'expo.out', duration: 1.8 } });
+    tl.set('#mainReveal', { autoAlpha: 1 });
+    tl.from('#mainReveal', { yPercent: 100 })
+        .from('#heroImg', { yPercent: -100, scale: 1.3 }, '<')
+        .fromTo('#locationBox', { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 1.5 }, '-=1.2')
+        .fromTo('#freelanceBox', { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 1.5 }, '<')
+        .fromTo('#marqueeBox', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2 }, '-=1');
 
-        if (window.innerWidth > 168 && document.querySelector("#heroImg")) {
-            gsap.to("#heroImg", {
-                y: 180, ease: "none",
-                scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: true }
-            });
-        }
+    const marquee = document.getElementById('marqueeContent');
+    if (marquee) {
+        const marqueeTween = gsap.to(marquee, { xPercent: -50, duration: 18, repeat: -1, ease: 'none' });
+        gsap.to(marqueeTween, {
+            timeScale: 4,
+            scrollTrigger: { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: 1 }
+        });
     }
+
+    if (window.innerWidth > 168 && document.querySelector('#heroImg')) {
+        gsap.to('#heroImg', {
+            y: 180,
+            ease: 'none',
+            scrollTrigger: { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: true }
+        });
+    }
+
+    ScrollTrigger.refresh();
+};
+
+window.addEventListener('load', function () {
+    if (!document.getElementById('mainReveal')) return;
+    if (document.querySelector('.stage')) return;
+    const ms = document.getElementById('main-site');
+    if (ms) gsap.set(ms, { autoAlpha: 1, pointerEvents: 'auto' });
+    document.body.style.overflow = 'auto';
+    window.initIndexHeroAnimations();
 });
 
 

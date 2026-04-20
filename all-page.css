@@ -19,7 +19,10 @@
              padding: 0 8%;
              width: 100%;
             height: 90vh;
-            background: #ffffff;
+            /* background: #ffffff; */
+
+               background: radial-gradient(circle at center, #f15b2a 0%, #ff4500 45%, #d12705 100%) !important;
+    
              font-family: 'Bebas Neue', sans-serif !important;
             display: flex;
             align-items: center;
@@ -95,12 +98,12 @@
             transform: translateY(-50%);
             width: 155px;
             height: 155px;
-            background: #4459f2;
+            background: #ffffff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 20px 40px rgba(68, 89, 242, 0.3);
+            /* box-shadow: 0 20px 40px rgba(68, 89, 242, 0.3); */
         }
 
         /* --- Globe Logic --- */
@@ -123,7 +126,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            border: 0.8px solid rgba(255, 255, 255, 0.4);
+            border: 0.8px solid rgba(0, 0, 0, 0.4);
             border-radius: 50%;
             box-sizing: border-box;
             background: transparent;
@@ -161,3 +164,186 @@
             100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(180deg); }
         }
  
+
+
+
+
+
+
+
+        /* -------------- work page css start ----------------------- */
+
+
+
+
+        
+
+        
+        /* body { background-color: #000; margin: 0; color: #fff; overflow-x: hidden; font-family: sans-serif; } */
+
+        /* FIXED CURSOR */
+        #portfolio-cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 80px; height: 80px;
+            background-color: #f15b2a;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        #portfolio-cursor svg { width: 25px; height: 25px; stroke: #000; }
+        .project-card-link { cursor: none !important; text-decoration: none; color: inherit; display: block; }
+
+        /* SECTION LAYOUT */
+        .portfolio-work-section {
+            position: relative;
+            z-index: 2;
+            padding: 100px 5%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .portfolio-header-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 80px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 30px;
+        }
+
+        /* BUBBLE FILL BUTTON ANIMATION */
+        .portfolio-filters {
+            display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;
+            position: relative;
+            z-index: 5;
+            pointer-events: auto;
+        }
+        
+        .filter-btn {
+            position: relative;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 12px 32px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: color 0.4s ease, border-color 0.4s ease;
+            outline: none;
+            overflow: hidden;
+            z-index: 1;
+            border-radius: 4px;
+        }
+
+      /* THE "BUBBLE" LAYER UPDATED */
+        .filter-btn::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            width: 120%; /* Size adjusted for better roundness */
+            padding-top: 120%; 
+            background-color: #f15b2a;
+            border-radius: 50%; /* Perfect ball shape */
+            z-index: -1;
+            /* Start position: center bottom and scaled down */
+            transform: translate(-50%, 0) scale(0); 
+            /* Transition slowed down for smoothness */
+            transition: transform 2.4s cubic-bezier(0.23, 1, 0.32, 1); 
+        }
+
+        .filter-btn:hover::after {
+            /* Smoothly fills the button while maintaining center */
+            transform: translate(-50%, -75%) scale(1.1); 
+        }
+
+        /* .filter-btn:hover::after {
+            transform: translate(-50%, -70%) scale(1); 
+        } */
+
+        .filter-btn:hover { color: #000; border-color: #dc2626; }
+
+        .filter-btn.active {
+            background-color: #dc2626;
+            color: #000;
+            border-color: #dc2626;
+        }
+
+        .filter-btn.active::after { display: none; }
+
+        /* RESPONSIVE GRID */
+        .portfolio-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 100px 50px;
+        }
+
+        .project-card-item { width: 100%; position: relative; }
+
+        .project-reveal-box {
+            position: relative; width: 100%;
+            height: clamp(300px, 40vw, 550px);
+            overflow: hidden; border-radius: 15px;
+            background: #0a0a0a;
+            visibility: hidden;
+        }
+
+        .project-reveal-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            will-change: transform;
+        }
+
+        .project-card-info { margin-top: 25px; overflow: hidden; }
+        
+        .project-card-name { 
+            font-size: clamp(1.8rem, 4vw, 3rem); 
+            margin: 0; font-weight: 400; 
+            text-transform: uppercase; 
+            line-height: 1.1;
+        }
+        
+        .project-card-category { 
+            font-size: 11px; color: #666; 
+            letter-spacing: 3px; margin-top: 12px; 
+            text-transform: uppercase;
+        }
+
+        .project-char-box { display: inline-block; overflow: hidden; vertical-align: bottom; }
+        .project-char { display: inline-block; transform: translateY(105%); white-space: pre; will-change: transform; }
+
+        .upcoming-overlay {
+            width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center;
+            background: #050505; color: #1a1a1a;
+            font-family: 'Bebas Neue', sans-serif; font-size: 50px;
+        }
+
+        /* Tailwind's `.hidden` can conflict; use a dedicated class for JS filtering */
+        .project-card-link.js-filter-hide { display: none !important; }
+
+        @media (max-width: 1024px) {
+            .portfolio-cards-grid { gap: 60px 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-cards-grid { grid-template-columns: 1fr; }
+            #portfolio-cursor { display: none; }
+            .filter-btn { padding: 10px 22px; font-size: 18px; }
+        }
+  
+
+
+
+
+
+
+        /* -------------- work page css end ----------------------- */

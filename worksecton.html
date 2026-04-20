@@ -1,0 +1,652 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Paktech Solutions Hub</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <style>
+        :root { --accent: #b4f4e0; }
+        body { background-color: #000; margin: 0; color: #fff; overflow-x: hidden; font-family: sans-serif; }
+
+        /* FIXED CURSOR */
+        #portfolio-cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 80px; height: 80px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        #portfolio-cursor svg { width: 25px; height: 25px; stroke: #000; }
+        .project-card-link { cursor: none !important; text-decoration: none; color: inherit; display: block; }
+
+        /* SECTION LAYOUT */
+        .portfolio-work-section { padding: 100px 5%; max-width: 1600px; margin: 0 auto; }
+        
+        .portfolio-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 80px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* FILTERS */
+        .portfolio-filters { display: flex; gap: 25px; flex-wrap: wrap; }
+        .filter-btn {
+            background: none; border: none; color: #444;
+            font-family: 'Bebas Neue', sans-serif; font-size: clamp(20px, 3vw, 28px);
+            letter-spacing: 1px; cursor: pointer; text-transform: uppercase;
+            transition: color 0.4s ease; outline: none; padding: 0;
+        }
+        .filter-btn.active, .filter-btn:hover { color: #fff; }
+
+        /* RESPONSIVE GRID */
+        .portfolio-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Desktop: 2 Columns */
+            gap: 100px 50px;
+        }
+
+        /* CARD STYLING */
+        .project-card-item { width: 100%; position: relative; }
+
+        .project-reveal-box {
+            position: relative; width: 100%;
+            height: clamp(300px, 40vw, 500px);
+            overflow: hidden; border-radius: 15px;
+            background: #0a0a0a;
+            visibility: hidden;
+        }
+
+        .project-reveal-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            will-change: transform;
+        }
+
+        /* TEXT ANIMATION CLASSES */
+        .project-card-info { margin-top: 25px; overflow: hidden; }
+        
+        .project-card-name { 
+            font-size: clamp(1.8rem, 4vw, 3rem); 
+            margin: 0; font-weight: 400; 
+            text-transform: uppercase; 
+            line-height: 1;
+        }
+        
+        .project-card-category { 
+            font-size: 11px; color: #666; 
+            letter-spacing: 3px; margin-top: 10px; 
+            text-transform: uppercase;
+        }
+
+        .project-char-box { display: inline-block; overflow: hidden; vertical-align: bottom; }
+        .project-char { display: inline-block; transform: translateY(105%); white-space: pre; will-change: transform; }
+
+        /* UPCOMING OVERLAY */
+        .upcoming-overlay {
+            width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center;
+            background: #050505; color: #222;
+            font-family: 'Bebas Neue', sans-serif; font-size: 40px;
+        }
+
+        .project-card-link.hidden { display: none; }
+
+        /* TABLET & MOBILE RESPONSIVENESS */
+        @media (max-width: 1024px) {
+            .portfolio-cards-grid { gap: 60px 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-cards-grid { grid-template-columns: 1fr; } /* Mobile: 1 Column */
+            .portfolio-header-row { flex-direction: column; align-items: flex-start; }
+            .portfolio-work-section { padding-top: 60px; }
+            #portfolio-cursor { display: none; } /* Hide custom cursor on touch devices */
+            .project-card-link { cursor: pointer !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="portfolio-cursor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+    </div>
+
+    <section class="portfolio-work-section">
+        <div class="portfolio-header-row">
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="wordpress">WordPress</button>
+                <button class="filter-btn" data-filter="shopify">Shopify</button>
+                <button class="filter-btn" data-filter="frontend">Frontend</button>
+                <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+            </div>
+            <p style="color: #444; font-size: 10px; text-transform: uppercase; letter-spacing: 2px;">Paktech Solutions Hub &copy; 2026</p>
+        </div>
+
+        <div class="portfolio-cards-grid">
+            <a href="#" class="project-card-link" data-category="shopify">
+                <div class="project-card-item">
+                    <div class="project-reveal-box">
+                        <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?auto=format&fit=crop&w=1200" class="project-reveal-img">
+                    </div>
+                    <div class="project-card-info">
+                        <h3 class="project-card-name project-animate-text">A&R Original</h3>
+                        <p class="project-card-category project-animate-text">Shopify • E-Commerce</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="project-card-link" data-category="wordpress">
+                <div class="project-card-item">
+                    <div class="project-reveal-box">
+                        <img src="https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?auto=format&fit=crop&w=1200" class="project-reveal-img">
+                    </div>
+                    <div class="project-card-info">
+                        <h3 class="project-card-name project-animate-text">DAG Dental Care</h3>
+                        <p class="project-card-category project-animate-text">WordPress • Healthcare</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="project-card-link" data-category="frontend">
+                <div class="project-card-item">
+                    <div class="project-reveal-box">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200" class="project-reveal-img">
+                    </div>
+                    <div class="project-card-info">
+                        <h3 class="project-card-name project-animate-text">Aussie Cyberon</h3>
+                        <p class="project-card-category project-animate-text">Custom Code • GSAP Motion</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="project-card-link" data-category="upcoming">
+                <div class="project-card-item">
+                    <div class="project-reveal-box">
+                        <div class="upcoming-overlay">STAY TUNED</div>
+                    </div>
+                    <div class="project-card-info">
+                        <h3 class="project-card-name project-animate-text">Future Project</h3>
+                        <p class="project-card-category project-animate-text">Innovation • Lab</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        // 1. Precise Text Splitting
+        function splitText() {
+            document.querySelectorAll('.project-animate-text').forEach(el => {
+                const text = el.innerText;
+                el.innerHTML = '';
+                [...text].forEach(char => {
+                    const box = document.createElement('span');
+                    box.className = 'project-char-box';
+                    const span = document.createElement('span');
+                    span.className = 'project-char';
+                    span.innerText = char === ' ' ? '\u00A0' : char;
+                    box.appendChild(span);
+                    el.appendChild(box);
+                });
+            });
+        }
+        splitText();
+
+        // 2. Cursor Animation
+        const pCursor = document.querySelector("#portfolio-cursor");
+        if (window.innerWidth > 768) {
+            window.addEventListener("mousemove", (e) => {
+                gsap.to(pCursor, { x: e.clientX, y: e.clientY, duration: 0.15 });
+            });
+
+            document.querySelectorAll(".project-card-link").forEach(link => {
+                link.addEventListener("mouseenter", () => gsap.to(pCursor, { scale: 1, duration: 0.4, ease: "power3.out" }));
+                link.addEventListener("mouseleave", () => gsap.to(pCursor, { scale: 0, duration: 0.4, ease: "power3.out" }));
+            });
+        }
+
+        // 3. Main Reveal Animations
+        function initAnimations() {
+            ScrollTrigger.getAll().forEach(t => t.kill());
+            
+            document.querySelectorAll(".project-card-item").forEach((card) => {
+                const box = card.querySelector(".project-reveal-box");
+                const img = card.querySelector(".project-reveal-img");
+                const chars = card.querySelectorAll(".project-char");
+                
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+
+                // Reset positions for re-triggering
+                gsap.set(chars, { y: "105%" });
+
+                tl.to(box, { visibility: "visible", duration: 0 })
+                  .fromTo(box, 
+                    { y: 80, clipPath: "inset(100% 0% 0% 0%)" }, 
+                    { y: 0, clipPath: "inset(0% 0% 0% 0%)", duration: 1.2, ease: "expo.out" }
+                  )
+                  .from(img, { scale: 1.4, duration: 1.6, ease: "expo.out" }, "<")
+                  .to(chars, { 
+                    y: "0%", 
+                    stagger: 0.015, 
+                    duration: 0.8, 
+                    ease: "power4.out" 
+                  }, "-=0.8");
+            });
+        }
+
+        // 4. Filtering Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card-link');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Quick Fade Out
+                gsap.to(".project-card-link:not(.hidden)", {
+                    opacity: 0, scale: 0.95, duration: 0.3,
+                    onComplete: () => {
+                        projectCards.forEach(card => {
+                            const cat = card.getAttribute('data-category');
+                            if (filter === 'all' || cat === filter) {
+                                card.classList.remove('hidden');
+                                card.style.display = "block";
+                            } else {
+                                card.classList.add('hidden');
+                                card.style.display = "none";
+                            }
+                        });
+
+                        ScrollTrigger.refresh();
+                        initAnimations();
+
+                        // Elegant Fade In
+                        gsap.fromTo(".project-card-link:not(.hidden)", 
+                            { opacity: 0, scale: 0.95 }, 
+                            { opacity: 1, scale: 1, duration: 0.6, stagger: 0.1, clearProps: "all" }
+                        );
+                    }
+                });
+            });
+        });
+
+        window.onload = initAnimations;
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Paktech Solutions Hub</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <style>
+        
+        body { background-color: #000; margin: 0; color: #fff; overflow-x: hidden; font-family: sans-serif; }
+
+        /* FIXED CURSOR */
+        #portfolio-cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 80px; height: 80px;
+            background-color: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        #portfolio-cursor svg { width: 25px; height: 25px; stroke: #000; }
+        .project-card-link { cursor: none !important; text-decoration: none; color: inherit; display: block; }
+
+        /* SECTION LAYOUT */
+        .portfolio-work-section { padding: 100px 5%; max-width: 1600px; margin: 0 auto; }
+        
+        .portfolio-header-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 80px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 30px;
+        }
+
+        /* BUBBLE FILL BUTTON ANIMATION */
+        .portfolio-filters { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        
+        .filter-btn {
+            position: relative;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 12px 32px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: color 0.4s ease, border-color 0.4s ease;
+            outline: none;
+            overflow: hidden;
+            z-index: 1;
+            border-radius: 4px;
+        }
+
+      /* THE "BUBBLE" LAYER UPDATED */
+        .filter-btn::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            width: 120%; /* Size adjusted for better roundness */
+            padding-top: 120%; 
+            background-color: var(#dc2626);
+            border-radius: 50%; /* Perfect ball shape */
+            z-index: -1;
+            /* Start position: center bottom and scaled down */
+            transform: translate(-50%, 0) scale(0); 
+            /* Transition slowed down for smoothness */
+            transition: transform 2.4s cubic-bezier(0.23, 1, 0.32, 1); 
+        }
+
+        .filter-btn:hover::after {
+            /* Smoothly fills the button while maintaining center */
+            transform: translate(-50%, -75%) scale(1.1); 
+        }
+
+        /* .filter-btn:hover::after {
+            transform: translate(-50%, -70%) scale(1); 
+        } */
+
+        .filter-btn:hover { color: #000; border-color: #dc2626; }
+
+        .filter-btn.active {
+            background-color: #dc2626;
+            color: #000;
+            border-color: #dc2626;
+        }
+
+        .filter-btn.active::after { display: none; }
+
+        /* RESPONSIVE GRID */
+        .portfolio-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 100px 50px;
+        }
+
+        .project-card-item { width: 100%; position: relative; }
+
+        .project-reveal-box {
+            position: relative; width: 100%;
+            height: clamp(300px, 40vw, 550px);
+            overflow: hidden; border-radius: 15px;
+            background: #0a0a0a;
+            visibility: hidden;
+        }
+
+        .project-reveal-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            will-change: transform;
+        }
+
+        .project-card-info { margin-top: 25px; overflow: hidden; }
+        
+        .project-card-name { 
+            font-size: clamp(1.8rem, 4vw, 3rem); 
+            margin: 0; font-weight: 400; 
+            text-transform: uppercase; 
+            line-height: 1.1;
+        }
+        
+        .project-card-category { 
+            font-size: 11px; color: #666; 
+            letter-spacing: 3px; margin-top: 12px; 
+            text-transform: uppercase;
+        }
+
+        .project-char-box { display: inline-block; overflow: hidden; vertical-align: bottom; }
+        .project-char { display: inline-block; transform: translateY(105%); white-space: pre; will-change: transform; }
+
+        .upcoming-overlay {
+            width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center;
+            background: #050505; color: #1a1a1a;
+            font-family: 'Bebas Neue', sans-serif; font-size: 50px;
+        }
+
+        .project-card-link.hidden { display: none; }
+
+        @media (max-width: 1024px) {
+            .portfolio-cards-grid { gap: 60px 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-cards-grid { grid-template-columns: 1fr; }
+            #portfolio-cursor { display: none; }
+            .filter-btn { padding: 10px 22px; font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="portfolio-cursor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+    </div>
+
+    <section class="portfolio-work-section">
+        <div class="portfolio-header-row">
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="wordpress">WordPress</button>
+                <button class="filter-btn" data-filter="shopify">Shopify</button>
+                <button class="filter-btn" data-filter="frontend">Frontend</button>
+                <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+            </div>
+        </div>
+
+        <div class="portfolio-cards-grid">
+            <a href="#" class="project-card-link" data-category="shopify">
+                <div class="project-card-item">
+                    <div class="project-reveal-box">
+                        <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?auto=format&fit=crop&w=1200" class="project-reveal-img">
+                    </div>
+                    <div class="project-card-info">
+                        <h3 class="project-card-name project-animate-text">A&R Original</h3>
+                        <p class="project-card-category project-animate-text">Shopify • E-Commerce Solution</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="project-card-link" data-category="wordpress">
+                <div class="project-card-item">
+                    <div class="project-reveal-box">
+                        <img src="https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?auto=format&fit=crop&w=1200" class="project-reveal-img">
+                    </div>
+                    <div class="project-card-info">
+                        <h3 class="project-card-name project-animate-text">DAG Dental Care</h3>
+                        <p class="project-card-category project-animate-text">WordPress • Medical Website</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="project-card-link" data-category="frontend">
+                <div class="project-card-item">
+                    <div class="project-reveal-box">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200" class="project-reveal-img">
+                    </div>
+                    <div class="project-card-info">
+                        <h3 class="project-card-name project-animate-text">Aussie Cyberon</h3>
+                        <p class="project-card-category project-animate-text">Custom Frontend • GSAP Animations</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="project-card-link" data-category="upcoming">
+                <div class="project-card-item">
+                    <div class="project-reveal-box">
+                        <div class="upcoming-overlay">COMING SOON</div>
+                    </div>
+                    <div class="project-card-info">
+                        <h3 class="project-card-name project-animate-text">New Venture</h3>
+                        <p class="project-card-category project-animate-text">Next Gen • Innovation</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        function splitText() {
+            document.querySelectorAll('.project-animate-text').forEach(el => {
+                const text = el.innerText;
+                el.innerHTML = '';
+                [...text].forEach(char => {
+                    const box = document.createElement('span');
+                    box.className = 'project-char-box';
+                    const span = document.createElement('span');
+                    span.className = 'project-char';
+                    span.innerText = char === ' ' ? '\u00A0' : char;
+                    box.appendChild(span);
+                    el.appendChild(box);
+                });
+            });
+        }
+        splitText();
+
+        const pCursor = document.querySelector("#portfolio-cursor");
+        if (window.innerWidth > 768) {
+            window.addEventListener("mousemove", (e) => {
+                gsap.to(pCursor, { x: e.clientX, y: e.clientY, duration: 0.15 });
+            });
+            document.querySelectorAll(".project-card-link").forEach(link => {
+                link.addEventListener("mouseenter", () => gsap.to(pCursor, { scale: 1, duration: 0.4 }));
+                link.addEventListener("mouseleave", () => gsap.to(pCursor, { scale: 0, duration: 0.4 }));
+            });
+        }
+
+        function initAnimations() {
+            ScrollTrigger.getAll().forEach(t => t.kill());
+            document.querySelectorAll(".project-card-item").forEach((card) => {
+                const box = card.querySelector(".project-reveal-box");
+                const img = card.querySelector(".project-reveal-img");
+                const chars = card.querySelectorAll(".project-char");
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 88%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+                gsap.set(chars, { y: "105%" });
+                tl.to(box, { visibility: "visible", duration: 0 })
+                  .fromTo(box, 
+                    { y: 60, clipPath: "inset(100% 0% 0% 0%)" }, 
+                    { y: 0, clipPath: "inset(0% 0% 0% 0%)", duration: 1.2, ease: "expo.out" }
+                  )
+                  .from(img, { scale: 1.4, duration: 1.6, ease: "expo.out" }, "<")
+                  .to(chars, { y: "0%", stagger: 0.012, duration: 0.7, ease: "power3.out" }, "-=0.8");
+            });
+        }
+
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card-link');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                gsap.to(".project-card-link:not(.hidden)", {
+                    opacity: 0, y: 15, duration: 0.3,
+                    onComplete: () => {
+                        projectCards.forEach(card => {
+                            const cat = card.getAttribute('data-category');
+                            if (filter === 'all' || cat === filter) {
+                                card.classList.remove('hidden');
+                                card.style.display = "block";
+                            } else {
+                                card.classList.add('hidden');
+                                card.style.display = "none";
+                            }
+                        });
+                        ScrollTrigger.refresh();
+                        initAnimations();
+                        gsap.fromTo(".project-card-link:not(.hidden)", 
+                            { opacity: 0, y: 15 }, 
+                            { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 }
+                        );
+                    }
+                });
+            });
+        });
+
+        window.onload = initAnimations;
+    </script>
+</body>
+</html>

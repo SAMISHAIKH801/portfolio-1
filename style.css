@@ -1,6 +1,31 @@
 
 
 
+#sound-toggle .stroke {
+    display: block;
+    position: relative;
+    background: #00ff00; 
+    height: 100%;
+    width: 3px;
+    border-radius: 50px;
+    animation: wave-anim 1.2s infinite ease-in-out;
+}
+
+@keyframes wave-anim {
+    50% { height: 20%; }
+    100% { height: 100%; }
+}
+
+.stroke:nth-child(1) { animation-delay: 0s; }
+.stroke:nth-child(2) { animation-delay: 0.3s; }
+.stroke:nth-child(3) { animation-delay: 0.6s; }
+.stroke:nth-child(4) { animation-delay: 0.9s; }
+.stroke:nth-child(5) { animation-delay: 0.2s; }
+
+
+
+/* -----  loader css ------------------------- */
+
 
 
 
@@ -47,6 +72,66 @@ body {
 .manifesto-text .line {
     font-family: 'Bebas Neue', sans-serif !important;
 }
+
+ /* ---------------btn css ------------------ */
+
+
+ .view-btn {
+        --accent: #f15b2a;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 35px;
+        background: transparent;
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50px; /* Capsule Shape */
+        color: #fff;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 18px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        cursor: pointer;
+        overflow: hidden;
+        z-index: 1;
+        transition: color 0.4s ease, border-color 0.4s ease;
+        outline: none;
+    }
+
+  
+    .view-btn::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        width: 140%; 
+        padding-top: 140%;
+        background-color: var(--accent);
+        border-radius: 50%;
+        z-index: -1;
+        transform: translate(-50%, 0) scale(0);
+        transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .view-btn:hover {
+        color: #000;
+        border-color: var(--accent);
+    }
+
+    .view-btn:hover::after {
+        /* Ball expand hokar center me settle ho jayegi */
+        transform: translate(-50%, -75%) scale(1.1);
+    }
+
+    /* Text Layer */
+    .view-btn span {
+        position: relative;
+        z-index: 2;
+    }
+
+
+    /* --------------- btn css ------  */
 
 body{
     margin: 0;
@@ -275,7 +360,43 @@ body {
 
 
 
+.hero-section {
+    /* Exact match for the reference image's warm glow */
+    background: radial-gradient(circle at center, #f15b2a 0%, #ff4500 45%, #d12705 100%) !important;
+    
+    position: relative !important;
+    height: 100vh !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: hidden !important;
+}
 
+.marquee-text {
+    font-size: 15vw !important;
+    font-weight: 600 !important;
+    /* Image me text dark/black hai jo orange par bohat premium lagta hai */
+    color: #000000 !important; 
+    padding-right: 80px !important;
+    text-transform: uppercase !important;
+    line-height: 1 !important;
+    opacity: 0.9 !important; 
+}
+
+/* Location pill ko sleek dark look dene ke liye */
+.location-pill {
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(10px) !important;
+    color: #ffffff !important;
+    /* Baqi properties existing hi rahengi */
+}
+
+/* Image background ke saath blend ho iske liye ye add kar sakte hain */
+.hero-img {
+    mix-blend-mode: multiply !important; /* Isse image gradient ke sath merge ho jayegi */
+    filter: saturate(1.2) !important;
+}
 
 
 .hero-section {
@@ -549,7 +670,7 @@ svg.globe-icon {
 }
 
 .about-tag {
-    color: #ff3c31;
+    color: #f15b2a;
     font-size: 14px;
     letter-spacing: 3px;
     margin-bottom: 20px;
@@ -705,7 +826,7 @@ svg.globe-icon {
     left: 0;
     width: 100%;
     height: 0%;
-    background-color: #ff4d4d;
+    background-color: #f15b2a;
     transition: height 0.1s ease-out;
 }
 
@@ -718,7 +839,7 @@ svg.globe-icon {
 .section-label {
     font-family: 'Inter', sans-serif;
     /* Inter Font */
-    color: #ff4d4d;
+    color: #f15b2a;
     font-size: clamp(10px, 1.5vw, 12px);
     font-weight: 700;
     letter-spacing: 3px;
@@ -921,7 +1042,7 @@ svg.globe-icon {
     left: 0;
     width: 80px;
     height: 80px;
-    background-color: #b4f4e0;
+    background-color: #f15b2a;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -1002,7 +1123,7 @@ svg.globe-icon {
 .project-reveal-box {
     position: relative;
     width: 100%;
-    height: clamp(190px, 35vw, 380px);
+    height: clamp(190px, 35vw, 480px);
     overflow: hidden;
     border-radius: 20px;
     background: #151515;
@@ -1012,7 +1133,7 @@ svg.globe-icon {
 .project-reveal-img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     position: absolute;
     top: 0;
     left: 0;
@@ -1165,7 +1286,7 @@ svg.globe-icon {
 
         .contact-email {
             font-family: 'Inter', sans-serif;
-            color: #ef4444; 
+            color: #f15b2a; 
             transition: opacity 0.3s ease;
             z-index: 10;
             text-decoration: none;
@@ -1232,7 +1353,7 @@ svg.globe-icon {
             font-weight: 700;
             font-size: 11px;
             letter-spacing: 0.25em;
-            color: #b91c1c; 
+            color: #f15b2a; 
             text-transform: uppercase;
             transition: color 0.3s ease;
             text-decoration: none;
@@ -1322,7 +1443,7 @@ svg.globe-icon {
 .branding-globe {
     width: 85px;
     height: 85px;
-    background-color: #455ce9; /* Signature Blue */
+    background-color: #f15b2a; /* Signature Blue */
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -1407,7 +1528,7 @@ svg.globe-icon {
 
         .tagline {
             font-size: 11px;
-            color: #ff2d55;
+            color: #f15b2a;
             text-transform: uppercase;
             letter-spacing: 5px;
             margin-bottom: 15px;
@@ -1427,7 +1548,7 @@ svg.globe-icon {
             font-size: clamp(16px, 2.5vw, 24px);
             color: #ffffff;
             text-decoration: none;
-            border-bottom: 1px solid #ff2d55;
+            border-bottom: 1px solid #f15b2a;
             padding-bottom: 5px;
             font-weight: 300;
             transition: 0.4s;
@@ -1435,7 +1556,7 @@ svg.globe-icon {
         }
 
         .cta-mail:hover { 
-            color: #ff2d55; 
+            color: #f15b2a; 
             letter-spacing: 1px; 
         }
 

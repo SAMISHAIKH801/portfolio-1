@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Auto Loader</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <style>
+        @font-face {
+            font-family: 'Bandeins-Strange';
+            src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/BandeinsStrangeVariableGX.ttf') format('truetype');
+            font-stretch: 100% 800%;
+            font-weight: 200 800;
+            font-display: block;
+        }
+
+        :root { --fontSize: 4; }
+
+        body {
+            margin: 0;
+            background: black;
+            color: white;
+            overflow: hidden; /* Scroll band jab tak loading ho rahi hai */
+            font-family: 'Bandeins-Strange', sans-serif;
+        }
+
+        .stage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
+            visibility: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .tube {
+            position: fixed;
+            top: 50vh;
+            left: 50vw;
+            perspective: 100vw;
+        }
+
+        .tube__inner {
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            font-size: calc(var(--fontSize) * 1vw);
+            font-stretch: 800%;
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1;
+            transform-style: preserve-3d;
+            white-space: nowrap;
+        }
+
+        /* Home page content jo loader ke baad dikhega */
+        #main-site {
+            opacity: 0;
+            padding: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="stage">
+    <div class="tube">
+        <div class="tube__inner">
+            <h1 class="line">Rotation</h1>
+        </div>
+    </div>
+</div>
+
+<div id="main-site">
+    <h1>Aapki Website Ka Content</h1>
+    <p>Loader khatam hone ke baad ye nazar ayega.</p>
+</div>
+
+<script>
+    const select = e => document.querySelector(e);
+    const stage = select('.stage');
+    const tubeInner = select(".tube__inner");
+    const clone = document.getElementsByClassName("line");
+    const numLines = 10;
+    const fontSize = gsap.getProperty(':root', '--fontSize');
+    const angle = 360 / numLines;
+    let radius = 0;
+    let origin = 0;
+
+    function set3D() {
+        let width = window.innerWidth;
+        let fontSizePx = (width / 100) * fontSize;
+        radius = (fontSizePx / 2) / Math.sin((180 / numLines) * (Math.PI / 180));
+        origin = `50% 50% -${radius}px`;
+    }
+
+    function clodeNode() {
+        for (var i = 0; i < (numLines - 1); i++) {
+            let newClone = clone[0].cloneNode(true);
+            newClone.classList.add("line--" + (i + 2));
+            tubeInner.appendChild(newClone);
+        }
+        clone[0].classList.add("line--1");
+    }
+
+    function positionTxt() {
+        gsap.set('.line', {
+            rotationX: (index) => -angle * index,
+            z: radius,
+            transformOrigin: origin
+        });
+    }
+
+    function setProps(targets) {
+        targets.forEach(function(target) {
+            let paramSet = gsap.quickSetter(target, "css");
+            let degrees = gsap.getProperty(target, "rotateX");
+            let radians = degrees * (Math.PI / 180);
+            let conversion = Math.abs(Math.cos(radians) / 2 + 0.5);
+            let fontW = 200 + 700 * conversion;
+            let fontS = `${100 + 700 * conversion}%`;
+
+            paramSet({
+                opacity: conversion + 0.1,
+                fontWeight: fontW,
+                fontStretch: fontS
+            });
+        });
+    }
+
+    // --- MAIN AUTO ANIMATION ---
+    function autoAnimate() {
+        const mainTimeline = gsap.timeline({
+            onComplete: () => {
+                // Loader khatam hone par home page dikhana
+                gsap.to(stage, { autoAlpha: 0, duration: 1 });
+                gsap.to("#main-site", { autoAlpha: 1, duration: 1 });
+                document.body.style.overflow = "auto";
+            }
+        });
+
+        // 1. Loader ko show karo
+        mainTimeline.to(stage, { autoAlpha: 1, duration: 1 });
+
+        // 2. Rotation chalao (Auto)
+        mainTimeline.to('.line', {
+            rotateX: "+=1080", // 3 full rotations
+            duration: 5,      // Jitni der loader dikhana hai
+            ease: "power2.inOut",
+            onUpdate: function() {
+                setProps(this.targets()); // Weight aur stretch update logic
+            }
+        }, "-=0.5");
+
+        // 3. Perspective effect
+        mainTimeline.to('.tube', {
+            perspective: '1vw',
+            ease: 'expo.out',
+            duration: 2
+        }, "-=2");
+    }
+
+    function init() {
+        clodeNode();
+        set3D();
+        window.onresize = () => {
+            set3D();
+            positionTxt();
+        }
+        positionTxt();
+        setProps(gsap.utils.toArray(".line"));
+        autoAnimate();
+    }
+
+    window.onload = init;
+</script>
+
+</body>
+</html>
