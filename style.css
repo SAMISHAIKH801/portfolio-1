@@ -4,7 +4,7 @@
 #sound-toggle .stroke {
     display: block;
     position: relative;
-    background: #00ff00; 
+    background: #ff4400; 
     height: 100%;
     width: 3px;
     border-radius: 50px;
@@ -25,6 +25,64 @@
 
 
 /* -----  loader css ------------------------- */
+
+@font-face {
+    font-family: 'Bandeins-Strange';
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/BandeinsStrangeVariableGX.ttf') format('truetype');
+    font-stretch: 100% 800%;
+    font-weight: 200 800;
+    font-display: block;
+}
+
+:root { --fontSize: 4; }
+
+/* Loader active state removed to ensure text is visible */
+.stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    background: #0e0e0c;
+    font-family: 'Bandeins-Strange', sans-serif;
+}
+
+.tube {
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    perspective: 100vw;
+}
+
+.tube__inner {
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.loader-line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: calc(var(--fontSize) * 1vw);
+    font-stretch: 800%;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1;
+    transform-style: preserve-3d;
+    white-space: nowrap;
+    color: white;
+}
+
+
+
+/* --------------------------------------------- */
 
 
 
